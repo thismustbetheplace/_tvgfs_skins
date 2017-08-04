@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<!-- Extra -
+<!-- Extra
 skin.py, 3  Logos
 skin.py, 1  Reopen guide above logos
 skin.py, 30 Record
@@ -28,7 +28,7 @@ WeatherTemp  80  120
 -->
 <window>
     <allowoverlay>no</allowoverlay>
-    <!--<defaultcontrol always="false">5000</defaultcontrol>-->
+    <defaultcontrol always="false">5000</defaultcontrol>
     <!--<defaultcontrol always="false">5001</defaultcontrol>-->
     <coordinates>
         <system>1</system>
@@ -39,18 +39,6 @@ WeatherTemp  80  120
         <!-- # Backgrounds and texture Workarounds -->
         <control type="group">
             <description>Main Texture Workaround Backgrounds</description>
-            <!-- # Mouse Workarounds -->
-            <!--
-            <control type="button" id="100">
-                <description>Mouse Workarounds</description>
-            </control>
-            <control type="button" id="101">
-                <description>Mouse Workarounds</description>
-            </control>
-            <control type="button" id="102">
-                <description>Mouse Workarounds</description>
-            </control>
-            -->
             <control type="image">
                 <description>workaround for texture not being loaded</description>
                 <posx>-10000</posx>
@@ -213,7 +201,7 @@ WeatherTemp  80  120
                 <width>1280</width>
                 <height>720</height>
                 <texture>buttons/clear-black.png</texture>
-                <visible>Control.IsVisible(4600)</visible>
+                <!--<visible>Control.IsVisible(4600)</visible>-->
             </control>
             <!-- # WS Blackout -->
             <control type="image">
@@ -261,7 +249,7 @@ WeatherTemp  80  120
                 <texturenofocus>buttons/clearFO.png</texturenofocus>
                 <texturefocus>buttons/clear.png</texturefocus>
                 <onclick>info</onclick>
-                <visible>Control.IsVisible(5000) + Control.IsVisible(10000)</visible>
+                <visible>Control.IsVisible(5000)+Control.IsVisible(10000)</visible>
             </control>
         </control>
         <!-- MAIN EPG ## Align 5001 for the main epg listings window with the rest adjusted accordingly -->
@@ -320,7 +308,7 @@ WeatherTemp  80  120
                         <height>28</height>
                         <width>1276</width>
                         <texture>backgrounds/dialogheader.png</texture>
-       <visible>false</visible>
+                        <visible>false</visible>
                     </control>
                     <!-- Main EPG Timebar header to add colour - grabbed from categores bar colours id 7000 -->
                     <control type="image" id="7000">
@@ -328,6 +316,7 @@ WeatherTemp  80  120
                         <posy>2</posy>
                         <height>26</height>
                         <width>1280</width>
+                        <!--<texture>trans/blacktrans35.png</texture>-->
                         <texture>trans/whitetrans35.png</texture>
                         <!--<texture colordiffuse="skyblue">trans/whitetrans45.png</texture>-->
                     </control>
@@ -455,7 +444,7 @@ WeatherTemp  80  120
                         <shadowcolor>black</shadowcolor>
                         <align>center</align>
                         <aligny>center</aligny>
-                        <!--<label>$INFO[System.Time]</label>-->
+                        <visible>true</visible>
                     </control>
                     <!-- Main EPG Time short - Displays date - Toogle in numbers -->
                     <control type="label" id="3999">
@@ -1739,20 +1728,18 @@ WeatherTemp  80  120
                         <texture>backgrounds/TV_testcard.png</texture>
                         <visible>StringCompare(Control.GetLabel(7023),)+StringCompare(Control.GetLabel(7027),)</visible>
                     </control>
-                    
                     <!-- cover image all  -->
                     <control type="image">
-                            <description>PIcon image</description>
-                            <posx>0</posx>
-                            <posy>25</posy>
-                            <width>340</width>
-                            <height>160</height>
-                            <texture>$INFO[Player.Art(thumb)]</texture>
-                            <!--<texture fallback="buttons/player/DefaultVideoCover.png">$INFO[Player.Art(thumb)]</texture>-->
-                            <aspectratio aligny="center">keep</aspectratio>
-                            <visible>!Player.IsInternetStream | VideoPlayer.Content(Movies) | VideoPlayer.Content(episodes) | VideoPlayer.Content(music) | VideoPlayer.Content(LiveTV)</visible>
-                        </control>
-                    
+                        <description>PIcon image</description>
+                        <posx>0</posx>
+                        <posy>25</posy>
+                        <width>340</width>
+                        <height>160</height>
+                        <texture>$INFO[Player.Art(thumb)]</texture>
+                        <!--<texture fallback="buttons/player/DefaultVideoCover.png">$INFO[Player.Art(thumb)]</texture>-->
+                        <aspectratio aligny="center">keep</aspectratio>
+                        <visible>!Player.IsInternetStream | VideoPlayer.Content(Movies) | VideoPlayer.Content(episodes) | VideoPlayer.Content(music) | VideoPlayer.Content(LiveTV)</visible>
+                    </control>
                     <!-- Program logo - Source logo top right -->
                     <control type="image" id="7023">
                         <description>PIP program/logo image - Program logo / Source logo top right</description>
@@ -1800,9 +1787,7 @@ WeatherTemp  80  120
                         <animation effect="fade" start="0" end="0" time="200">WindowClose</animation>
                         <visible>!Control.IsVisible(5000)+Control.IsVisible(5002)</visible>
                     </control>
-
                 </control>
-                
                 <!-- top focused Progress Time Shown -->
                 <control type="progress" id="7026">
                     <description>Progress Time Shown</description>
@@ -2031,7 +2016,6 @@ WeatherTemp  80  120
                         <texture colordiffuse="black">trans/whitetrans35.png</texture>
                         <visible>Player.HasMedia</visible>
                     </control>
-
                     <!-- bottom Current osd - if playing media is from library spacers -->
                     <control type="progress">
                         <description>Current osd - if playing media is from library spacers</description>
@@ -2054,7 +2038,6 @@ WeatherTemp  80  120
                         <visible>!Player.IsInternetStream+Player.HasMedia</visible>
                         <!--<visible>!Player.IsInternetStream+Player.HasMedia</visible>-->
                     </control>
-                    
                     <!-- OSD Codec flags confluence  smaller -->
                     <control type="grouplist">
                         <description>estuary style vertical codec flags top right aligned for logo</description>
@@ -2105,7 +2088,6 @@ WeatherTemp  80  120
                             <texture>$INFO[VideoPlayer.VideoResolution,codecflags/videoresolutionsmall/,.png]</texture>
                         </control>
                     </control>
-
                     <!-- test playerisplaying name -->
                     <control type="grouplist">
                         <description>Current Program title and current is playing</description>
@@ -2489,7 +2471,6 @@ WeatherTemp  80  120
                     <visible>Control.IsVisible(4323)</visible>
                 </control>
             </control>
-
             <!-- # Loading Progress Group -->
             <control type="label" id="4200">
                 <description>visibility marker for loading group</description>
@@ -2579,7 +2560,6 @@ WeatherTemp  80  120
                     <texturenofocus>buttons/actionbar/power.png</texturenofocus>
                 </control>
             </control>
- 
             <!-- # Mainscreen Mouse Controls and help menu -->
             <control type="label" id="4300">
                 <description>visibility marker for mouse control group</description>
@@ -3056,12 +3036,7 @@ WeatherTemp  80  120
                     <height>40</height>
                 </control>
             </control>
-
-
-
         </control>
-
-
         <!-- # Main OSD Control Group # -->
         <control type="label" id="6000">
             <description>OSD Onscreen Display visibility marker for OSD Info bar</description>
@@ -3155,6 +3130,7 @@ WeatherTemp  80  120
                     <textcolor>grey</textcolor>
                     <shadowcolor>black</shadowcolor>
                     <label>$INFO[System.Time]</label>
+                    <animation effect="slide" start="0,0" end="-40,0" time="75" condition="Window.IsVisible(Mutebug)">conditional</animation>
                 </control>
                 <!-- disabled Osd visible button now current program arrow -->
                 <control type="button" id="6304">
@@ -3662,6 +3638,7 @@ WeatherTemp  80  120
                         <textcolor>white</textcolor>
                         <shadowcolor>black</shadowcolor>
                         <label>$INFO[System.Time]</label>
+                        <animation effect="slide" start="0,0" end="-40,0" time="75" condition="Window.IsVisible(Mutebug)">conditional</animation>
                     </control>
                     -->
                     <!-- OSD Descriptions OSD Program channel logo -->
@@ -5154,6 +5131,7 @@ WeatherTemp  80  120
                         <align>right</align>
                         <aligny>center</aligny>
                         <label>$INFO[System.Time(hh:mm)]</label>
+                        <animation effect="slide" start="0,0" end="-40,0" time="75" condition="Window.IsVisible(Mutebug)">conditional</animation>
                     </control>
                     <!-- Quick EPG 1st half hour column -->
                     <control type="label" id="14001">
@@ -5353,29 +5331,26 @@ WeatherTemp  80  120
             <!-- Quick EPG visibility marker for mouse buttons -->
             <control type="label" id="10300">
                 <description>visibility marker for mouse control group</description>
+                <posx>0</posx>
+                <posy>0</posy>
             </control>
             <control type="group">
                 <posx>0</posx>
                 <posy>500</posy>
                 <visible>!Control.IsVisible(10300)</visible>
                 <!-- hidden quickEpgShowInfo button -->
-                <control type="togglebutton" id="17026">
+                <control type="button" id="17026">
                     <label></label>
                     <description>quickEpgShowInfo</description>
                     <posx>0</posx>
-                    <posy>685</posy>
+                    <posy>180</posy>
                     <width>1280</width>
                     <height>40</height>
-                    <textcolor>ffffffff</textcolor>
                     <onclick>info</onclick>
                     <align>center</align>
                     <aligny>center</aligny>
                     <texturefocus>buttons/clearFO.png</texturefocus>
-                    <texturenofocus>buttons/clearFO.png</texturenofocus>
-                    <usealttexture>Control.IsVisible(5000)+Control.IsVisible(4323)+!Control.IsVisible(10300)</usealttexture>
-                    <alttexturefocus>buttons/help_markerFO.png</alttexturefocus>
-                    <alttexturenofocus>buttons/help_marker.png</alttexturenofocus>
-                    <altlabel>INFO TOGGLE</altlabel>
+                    <texturenofocus>buttons/clear.png</texturenofocus>
                 </control>
                 <!-- # QuickEPG Mouse Navigation -->
                 <control type="grouplist">
@@ -5421,12 +5396,24 @@ WeatherTemp  80  120
                         <texturenofocus>buttons/mouse/up.png</texturenofocus>
                     </control>
                     <!-- quickEpgShowInfo icon dummy button nofocus image -->
+                    <control type="button">
+                        <description>quickEpgShowInfo button nofocus</description>
+                        <posx>400</posx>
+                        <posy>0</posy>
+                        <width>50</width>
+                        <height>30</height>
+                        <texturefocus>buttons/osd/quickepginfo.png</texturefocus>
+                        <texturenofocus>buttons/osd/quickepginfo.png</texturenofocus>
+                        <onclick>info</onclick>
+                    </control>
+                    <!--
                     <control type="image">
                         <description>quickEpgShowInfo button nofocus</description>
                         <width>30</width>
                         <height>30</height>
                         <texture>buttons/osd/quickepginfo.png</texture>
                     </control>
+                    -->
                     <!-- Quick EPG Channel down -->
                     <control type="button" id="17032">
                         <description>Channel down</description>
@@ -6634,10 +6621,11 @@ WeatherTemp  80  120
             </control>
         </control>
         <!-- disabled - # Actionbar marker  disabled as it overrides the mousebar - combined controls but keep old ids - to activate set to true but you lose the mousebar -->
+        <!--
         <control type="label" id="7101">
             <description>visibility marker for action bar</description>
         </control>
-        <!--
+        -->
         <control type="list" id="7100">
             <description>action bar list</description>
             <posx>920</posx>
@@ -6699,6 +6687,5 @@ WeatherTemp  80  120
                 </control>
             </focusedlayout>
         </control>
-        -->
     </controls>
 </window>
