@@ -65,20 +65,20 @@ def _skinvideowindow_toggle(Clean_File, rezsize):
      if rezsize == '720p':
          ## Description Flip
          # flip3 720p main
-         if '<posx>20.1</posx>' in s:  s=s.replace('<posx>20.1</posx>','<posx>360.1</posx>')
-         else:  s=s.replace('<posx>360.1</posx>','<posx>20.1</posx>')# extra 30 for timebar at top
+         if '<posx>20.5</posx>' in s:  s=s.replace('<posx>20.5</posx>','<posx>360.5</posx>')
+         else:  s=s.replace('<posx>360.5</posx>','<posx>20.5</posx>')# extra 30 for timebar at top
          # flip4 720p menu
-         if '<posx>920.1</posx>' in s:  s=s.replace('<posx>920.1</posx>','<posx>-360.1</posx>')
-         else:  s=s.replace('<posx>-360.1</posx>','<posx>920.1</posx>')# extra 30 for timebar at top
+         if '<posx>920.5</posx>' in s:  s=s.replace('<posx>920.5</posx>','<posx>-360.5</posx>')
+         else:  s=s.replace('<posx>-360.5</posx>','<posx>920.5</posx>')# extra 30 for timebar at top
      #
      if rezsize == '1080i':
          ## Description Flip
          # flip3 1080p main
-         if '<posx>20.1</posx>' in s:  s=s.replace('<posx>20.1</posx>','<posx>360.1</posx>')
-         else:  s=s.replace('<posx>360.1</posx>','<posx>20.1</posx>')# extra 30 for timebar at top
+         if '<posx>31</posx>' in s:  s=s.replace('<posx>31</posx>','<posx>541</posx>')
+         else:  s=s.replace('<posx>541</posx>','<posx>31</posx>')# extra 30 for timebar at top
          # flip4 1080p menu
-         if '<posx>920.1</posx>' in s:  s=s.replace('<posx>920.1</posx>','<posx>-360.1</posx>')
-         else:  s=s.replace('<posx>-360.1</posx>','<posx>920.1</posx>')# extra 30 for timebar at top
+         if '<posx>1381</posx>' in s:  s=s.replace('<posx>1381</posx>','<posx>-541</posx>')
+         else:  s=s.replace('<posx>-541</posx>','<posx>1381</posx>')# extra 30 for timebar at top
      #
      f=open(Clean_Name,'a')
      f.write(s)
@@ -102,20 +102,20 @@ def _skinflip_toggle(Clean_File, rezsize):
      if rezsize == '720p':
          ## Description Flip
          # flip1 720p main
-         if '<posy>240.1</posy>' in s:  s=s.replace('<posy>240.1</posy>','<posy>30.1</posy>')
-         else:  s=s.replace('<posy>30.1</posy>','<posy>240.1</posy>')# extra 30 for timebar at top
+         if '<posy>240.5</posy>' in s:  s=s.replace('<posy>240.5</posy>','<posy>30.5</posy>')
+         else:  s=s.replace('<posy>30.5</posy>','<posy>240.5</posy>')# extra 30 for timebar at top
          # flip2 720p menu
-         if '<posy>0.1</posy>' in s:  s=s.replace('<posy>0.1</posy>','<posy>475.1</posy>')
-         else:  s=s.replace('<posy>475.1</posy>','<posy>0.1</posy>')# extra 30 for timebar at top
+         if '<posy>0.5</posy>' in s:  s=s.replace('<posy>0.5</posy>','<posy>475.5</posy>')
+         else:  s=s.replace('<posy>475.5</posy>','<posy>0.5</posy>')# extra 30 for timebar at top
      #
      if rezsize == '1080i':
          ## Description Flip
          # flip1 1080p main
-         if '<posy>360.1</posy>' in s:  s=s.replace('<posy>360.1</posy>','<posy>45.1</posy>')
-         else:  s=s.replace('<posy>45.1</posy>','<posy>360.1</posy>')
+         if '<posy>361</posy>' in s:  s=s.replace('<posy>361</posy>','<posy>46</posy>')
+         else:  s=s.replace('<posy>46</posy>','<posy>361</posy>')
          # flip2 1080p menu
-         if '<posy>-360.1</posy>' in s:  s=s.replace('<posy>-360.1</posy>','<posy>675.1</posy>')
-         else:  s=s.replace('<posy>675.1</posy>','<posy>-360.1</posy>')
+         if '<posy>1</posy>' in s:  s=s.replace('<posy>1</posy>','<posy>713</posy>')
+         else:  s=s.replace('<posy>713</posy>','<posy>1</posy>')
      #
      f=open(Clean_Name,'a')
      f.write(s)

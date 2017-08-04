@@ -213,7 +213,7 @@ WeatherTemp  80  120
                 <width>1280</width>
                 <height>720</height>
                 <texture>buttons/clear-black.png</texture>
-                <!--<visible>Control.IsVisible(4600)</visible>-->
+                <visible>Control.IsVisible(4600)</visible>
             </control>
             <!-- # WS Blackout -->
             <control type="image">
@@ -236,8 +236,8 @@ WeatherTemp  80  120
                 <width>1280</width>
                 <height>720</height>
                 <visible>Control.IsVisible(5000)|Control.IsVisible(5003)</visible>
-                <animation effect="fade" start="0,0" end="1280,720" time="200">WindowOpen</animation>
-                <animation effect="fade" start="0,0" end="0,0" time="200">WindowClose</animation>
+                <!--<animation effect="fade" start="0,0" end="1280,720" time="200">WindowOpen</animation>
+                <animation effect="fade" start="0,0" end="0,0" time="200">WindowClose</animation>-->
             </control>
             <!-- # override Kodi OSD - invisible osd exit invisible exit everywhere except bottom osd channel desc to override Kodi OSD -->
             <control type="button">
@@ -280,7 +280,7 @@ WeatherTemp  80  120
                 <description>TV Guide EPG Listings Columns y - 240 middle - 30 top</description>
                 <posx>180</posx>
                 <!--flip1-->
-                <posy>240.1</posy>
+                <posy>240.5</posy>
                 <width>1100</width>
                 <height>450</height>
                 <visible>false</visible>
@@ -290,7 +290,7 @@ WeatherTemp  80  120
                 <description>TV Guide EPG Listings Columns</description>
                 <posx>0</posx>
                 <!--flip1-->
-                <posy>240.1</posy>
+                <posy>240.5</posy>
                 <width>1100</width>
                 <!--<width>1280</width>-->
                 <height>450</height>
@@ -320,6 +320,7 @@ WeatherTemp  80  120
                         <height>28</height>
                         <width>1276</width>
                         <texture>backgrounds/dialogheader.png</texture>
+       <visible>false</visible>
                     </control>
                     <!-- Main EPG Timebar header to add colour - grabbed from categores bar colours id 7000 -->
                     <control type="image" id="7000">
@@ -1646,9 +1647,9 @@ WeatherTemp  80  120
             <control type="group">
                 <description>Main Current Program info display main up and down coordinates - y top 0 and 480 middle</description>
                 <!--flip3-->
-                <posx>20.1</posx>
+                <posx>20.5</posx>
                 <!--flip2-->
-                <posy>0.1</posy>
+                <posy>0.5</posy>
                 <width>1260</width>
                 <height>210</height>
                 <!-- Weird footer at bottom that covers epg screen when theres only 1 channel  - weird formatting - disabled -->
@@ -1718,7 +1719,7 @@ WeatherTemp  80  120
                 <control type="group">
                     <description>Program Image Box / PIP</description>
                     <!--flip4-->
-                    <posx>920.1</posx>
+                    <posx>920.5</posx>
                     <!--<posx>920</posx>-->
                     <!--<posx>-360</posx>-->
                     <posy>0</posy>
@@ -2488,20 +2489,17 @@ WeatherTemp  80  120
                     <visible>Control.IsVisible(4323)</visible>
                 </control>
             </control>
+
             <!-- # Loading Progress Group -->
             <control type="label" id="4200">
                 <description>visibility marker for loading group</description>
-                <posx>0</posx>
-                <posy>0</posy>
-                <width>1280</width>
-                <height>720</height>
             </control>
             <control type="group">
                 <posx>0</posx>
                 <posy>0</posy>
                 <width>1280</width>
                 <height>50</height>
-                <visible>!Control.IsVisible(4200)+Control.IsVisible(5000)</visible>
+                <visible>!Control.IsVisible(4200)</visible>
                 <animation effect="fade" start="0" end="100" time="100" delay="1500">Visible</animation>
                 <!-- Loading Progress If invisible background with video playing this is the blackout loading background - put before video window-->
                 <control type="image">
@@ -2519,7 +2517,7 @@ WeatherTemp  80  120
                     <posy>0</posy>
                     <width>1280</width>
                     <height>720</height>
-                    <visible>!Control.IsVisible(4200)+Control.IsVisible(5000)+Player.HasMedia</visible>
+                    <visible>!Control.IsVisible(4200)+Player.HasMedia</visible>
                 </control>
                 <!-- Loading Progress loading splash -->
                 <control type="image">
@@ -2580,33 +2578,11 @@ WeatherTemp  80  120
                     <texturefocus>buttons/actionbar/powerFO.png</texturefocus>
                     <texturenofocus>buttons/actionbar/power.png</texturenofocus>
                 </control>
-                <!-- invisible Reopen Guide on time above logos -->
-                <control type="togglebutton">
-                    <label></label>
-                    <description>invisible Reopen Guide on time above logos</description>
-                    <posx>-20</posx>
-                    <posy>0</posy>
-                    <width>180</width>
-                    <height>40</height>
-                    <onclick>RunScript(special://home/addons/script.tvguide.fullscreen.skin.cake/resources/lib/skin.py, 1)</onclick>
-                    <align>center</align>
-                    <aligny>center</aligny>
-                    <textcolor>yellow</textcolor>
-                    <texturefocus>buttons/clearFO.png</texturefocus>
-                    <texturenofocus>buttons/clearFO.png</texturenofocus>
-                    <usealttexture>!Control.IsVisible(5000)+Control.IsVisible(4323)+!Control.IsVisible(4300)</usealttexture>
-                    <alttexturefocus>buttons/help_markerFO.png</alttexturefocus>
-                    <alttexturenofocus>buttons/help_marker.png</alttexturenofocus>
-                    <altlabel>REOPEN</altlabel>
-                </control>
             </control>
+ 
             <!-- # Mainscreen Mouse Controls and help menu -->
             <control type="label" id="4300">
                 <description>visibility marker for mouse control group</description>
-                <posx>0</posx>
-                <posy>0</posy>
-                <width>1280</width>
-                <height>720</height>
             </control>
             <control type="group">
                 <posx>0</posx>
@@ -3080,7 +3056,12 @@ WeatherTemp  80  120
                     <height>40</height>
                 </control>
             </control>
+
+
+
         </control>
+
+
         <!-- # Main OSD Control Group # -->
         <control type="label" id="6000">
             <description>OSD Onscreen Display visibility marker for OSD Info bar</description>
@@ -3091,7 +3072,7 @@ WeatherTemp  80  120
             <posy>0</posy>
             <width>1280</width>
             <height>720</height>
-            <visible>!Control.IsVisible(6000)+Control.IsVisible(5000)</visible>
+            <visible>!Control.IsVisible(6000)</visible>
             <animation effect="fade" start="0" end="100" time="200">VisibleChange</animation>
             <!--  OSD Descriptions Control Group -->
             <control type="group">
@@ -4226,9 +4207,9 @@ WeatherTemp  80  120
         <control type="group">
             <description>Last Channel popup</description>
             <!--flip3-->
-            <posx>20.1</posx>
+            <posx>20.5</posx>
             <!--flip2-->
-            <posy>0.1</posy>
+            <posy>0.5</posy>
             <width>1260</width>
             <height>210</height>
             <visible>!Control.IsVisible(8000)</visible>
@@ -4628,7 +4609,7 @@ WeatherTemp  80  120
             <control type="image" id="8006">
                 <description>PIP program/logo image - Program logo / Source logo top right</description>
                 <!--flip4-->
-                <posx>920.1</posx>
+                <posx>920.5</posx>
                 <posy>0</posy>
                 <width>340</width>
                 <height>210</height>
@@ -4646,9 +4627,9 @@ WeatherTemp  80  120
         <control type="group">
             <description>Next Program popup</description>
             <!--flip3-->
-            <posx>20.1</posx>
+            <posx>20.5</posx>
             <!--flip2-->
-            <posy>0.1</posy>
+            <posy>0.5</posy>
             <width>1260</width>
             <height>210</height>
             <visible>!Control.IsVisible(9000)</visible>
@@ -4718,7 +4699,7 @@ WeatherTemp  80  120
             <control type="image" id="9010">
                 <description>PIP program image - Program Source logo top right</description>
                 <!--flip4-->
-                <posx>920.1</posx>
+                <posx>920.5</posx>
                 <posy>0</posy>
                 <width>340</width>
                 <height>210</height>
@@ -5819,10 +5800,6 @@ WeatherTemp  80  120
         <!-- # Action Bar and Mousebar visibility marker -->
         <control type="label" id="5200">
             <description>visibility marker for Action Bar</description>
-            <posx>0</posx>
-            <posy>680</posy>
-            <width>1280</width>
-            <height>40</height>
         </control>
         <!-- 5200 # Global Action Bar commands-->
         <control type="group">
@@ -6660,6 +6637,7 @@ WeatherTemp  80  120
         <control type="label" id="7101">
             <description>visibility marker for action bar</description>
         </control>
+        <!--
         <control type="list" id="7100">
             <description>action bar list</description>
             <posx>920</posx>
@@ -6721,5 +6699,6 @@ WeatherTemp  80  120
                 </control>
             </focusedlayout>
         </control>
+        -->
     </controls>
 </window>

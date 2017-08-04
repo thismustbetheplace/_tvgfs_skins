@@ -67,7 +67,7 @@ http://kodi.wiki/view/Opening_Windows_and_Dialogs
             <description>Main Popup Menu Control Group</description>
             <posx>0</posx>
             <!--flip1-->
-            <posy>360.1</posy>
+            <posy>361</posy>
             <width>270</width>
             <height>675</height>
             <!-- black EPG Background is not playing video -->

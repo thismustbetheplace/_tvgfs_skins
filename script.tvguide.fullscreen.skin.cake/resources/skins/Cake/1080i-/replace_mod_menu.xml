@@ -19,73 +19,12 @@ skin.py, 666 Reset Database
 plugin://script.skin.helper.widgets/?action=next&mediatype=episodes&reload=
 plugin://script.skin.helper.widgets/?action=unaired&mediatype=episodes&limit=25&reload=
 http://kodi.wiki/view/Opening_Windows_and_Dialogs
-
-    C_POPUP_LABEL = 7000
-    C_POPUP_PROGRAM_DESCRIPTION_TEXTBOX = 77000
-    C_POPUP_PROGRAM_LABEL = 7001
-    C_POPUP_PROGRAM_IMAGE = 7002
-    C_POPUP_PROGRAM_DATE = 7003
-    C_POPUP_PROGRAM_DATE_AND_ENDTIME = 77003   missing
-    C_POPUP_CATEGORY = 7004  list array
-    C_POPUP_SET_CATEGORY = 7005
-    C_POPUP_PLAY = 4000
-    C_POPUP_STOP = 44000
-    C_POPUP_CHOOSE_STREAM = 4001
-    C_POPUP_CHOOSE_STREAM_2 = 40011  disabled  use other method
-    C_POPUP_REMOVE_STREAM = 44001  disabled  use other method
-    C_POPUP_REMIND = 4002
-    C_POPUP_CHANNELS = 4003
-    C_POPUP_QUIT = 4004
-    C_POPUP_SETUP_QUIT = 44004  disabled  use other method
-    C_POPUP_PLAY_BEGINNING = 4005  meta
-    C_POPUP_SEARCH = 4006
-    C_POPUP_STREAM_SETUP = 4007
-    C_POPUP_AUTOPLAY = 4008
-    C_POPUP_AUTOPLAYWITH = 4009
-    C_POPUP_LISTS = 4011
-    C_POPUP_FAVOURITES = 4012
-    C_POPUP_EXTENDED = 4013  extended info
-    C_POPUP_CHOOSE_ALT = 4014
-    C_POPUP_CHOOSE_CLOSE = 4015 # deprecated?
-    C_POPUP_VODTV = 4016
-    C_POPUP_CATCHUP_ADDON = 4017   catchup              new
-    C_POPUP_CHANNEL_LOGO = 4100
-    C_POPUP_CHANNEL_TITLE = 4101  disabled
-    C_POPUP_SETUP_CHANNEL_TITLE = 44101
-    C_POPUP_PROGRAM_TITLE = 4102
-    C_POPUP_DURATION = 4103
-    C_POPUP_PROGRESS_INFO = 4104
-    C_POPUP_PROGRESS_BAR = 4105
-    C_POPUP_NEXT_PROGRAM_TITLE = 4106
-    C_POPUP_NEXT_PROGRAM_DATE = 4107
-    C_POPUP_ADDON_LOGO = 4025
-    C_POPUP_ADDON_LABEL = 4026
-    C_POPUP_LIBMOV = 80000   i rename this id
-    C_POPUP_LIBTV = 80001   i rename this id
-    C_POPUP_VIDEOADDONS = 80002   i rename this id
-    C_POPUP_SETUP = 4500  main menu
-    C_POPUP_BUTTON_SHOW_SETUP = 4501  disabled not needed
-    C_POPUP_SETUP_BUTTON_CLOSE = 4502
-    C_POPUP_SETUP_BUTTON_CHANNEL_UP = 4503
-    C_POPUP_SETUP_BUTTON_CHANNEL_DOWN = 4504
-    C_POPUP_SETUP_BUTTON_PROGRAM_PREVIOUS = 4505
-    C_POPUP_SETUP_BUTTON_PROGRAM_NEXT = 4506
-    C_POPUP_SETUP_BUTTON_PROGRAM_NOW = 4507
-    C_POPUP_MENU_MOUSE_CONTROLS = 44500
-    C_POPUP_PLAY_BIG = 44501  invisible
-    C_POPUP_CHANNEL_UP_BIG = 44503  disabled
-    C_POPUP_CHANNEL_DOWN_BIG = 44504  disabled
-    C_POPUP_PROGRAM_PREVIOUS_BIG = 44505  disabled
-    C_POPUP_PROGRAM_NEXT_BIG = 44506 disabled
-    C_POPUP_PROGRAM_NOW_BIG = 44507  disabled
-    C_POPUP_MOUSE_HELP_CONTROL = 44510
-
 -->
 <window type="dialog">
     <allowoverlay>no</allowoverlay>
     <defaultcontrol always="false">4000</defaultcontrol>
-    <!--<animation effect="fade" time="150">WindowOpen</animation>
-    <animation effect="fade" time="100">WindowClose</animation>-->
+    <!--<animation effect="fade" time="200">WindowOpen</animation>
+    <animation effect="fade" time="200">WindowClose</animation>-->
     <coordinates>
         <system>1</system>
         <posx>0</posx>
@@ -179,17 +118,6 @@ http://kodi.wiki/view/Opening_Windows_and_Dialogs
             <onclick>Action(close)</onclick>
         </control>
         -->
-        <!-- # touch close no ide failsafe -->
-        <control type="button">
-            <description>touch close failsafe</description>
-            <posx>0</posx>
-            <posy>0</posy>
-            <width>1920</width>
-            <height>1080</height>
-            <texturenofocus>buttons/clearFO.png</texturenofocus>
-            <texturefocus>buttons/clearFO.png</texturefocus>
-            <visible>true</visible>
-        </control>
         <!-- # touch close  -->
         <control type="button" id="4015">
             <description>touch close depreciated perhaps</description>
@@ -210,7 +138,7 @@ http://kodi.wiki/view/Opening_Windows_and_Dialogs
             <height>315</height>
             <texturenofocus>buttons/clearFO.png</texturenofocus>
             <texturefocus>buttons/clearFO.png</texturefocus>
-            <visible>true</visible>
+            <visible>false</visible>
         </control>
         <!-- ## Main Menus Control Group ## -->
         <control type="label" id="4500">
@@ -220,7 +148,7 @@ http://kodi.wiki/view/Opening_Windows_and_Dialogs
             <description>Main Popup Menu Control Group</description>
             <posx>0</posx>
             <!--flip1-->
-            <posy>360.1</posy>
+            <posy>361</posy>
             <width>270</width>
             <height>675</height>
             <!-- black EPG Background is not playing video -->
@@ -7080,10 +7008,10 @@ http://kodi.wiki/view/Opening_Windows_and_Dialogs
         <control type="group">
             <description>Popup Current Program Descriptions Group</description>
             <!--flip3-->
-            <posx>30.1</posx>
-            <!--<posx>20.1</posx>-->
+            <posx>31</posx>
+            <!--<posx>20.5</posx>-->
             <!--flip2-->
-            <posy>0.1</posy>
+            <posy>1</posy>
             <!--
                 720p Description at top -240 and at bottom 450
                 <posy>-240</posy>
@@ -7151,11 +7079,23 @@ http://kodi.wiki/view/Opening_Windows_and_Dialogs
             <control type="group">
                 <description>Program Image Box / PIP</description>
                 <!--flip4-->
-                <posx>1380.1</posx>
+                <posx>1381</posx>
                 <posy>0</posy>
                 <width>510</width>
                 <height>315</height>
                 <!--<animation effect="slide" start="920,0" end="2920,0" time="100" tween="quadratic" easing="out" condition="System.IdleTime(5)">Conditional</animation>-->
+                <!-- cover image all  -->
+                <control type="image">
+                    <description>PIcon image</description>
+                    <posx>0</posx>
+                    <posy>38</posy>
+                    <width>510</width>
+                    <height>240</height>
+                    <texture>$INFO[Player.Art(thumb)]</texture>
+                    <!--<texture fallback="buttons/player/DefaultVideoCover.png">$INFO[Player.Art(thumb)]</texture>-->
+                    <aspectratio aligny="center">keep</aspectratio>
+                    <visible>!Player.IsInternetStream | VideoPlayer.Content(Movies) | VideoPlayer.Content(episodes) | VideoPlayer.Content(music) | VideoPlayer.Content(LiveTV)</visible>
+                </control>
                 <!-- Program logo - Source logo top right -->
                 <control type="image" id="7002">
                     <description>PIP program/logo image - Program logo / Source logo top right</description>
