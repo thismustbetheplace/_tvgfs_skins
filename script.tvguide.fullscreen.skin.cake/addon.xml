@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<addon id="script.tvguide.fullscreen.skin.cake" name="TV Guide Fullscreen - Cake Skin" version="0.0.1" provider-name="andy,primaeval">
+<addon id="script.tvguide.fullscreen.skin.cake" name="TV Guide Fullscreen - Cake Skin" version="0.0.2" provider-name="andy,primaeval">
     <requires>
         <import addon="xbmc.python" version="2.19.0"/>
         <!--<import addon="script.tvguide.fullscreen" version="0.0.321"/>-->

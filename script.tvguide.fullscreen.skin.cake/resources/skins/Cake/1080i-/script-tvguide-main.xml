@@ -28,8 +28,7 @@ WeatherTemp  80  120
 -->
 <window>
     <allowoverlay>no</allowoverlay>
-    <defaultcontrol always="false">5000</defaultcontrol>
-    <!--<defaultcontrol always="false">5001</defaultcontrol>-->
+    <!--<defaultcontrol always="false">5000</defaultcontrol>-->
     <coordinates>
         <system>1</system>
         <posx>0</posx>

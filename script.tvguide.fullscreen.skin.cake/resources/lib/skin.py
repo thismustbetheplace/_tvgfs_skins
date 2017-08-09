@@ -2,7 +2,6 @@
 import xbmc, xbmcaddon, xbmcgui, xbmcplugin
 import sys
 import os
-#path_exec_file = os.getcwd() + '\\guideTypes.py'  #test this command
 
 try: from main_ini import ADDONID_CORE
 except ImportError: ADDONID_CORE  = 'script.tvguide.fullscreen'       # set this to your dest addonid
@@ -350,6 +349,8 @@ if __name__ == '__main__':
         # Horizontal Reverse the description area with the epg columns
         if mode == 10:
             xbmcgui.Dialog().notification('Toggle', 'Flip Description', ICON, 1000, False)
+            xbmc.executebuiltin('XBMC.ActivateWindow(home)')
+            xbmc.sleep(350)
             _skinflip_toggle(flipmenu, '720p')
             _skinflip_toggle(flipmain, '720p')
             _skinflip_toggle(flipvod, '720p')
@@ -361,6 +362,8 @@ if __name__ == '__main__':
         # Vertical Reverse the description area with videowindow
         if mode == 12: 
             xbmcgui.Dialog().notification('Toggle', 'Flip Videowindow', ICON, 1000, False)
+            xbmc.executebuiltin('XBMC.ActivateWindow(home)')
+            xbmc.sleep(350)
             _skinvideowindow_toggle(flipmenu, '720p')
             _skinvideowindow_toggle(flipmain, '720p')
             _skinvideowindow_toggle(flipmenu, '1080i')
@@ -370,16 +373,22 @@ if __name__ == '__main__':
 
         # Change the popup menu style by overwriting xml with selected
         if mode == 11:
+            xbmc.executebuiltin('XBMC.ActivateWindow(home)')
+            xbmc.sleep(350)
             _popupstyle_menu()
             _reopen()
         
         # Change the VOD menu style by overwriting xml with selected
         if mode == 13:
+            xbmc.executebuiltin('XBMC.ActivateWindow(home)')
+            xbmc.sleep(350)
             _vodstyle_menu()
             _reopen()
         
         # Change the VOD menu style by overwriting xml with selected
         if mode == 14:
+            xbmc.executebuiltin('XBMC.ActivateWindow(home)')
+            xbmc.sleep(350)
             _toggle_1080()
             _reopen()
         
@@ -452,8 +461,5 @@ if __name__ == '__main__':
             try:  import menu_guis
             except ImportError:  xbmc.executebuiltin('RunScript(special://home/addons/'+ADDONID_CORE+'/ResetDatabase.py, 1)')
             else:  menu_guis.deletedatabase_Menu()
-            #RUN = 'RunAddon('+ADDONID+')'
-            #RUN = 'RunScript('+ADDONID_CORE+')'
-            #xbmc.executebuiltin(RUN)
 
     xbmcplugin.endOfDirectory(int(sys.argv[1]))
