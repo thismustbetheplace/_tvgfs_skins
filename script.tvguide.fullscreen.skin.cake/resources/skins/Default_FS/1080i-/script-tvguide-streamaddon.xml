@@ -1,0 +1,125 @@
+<?xml version="1.0" encoding="utf-8"?>
+<window type="dialog">
+    <allowoverlay>no</allowoverlay>
+    <defaultcontrol always="true">1000</defaultcontrol>
+    <coordinates>
+        <system>1</system>
+        <posx>0</posx>
+        <posy>0</posy>
+    </coordinates>
+    <controls>
+        <control type="image">
+            <posx>0</posx>
+            <posy>0</posy>
+            <width>1920</width>
+            <height>1080</height>
+            <texture>black-back.png</texture>
+        </control>
+        <control type="image">
+            <posx>0</posx>
+            <posy>0</posy>
+            <width>1920</width>
+            <height>1080</height>
+            <texture>black-back.png</texture>
+        </control>
+        <control type="image" id="4025">
+            <description>Addon Logo</description>
+            <posx>30</posx>
+            <posy>968</posy>
+            <width>255</width>
+            <height>75</height>
+            <aspectratio>keep</aspectratio>
+            <align>left</align>
+            <texture>-</texture>
+            <visible>true</visible>
+        </control>
+        <control type="label" id="4026">
+            <label></label>
+            <description>Addon Name</description>
+            <posx>300</posx>
+            <posy>975</posy>
+            <width>360</width>
+            <height>60</height>
+            <align>left</align>
+            <aligny>center</aligny>
+            <font>font13_title</font>
+            <textcolor>white</textcolor>
+            <scroll>true</scroll>
+        </control>
+        <control type="label" id="4000">
+            <posx>495</posx>
+            <posy>600</posy>
+            <width>900</width>
+            <height>120</height>
+            <textcolor>ffffffff</textcolor>
+            <font>font13</font>
+            <align>center</align>
+            <label>[B]$ADDON[script.tvguide.fullscreen 30700][/B]</label>
+            <wrapmultiline>true</wrapmultiline>
+        </control>
+        <control type="fixedlist" id="1000">
+            <posx>0</posx>
+            <posy>300</posy>
+            <width>1920</width>
+            <height>270</height>
+            <viewtype label="list">list</viewtype>
+            <orientation>horizontal</orientation>
+            <focusposition>3</focusposition>
+            <itemlayout width="300" height="300">
+                <control type="image">
+                    <posx>0</posx>
+                    <posy>0</posy>
+                    <width>300</width>
+                    <height>30270</height>
+                    <texture>tvg-button-nofocus.png</texture>
+                    <visible>false</visible>
+                </control>
+                <control type="image">
+                    <posx>46</posx>
+                    <posy>24</posy>
+                    <width>192</width>
+                    <height>192</height>
+                    <info>ListItem.Icon</info>
+                </control>
+                <control type="label">
+                    <posx>0</posx>
+                    <posy>225</posy>
+                    <width>300</width>
+                    <height>60</height>
+                    <align>center</align>
+                    <font>font13</font>
+                    <textcolor>ffffffff</textcolor>
+                    <info>ListItem.Label</info>
+                </control>
+            </itemlayout>
+            <focusedlayout width="300" height="300">
+                <control type="image">
+                    <posx>0</posx>
+                    <posy>0</posy>
+                    <width>300</width>
+                    <height>270</height>
+                    <texture>tvg-button-focus.png</texture>
+                    <visible>Control.HasFocus(1000)</visible>
+                </control>
+                <control type="image">
+                    <posx>52</posx>
+                    <posy>24</posy>
+                    <width>192</width>
+                    <height>192</height>
+                    <aspectratio>keep</aspectratio>
+                    <info>ListItem.Icon</info>
+                </control>
+                <control type="label">
+                    <posx>0</posx>
+                    <posy>225</posy>
+                    <width>300</width>
+                    <height>60</height>
+                    <align>center</align>
+                    <font>font13</font>
+                    <textcolor>ffffffff</textcolor>
+                    <info>ListItem.Label</info>
+                </control>
+            </focusedlayout>
+        </control>
+    </controls>
+</window>

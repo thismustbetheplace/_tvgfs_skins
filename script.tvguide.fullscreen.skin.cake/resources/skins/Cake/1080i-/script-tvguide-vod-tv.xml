@@ -231,8 +231,7 @@ http://kodi.wiki/view/Opening_Windows_and_Dialogs
                         <focusedcolor>white</focusedcolor>
                         <label>PVR</label>
                         <ondown>930001</ondown>
-                        <onclick>ActivateWindow(10001,plugin://pvr.iptvsimple/,return)</onclick>
-                        <!--<onclick>ActivateWindow(10025,pvr://)</onclick>-->
+                        <onclick>ActivateWindow(10025,pvr://)</onclick>
                         <!--<visible>PVR.HasTVChannels</visible>-->
                     </control>
                     <!-- # Main Fixtures -->

@@ -230,7 +230,8 @@ def search_dialog():
 def skin_mod_settings():
     #import skin; skin.applyskin()
     #
-    SKINS = [["Cake with flip", "Cake"]]
+    SKINS = [["Cake with flip", "Cake",
+              "Default tvgfs fixed", "Default_FS"]]
     names = [s[0] for s in SKINS]
     d = xbmcgui.Dialog()
     skin = d.select("Set Default Skin for  "+ADDONID_CORE, names)
