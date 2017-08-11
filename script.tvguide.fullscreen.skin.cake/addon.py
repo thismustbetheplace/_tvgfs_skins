@@ -1,8 +1,8 @@
 import xbmc,xbmcgui,xbmcaddon
 dialog = xbmcgui.Dialog()
 
-SKINS = [["Cake with flip", "Cake",
-          "Default tvgfs fixed", "Default_FS"]]
+SKINS = [["Cake with flip", "Cake"],
+         ["Default tvgfs Fixed", "Default_FS"]]
 
 d = xbmcgui.Dialog()
 names = [s[0] for s in SKINS]
