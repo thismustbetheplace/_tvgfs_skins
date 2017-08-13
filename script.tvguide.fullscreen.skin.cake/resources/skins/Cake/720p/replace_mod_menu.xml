@@ -8425,7 +8425,7 @@ http://kodi.wiki/view/Opening_Windows_and_Dialogs
                     <visible>Player.HasMedia</visible>
                 </control>
                 <!-- Player Controls OSDAudioSettings -->
-                <control type="togglebutton" id="8000094">
+                <control type="button" id="8000094">
                     <width>32</width>
                     <height>32</height>
                     <label>OSDAudioSettings</label>
@@ -8776,7 +8776,7 @@ http://kodi.wiki/view/Opening_Windows_and_Dialogs
             <visible>true</visible>
         </control>
         <!-- invisible Reopen Guide on time above logos -->
-        <control type="togglebutton">
+        <control type="button">
             <label></label>
             <description>invisible Reopen Guide on time above logos</description>
             <posx>-20</posx>
@@ -8785,18 +8785,12 @@ http://kodi.wiki/view/Opening_Windows_and_Dialogs
             <height>40</height>
             <onclick>back</onclick>
             <onclick>ActivateWindow(home)</onclick>
-            <!--<onclick>back</onclick>
-                    <onclick>back</onclick>-->
             <onclick>RunScript(special://home/addons/script._TVGuide/resources/lib/skin.py, 1)</onclick>
             <align>center</align>
             <aligny>center</aligny>
             <textcolor>yellow</textcolor>
             <texturefocus>buttons/clearFO.png</texturefocus>
             <texturenofocus>buttons/clearFO.png</texturenofocus>
-            <usealttexture>!Control.IsVisible(44510)</usealttexture>
-            <alttexturefocus>buttons/help_markerFO.png</alttexturefocus>
-            <alttexturenofocus>buttons/help_marker.png</alttexturenofocus>
-            <altlabel>REOPEN</altlabel>
         </control>
     </controls>
 </window>
