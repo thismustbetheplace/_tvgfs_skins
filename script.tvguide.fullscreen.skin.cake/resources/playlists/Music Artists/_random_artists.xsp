@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
+<smartplaylist type="artists">
+    <name>Random</name>
+    <!--<name>$LOCALIZE[40098]</name>-->
+    <match>all</match>
+    <limit>15</limit>
+    <order direction="descending">random</order>
+</smartplaylist>

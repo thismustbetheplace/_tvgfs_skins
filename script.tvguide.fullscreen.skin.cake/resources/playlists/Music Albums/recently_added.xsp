@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
+<smartplaylist type="albums">
+    <name>Recently Added</name>
+    <match>all</match>
+    <limit>50</limit>
+<content target="music" sortby="artist" sortorder="ascending" limit="10">musicdb://recentlyaddedalbums/</content>
+</smartplaylist>

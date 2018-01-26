@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
+<smartplaylist type="episodes">
+    <name>Last 4 Weeks</name>
+    <match>all</match>
+    <rule field="airdate" operator="inthelast">4 weeks</rule>
+    <limit>25</limit>
+    <order direction="ascending">airdate</order>
+</smartplaylist>

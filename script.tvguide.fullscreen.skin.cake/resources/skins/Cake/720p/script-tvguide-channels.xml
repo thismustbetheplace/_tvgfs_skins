@@ -12,6 +12,7 @@
 <window type="dialog">
     <allowoverlay>no</allowoverlay>
     <defaultcontrol always="true">6000</defaultcontrol>
+    <menucontrol>6004</menucontrol>
     <coordinates>
         <system>1</system>
         <posx>0</posx>
@@ -24,43 +25,39 @@
         </control>
         <!-- # Backgrounds -->
         <control type="image">
-            <posx>0</posx>
-            <posy>0</posy>
-            <width>1280</width>
-            <height>720</height>
-            <texture>black-back.png</texture>
-        </control>
-        <control type="image">
-            <posx>0</posx>
-            <posy>0</posy>
-            <width>1280</width>
-            <height>720</height>
-            <texture>black-back.png</texture>
-        </control>
-        <control type="image">
             <description>main mount</description>
             <posx>0</posx>
             <posy>0</posy>
             <width>1280</width>
             <height>720</height>
-            <texture>backgrounds/background.png</texture>
-            <visible>true</visible>
+                <colordiffuse>$INFO[Window(1100).Property(background_color)]</colordiffuse>
+                <texture>white.png</texture>
         </control>
-        <!--
-        <control type="image">
-            <description>main background</description>
-            <posx>12</posx>
-            <posy>12</posy>
-            <width>1256</width>
-            <height>696</height>
-            <texture>black-back.png</texture>
-            <visible>true</visible>
+            <!-- # Background clear Black Default -->
+            <control type="image">
+                <description>background</description>
+                <posx>0</posx>
+                <posy>0</posy>
+                <width>1280</width>
+                <height>720</height>
+                <!--<texture>trans/black50.png</texture>-->
+                <texture>backgrounds/clear-black.png</texture>
+            </control>
+            
+                    <!-- # Video window preview -->
+        <control type="videowindow">
+            <description>Main PIP video window</description>
+            <posx>20</posx>
+            <posy>430</posy>
+            <width>340</width>
+            <height>210</height>
+            <aspectratio align="left">keep</aspectratio>
+            <aligny>center</aligny>
         </control>
-        -->
         <!-- # Channels Group -->
         <control type="group">
             <posx>40</posx>
-            <posy>380</posy>
+            <posy>280</posy>
             <width>600</width>
             <height>40</height>
             <visible>!Control.IsVisible(6001)</visible>
@@ -136,7 +133,7 @@
             <!--<label>$ADDON[script.tvguide.fullscreen 30501]</label>-->
         </control>
         <!-- # Channels list array -->
-        <control type="fixedlist" id="6000">
+        <control type="list" id="6000">
             <posx>640</posx>
             <posy>40</posy>
             <width>600</width>
@@ -144,7 +141,9 @@
             <viewtype label="list">list</viewtype>
             <orientation>vertical</orientation>
             <focusposition>9</focusposition>
-            <onright>6006</onright>
+            <!--<onleft>6006</onleft>-->
+            <onright>6100</onright>
+            <pagecontrol>6100</pagecontrol>
             <itemlayout width="600" height="40">
                 <control type="image">
                     <posx>0</posx>
@@ -228,61 +227,35 @@
                 </control>
             </focusedlayout>
         </control>
-        <!-- # Logos -->
-        <control type="button" id="6006">
-            <posx>300</posx>
-            <posy>660</posy>
-            <width>170</width>
-            <height>40</height>
-            <align>center</align>
-            <aligny>center</aligny>
-            <textcolor>white</textcolor>
-            <focusedcolor>black</focusedcolor>
-            <label>Logos</label>
-            <texturefocus>tvg-button-focus.png</texturefocus>
-            <texturenofocus>tvg-button-nofocus.png</texturenofocus>
-            <onleft>6000</onleft>
-            <onright>6005</onright>
-            <onup>6000</onup>
-        </control>
-        <!-- # Logo -->
-        <control type="button" id="6005">
-            <posx>500</posx>
-            <posy>660</posy>
-            <width>170</width>
-            <height>40</height>
-            <align>center</align>
-            <aligny>center</aligny>
-            <textcolor>white</textcolor>
-            <focusedcolor>black</focusedcolor>
-            <label>Logo</label>
-            <texturefocus>tvg-button-focus.png</texturefocus>
-            <texturenofocus>tvg-button-nofocus.png</texturenofocus>
-            <onleft>6006</onleft>
-            <onright>6003</onright>
-            <onup>6000</onup>
-        </control>
-        <!-- # Save -->
-        <control type="button" id="6003">
-            <posx>700</posx>
-            <posy>660</posy>
-            <width>170</width>
-            <height>40</height>
-            <align>center</align>
-            <aligny>center</aligny>
-            <textcolor>white</textcolor>
-            <focusedcolor>black</focusedcolor>
-            <label>Save</label>
-            <!--<label>$ADDON[script.tvguide.fullscreen 30502]</label>-->
-            <texturefocus>tvg-button-focus.png</texturefocus>
-            <texturenofocus>tvg-button-nofocus.png</texturenofocus>
-            <onleft>6005</onleft>
-            <onright>6004</onright>
-            <onup>6000</onup>
-        </control>
+
+
+                        <control type="scrollbar" id="6100">
+                            <description>scroll bar control</description>
+                            <posx>1242</posx>
+                            <posy>40</posy>
+                            <width>35</width>
+                            <height>600</height>
+                            <visible>true</visible>
+                            <pulseonselect>true</pulseonselect>
+                            <orientation>vertical</orientation>
+                            <showonepage>false</showonepage>
+                            <onleft>6000</onleft>
+                            <onright>6004</onright>
+                            <texturesliderbackground colordiffuse="$INFO[Window(1100).Property(scrollbarbg_color)]">trans/white15.png</texturesliderbackground>
+                            <textureslidernib>invisible.png</textureslidernib>
+                            <textureslidernibfocus>invisible.png</textureslidernibfocus>
+                            <texturesliderbar colordiffuse="$INFO[Window(1100).Property(scrollbarnf_color)]">trans/white15.png</texturesliderbar>
+                            <texturesliderbarfocus colordiffuse="$INFO[Window(1100).Property(focus_current_color)]">trans/white35.png</texturesliderbarfocus>
+                            <animation effect="fade" start="0" end="100" time="200" delay="300">Visible</animation>
+                            <animation effect="fade" start="100" end="0" time="200">Hidden</animation>
+                            <visible>Integer.IsGreater(Container(6000).NumItems,12)</visible>
+                        </control>
+
+
+
         <!-- # Cancel -->
         <control type="button" id="6004">
-            <posx>900</posx>
+            <posx>300</posx>
             <posy>660</posy>
             <width>170</width>
             <height>40</height>
@@ -294,9 +267,69 @@
             <!--<label>$ADDON[script.tvguide.fullscreen 30503]</label>-->
             <texturefocus>tvg-button-focus.png</texturefocus>
             <texturenofocus>tvg-button-nofocus.png</texturenofocus>
-            <onleft>6003</onleft>
-            <onright>6000</onright>
+            <onleft>6006</onleft>
+            <onright>6003</onright>
             <onup>6000</onup>
         </control>
+
+
+        <!-- # Save -->
+        <control type="button" id="6003">
+            <posx>500</posx>
+            <posy>660</posy>
+            <width>170</width>
+            <height>40</height>
+            <align>center</align>
+            <aligny>center</aligny>
+            <textcolor>white</textcolor>
+            <focusedcolor>black</focusedcolor>
+            <label>Save</label>
+            <!--<label>$ADDON[script.tvguide.fullscreen 30502]</label>-->
+            <texturefocus>tvg-button-focus.png</texturefocus>
+            <texturenofocus>tvg-button-nofocus.png</texturenofocus>
+            <onleft>6004</onleft>
+            <onright>6005</onright>
+            <onup>6000</onup>
+        </control>
+
+
+
+        <!-- # Chan Logo -->
+        <control type="button" id="6005">
+            <posx>700</posx>
+            <posy>660</posy>
+            <width>170</width>
+            <height>40</height>
+            <align>center</align>
+            <aligny>center</aligny>
+            <textcolor>white</textcolor>
+            <focusedcolor>black</focusedcolor>
+            <label>Chan Logo</label>
+            <texturefocus>tvg-button-focus.png</texturefocus>
+            <texturenofocus>tvg-button-nofocus.png</texturenofocus>
+            <onleft>6003</onleft>
+            <onright>6006</onright>
+            <onup>6000</onup>
+        </control>
+
+
+        <!-- # All Logos -->
+        <control type="button" id="6006">
+            <posx>900</posx>
+            <posy>660</posy>
+            <width>170</width>
+            <height>40</height>
+            <align>center</align>
+            <aligny>center</aligny>
+            <textcolor>white</textcolor>
+            <focusedcolor>black</focusedcolor>
+            <label>All Logos</label>
+            <texturefocus>tvg-button-focus.png</texturefocus>
+            <texturenofocus>tvg-button-nofocus.png</texturenofocus>
+            <onleft>6005</onleft>
+            <onright>6004</onright>
+            <onup>6000</onup>
+        </control>
+
     </controls>
 </window>

@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
+<smartplaylist type="movies">
+    <name>2017 Or Newer</name>
+    <match>all</match>
+    <rule field="year" operator="greaterthan">2016</rule>
+    <rule field="time" operator="greaterthan">0</rule>
+    <!--<rule field="videoresolution" operator="lessthan">720</rule>-->
+    <order direction="ascending">sorttitle</order>
+</smartplaylist>

@@ -1,18 +1,21 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<addon id="script.tvguide.fullscreen.skin.cake" name="TV Guide Fullscreen - Cake Skin" version="0.0.2" provider-name="andy,primaeval">
+<addon id="script.tvguide.fullscreen.skin.cake" name="TV Guide Fullscreen - Cake Skin" version="0.1.0" provider-name="andy,primaeval">
     <requires>
-        <import addon="xbmc.python" version="2.19.0"/>
+        <import addon="xbmc.python" version="2.1.0"/>
         <!--<import addon="script.tvguide.fullscreen" version="0.0.321"/>-->
+        <import addon="script.tvguide.fullscreen"/>
     </requires>
-    <!-- used to run swift2 ini programs must be video and wont work as executable -->
-    <extension point="xbmc.python.pluginsource" library="resources/lib/main.py">
-        <provides>video</provides>
+    <!-- used to run swift2 ini  -->
+    <extension point="xbmc.python.pluginsource" library="addon.py">
+        <provides>executable</provides>
+        <!--<provides>video</provides>-->
     </extension>
     <!-- used to run core add settings as a program addon failsafe -->
+    <!--
     <extension point="xbmc.python.script" library="addon.py">
             <provides>executable</provides>
     </extension>
-
+    -->
     <extension point="xbmc.addon.metadata">
         <description lang="en">TVGuide Fullscreen skin</description>
         <disclaimer lang="en">Skin and ini players</disclaimer>
@@ -25,6 +28,7 @@
         <email>primaeval</email>
         <assets>
             <icon>icon.png</icon>
+            <fanart>fanart.jpg</fanart>
             <screenshot>resources/skins/Cake/screenshots/screenshot-01.jpg</screenshot>
             <screenshot>resources/skins/Cake/screenshots/screenshot-02.jpg</screenshot>
             <screenshot>resources/skins/Cake/screenshots/screenshot-03.jpg</screenshot>

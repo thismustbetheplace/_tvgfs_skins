@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
+<smartplaylist type="movies">
+    <name>Directors</name>
+    <!--<name>$LOCALIZE[40101]</name>-->
+    <match>all</match>
+    <!--
+    <rule field="playcount" operator="is">
+        <value>0</value>
+    </rule>
+    -->
+    <group>directors</group>
+    <order direction="ascending">sorttitle</order>
+</smartplaylist>

@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
+<smartplaylist type="movies">
+    <name>xvid Movies</name>
+    <!--<name>$LOCALIZE[40101]</name>-->
+    <match>all</match>
+    <rule field="videocodec" operator="is">
+        <value>xvid</value>
+    </rule>
+    <!--<group>years</group>-->
+    <order direction="ascending">sorttitle</order>
+</smartplaylist>

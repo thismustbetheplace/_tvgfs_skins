@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
+<smartplaylist type="episodes">
+    <name>UnWatched Pilots</name>
+    <match>all</match>
+    <rule field="season" operator="is">
+        <value>1</value>
+    </rule>
+    <rule field="episode" operator="is">
+        <value>1</value>
+    </rule>
+    <rule field="playcount" operator="is">
+        <value>0</value>
+    </rule>
+    <limit>20</limit>
+    <order direction="ascending">sorttitle</order>
+</smartplaylist>

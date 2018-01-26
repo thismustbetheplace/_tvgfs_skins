@@ -1,8 +1,4 @@
 <?xml version="1.0" encoding="utf-8"?>
-<!--
-    C_PROGRAM_LIST = 1000
-    C_PROGRAM_LIST_TITLE = 1001
--->
 <window type="dialog">
     <allowoverlay>no</allowoverlay>
     <defaultcontrol always="false">1000</defaultcontrol>
@@ -20,7 +16,6 @@
             <width>1280</width>
             <height>720</height>
             <texture>tvg-background.png</texture>
-            <visible>true</visible>
         </control>
         <control type="videowindow">
             <description>video window</description>
@@ -28,7 +23,6 @@
             <posy>0</posy>
             <width>1280</width>
             <height>720</height>
-            <visible>true</visible>
         </control>
         <control type="image">
             <description>background</description>
@@ -36,8 +30,7 @@
             <posy>0</posy>
             <width>1280</width>
             <height>720</height>
-            <texture>tvg-back-trans.png</texture>
-            <visible>true</visible>
+            <texture>backgrounds/clear-black.png</texture>
         </control>
         <!-- # Title -->
         <control type="label" id="1001">
@@ -158,9 +151,6 @@
                     <height>660</height>
                     <onup>1000</onup>
                     <ondown>1000</ondown>
-                    <onleft>noop</onleft>
-                    <onright>noop</onright>
-                    <pagecontrol>noop</pagecontrol>
                     <itemlayout height="40">
                         <control type="image">
                             <left>0</left>
@@ -249,7 +239,7 @@
                             <top>0</top>
                             <width>1280</width>
                             <height>100</height>
-                            <texture>black-back.png</texture>
+                            <texture>backgrounds/clear-black.png</texture>
                             <visible>true</visible>
                         </control>
                         <control type="image">

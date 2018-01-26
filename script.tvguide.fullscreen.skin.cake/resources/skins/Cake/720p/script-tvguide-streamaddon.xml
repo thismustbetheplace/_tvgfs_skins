@@ -1,138 +1,256 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!-- # Languages disabled -->
-<!--
-    C_SELECTION_LIST = 1000
-    C_SELECTION_ADDON_LOGO = 4025
-    C_SELECTION_ADDON_LABEL = 4026
--->
 <window type="dialog">
     <allowoverlay>no</allowoverlay>
-    <defaultcontrol always="true">1000</defaultcontrol>
-    <animation effect="fade" start="0" end="100" time="250">WindowOpen</animation>
-    <animation effect="fade" start="100" end="0" time="250">WindowClose</animation>
+    <defaultcontrol always="false">1000</defaultcontrol>
+    <animation effect="fade" start="0" end="100" time="100">WindowOpen</animation>
+    <animation effect="fade" start="100" end="0" time="100">WindowClose</animation>
     <coordinates>
         <system>1</system>
         <posx>0</posx>
         <posy>0</posy>
     </coordinates>
     <controls>
-        <!-- # Backgrounds -->
+        <!-- # Background if video  -->
         <control type="image">
             <posx>0</posx>
             <posy>0</posy>
             <width>1280</width>
             <height>720</height>
-            <texture>black-back.png</texture>
+            <texture>trans/black75.png</texture>
         </control>
-        <control type="image">
+        <!-- # invisible osd exit -->
+        <control type="button">
+            <texturefocus></texturefocus>
+            <texturenofocus></texturenofocus>
+            <description>invisible exit osd everywhere except bottom osd channel description</description>
             <posx>0</posx>
             <posy>0</posy>
             <width>1280</width>
             <height>720</height>
-            <texture>black-back.png</texture>
+            <onclick>back</onclick>
         </control>
-        <!-- # Addon Logo -->
-        <control type="image" id="4025">
-            <description>Addon Logo</description>
-            <posx>20</posx>
-            <posy>645</posy>
-            <width>170</width>
-            <height>50</height>
-            <aspectratio>keep</aspectratio>
-            <align>left</align>
-            <texture>-</texture>
-            <visible>true</visible>
-        </control>
-        <!-- # Addon Name -->
-        <control type="label" id="4026">
-            <label></label>
-            <description>Addon Name</description>
-            <posx>200</posx>
-            <posy>650</posy>
-            <width>240</width>
-            <height>40</height>
-            <align>left</align>
-            <aligny>center</aligny>
-            <font>font30_title</font>
-            <textcolor>white</textcolor>
-            <scroll>true</scroll>
-        </control>
-        <!-- # Multiple addons provide this channel label -->
-        <control type="label" id="4000">
-            <posx>330</posx>
-            <posy>600</posy>
-            <width>600</width>
-            <height>80</height>
-            <textcolor>ffffffff</textcolor>
-            <align>center</align>
-            <label>[B]Multiple addons provide this channel. Choose one to watch the stream.[/B]</label>
-            <!--<label>[B]$ADDON[script.tvguide.fullscreen 30700][/B]</label>-->
-            <wrapmultiline>true</wrapmultiline>
-        </control>
-        <!-- # Stream addons main list array -->
-        <control type="fixedlist" id="1000">
+        <!-- # flip adjust -->
+        <control type="group">
+            <description>Main Popup Menu Control Group</description>
             <posx>0</posx>
-            <posy>300</posy>
+            <!--flip1-->
+            <posy>240.5</posy>
             <width>1280</width>
-            <height>180</height>
-            <viewtype label="list">list</viewtype>
-            <orientation>horizontal</orientation>
-            <focusposition>3</focusposition>
-            <itemlayout width="200" height="200">
-                <control type="image">
-                    <posx>0</posx>
-                    <posy>0</posy>
-                    <width>200</width>
-                    <height>180</height>
-                    <texture>tvg-button-nofocus.png</texture>
-                    <visible>false</visible>
-                </control>
-                <control type="image">
-                    <posx>31</posx>
-                    <posy>16</posy>
-                    <width>128</width>
-                    <height>128</height>
-                    <info>ListItem.Icon</info>
-                </control>
-                <control type="label">
-                    <posx>0</posx>
-                    <posy>150</posy>
-                    <width>200</width>
-                    <height>40</height>
-                    <align>center</align>
-                    <font>font10</font>
-                    <textcolor>ffffffff</textcolor>
-                    <info>ListItem.Label</info>
-                </control>
-            </itemlayout>
-            <focusedlayout width="200" height="200">
-                <control type="image">
-                    <posx>0</posx>
-                    <posy>0</posy>
-                    <width>200</width>
-                    <height>180</height>
-                    <texture>tvg-button-focus.png</texture>
-                    <visible>Control.HasFocus(1000)</visible>
-                </control>
-                <control type="image">
-                    <posx>35</posx>
-                    <posy>16</posy>
-                    <width>128</width>
-                    <height>128</height>
-                    <aspectratio>keep</aspectratio>
-                    <info>ListItem.Icon</info>
-                </control>
-                <control type="label">
-                    <posx>0</posx>
-                    <posy>150</posy>
-                    <width>200</width>
-                    <height>40</height>
-                    <align>center</align>
-                    <font>font10</font>
-                    <textcolor>ffffffff</textcolor>
-                    <info>ListItem.Label</info>
-                </control>
-            </focusedlayout>
+            <height>445</height>
+            <!-- # Multiple addons provide this channel label -->
+            <control type="label" id="4000">
+                <posx>1050</posx>
+                <!--<posy>5</posy>-->
+                <posy>0</posy>
+                <width>300</width>
+                <height>30</height>
+                <!--<width>1280</width>
+            <height>20</height>-->
+                <textcolor>grey</textcolor>
+                <align>left</align>
+                <aligny>center</aligny>
+                <font>font10</font>
+                <!--<label>[B]Multiple addons. Choose stream.[/B]</label>-->
+                <label>[B]Multiple addons.[/B]</label>
+                <!--<label>[B]$ADDON[script.tvguide.fullscreen 30700][/B]</label>-->
+                <wrapmultiline>true</wrapmultiline>
+                <visible>true</visible>
+            </control>
+            <!-- # Addon Logo -->
+            <control type="image" id="4025">
+                <texture></texture>
+                <description>Addon Logo</description>
+                <posx>1050</posx>
+                <posy>40</posy>
+                <width>30</width>
+                <height>30</height>
+                <aspectratio>keep</aspectratio>
+                <visible>true</visible>
+            </control>
+            <!-- # Addon Name -->
+            <control type="label" id="4026">
+                <label></label>
+                <description>Addon Name</description>
+                <posx>1090</posx>
+                <posy>40</posy>
+                <width>200</width>
+                <height>30</height>
+                <textcolor>white</textcolor>
+                <align>left</align>
+                <aligny>center</aligny>
+                <visible>true</visible>
+            </control>
+            <!-- # search ini -->
+            <control type="button" id="1002">
+                <label>Search ini</label>
+                <description>Search ini</description>
+                <posx>1050</posx>
+                <posy>80</posy>
+                <width>200</width>
+                <height>30</height>
+                <font>font10</font>
+                <shadowcolor>black</shadowcolor>
+                <align>center</align>
+                <aligny>center</aligny>
+                <textcolor>white</textcolor>
+                <texturenofocus>buttons/popup_button.png</texturenofocus>
+                <texturefocus colordiffuse="$INFO[Window(1100).Property(focus_current_color)]">buttons/listbox/focus.png</texturefocus>
+                <onleft>1000</onleft>
+                <onright>1000</onright>
+                <onup>1000</onup>
+                <ondown>1003</ondown>
+                <onclick>back</onclick>
+                <onclick>RunScript($INFO[Window(1100).Property(run_script)],102)</onclick>
+            </control>
+            <!-- # browse ini -->
+            <control type="button" id="1003">
+                <label>Browse ini</label>
+                <description>Browse ini</description>
+                <posx>1050</posx>
+                <posy>112</posy>
+                <width>200</width>
+                <height>30</height>
+                <font>font10</font>
+                <shadowcolor>black</shadowcolor>
+                <align>center</align>
+                <aligny>center</aligny>
+                <textcolor>white</textcolor>
+                <texturenofocus>buttons/popup_button.png</texturenofocus>
+                <texturefocus colordiffuse="$INFO[Window(1100).Property(focus_current_color)]">buttons/listbox/focus.png</texturefocus>
+                <onleft>1000</onleft>
+                <onright>1000</onright>
+                <onup>1002</onup>
+                <ondown>1002</ondown>
+                <onclick>back</onclick>
+                <onclick>RunScript($INFO[Window(1100).Property(run_script)],103)</onclick>
+            </control>
+            <!-- # invisible osd draw focus without exit -->
+            <control type="button">
+                <texturefocus></texturefocus>
+                <texturenofocus></texturenofocus>
+                <description>invisible exit osd everywhere except bottom osd channel description</description>
+                <posx>0</posx>
+                <posy>0</posy>
+                <width>446</width>
+                <!--<width>1280</width>-->
+                <height>445</height>
+                <onclick></onclick>
+            </control>
+            <!-- list # Stream addons main list array -->
+            <control type="list" id="1000">
+                <posx>180</posx>
+                <posy>0</posy>
+                <width>820</width>
+                <height>445</height>
+                <viewtype label="list">list</viewtype>
+                <orientation>vertical</orientation>
+                <preloaditems>2</preloaditems>
+                <focusposition>1</focusposition>
+                <pagecontrol>1001</pagecontrol>
+                <onleft>1001</onleft>
+                <onright>1001</onright>
+                <itemgap>5</itemgap>
+                <align>center</align>
+                <aligny>center</aligny>
+                <itemlayout width="820" height="40">
+                    <!-- background -->
+                    <control type="image">
+                        <texture flipx="false" colordiffuse="EDFFFFFF">buttons/listbox/panel.png</texture>
+                        <posx>0</posx>
+                        <posy>0</posy>
+                        <width>820</width>
+                        <height>40</height>
+                    </control>
+                    <control type="image">
+                        <posx>0</posx>
+                        <posy>0</posy>
+                        <width>820</width>
+                        <height>40</height>
+                        <texture>buttons/popup_button.png</texture>
+                    </control>
+                    <control type="image">
+                        <posx>1</posx>
+                        <posy>1</posy>
+                        <width>38</width>
+                        <height>38</height>
+                        <align>center</align>
+                        <aligny>center</aligny>
+                        <aspectratio>keep</aspectratio>
+                        <info>ListItem.Icon</info>
+                    </control>
+                    <control type="label">
+                        <posx>60</posx>
+                        <posy>0</posy>
+                        <width>780</width>
+                        <height>40</height>
+                        <align>left</align>
+                        <aligny>center</aligny>
+                        <font>font13</font>
+                        <textcolor>ffffffff</textcolor>
+                        <info>ListItem.Label</info>
+                    </control>
+                </itemlayout>
+                <focusedlayout width="820" height="60">
+                    <control type="image">
+                        <posx>0</posx>
+                        <posy>0</posy>
+                        <width>820</width>
+                        <height>60</height>
+                        <texture>buttons/popup_buttonFO.png</texture>
+                    </control>
+                    <control type="image">
+                        <posx>0</posx>
+                        <posy>0</posy>
+                        <width>820</width>
+                        <height>60</height>
+                        <texture colordiffuse="$INFO[Window(1100).Property(focus_current_color)]">buttons/listbox/focus.png</texture>
+                    </control>
+                    <control type="image">
+                        <posx>1</posx>
+                        <posy>1</posy>
+                        <width>58</width>
+                        <height>58</height>
+                        <align>center</align>
+                        <aligny>center</aligny>
+                        <aspectratio>keep</aspectratio>
+                        <info>ListItem.Icon</info>
+                    </control>
+                    <control type="label">
+                        <posx>80</posx>
+                        <posy>0</posy>
+                        <width>780</width>
+                        <height>60</height>
+                        <align>left</align>
+                        <aligny>center</aligny>
+                        <font>font_MainMenu</font>
+                        <textcolor>ffffffff</textcolor>
+                        <info>ListItem.Label</info>
+                    </control>
+                </focusedlayout>
+            </control>
+            <control type="scrollbar" id="1001">
+                <description>scroll bar control</description>
+                <posx>1000</posx>
+                <posy>0</posy>
+                <width>40</width>
+                <height>445</height>
+                <visible>true</visible>
+                <pulseonselect>true</pulseonselect>
+                <orientation>vertical</orientation>
+                <showonepage>false</showonepage>
+                <onleft>1000</onleft>
+                <onright>1002</onright>
+                <texturesliderbackground colordiffuse="$INFO[Window(1100).Property(scrollbarbg_color)]">trans/white15.png</texturesliderbackground>
+                <textureslidernib>invisible.png</textureslidernib>
+                <textureslidernibfocus>invisible.png</textureslidernibfocus>
+                <texturesliderbar colordiffuse="$INFO[Window(1100).Property(scrollbarnf_color)]">trans/white15.png</texturesliderbar>
+                <texturesliderbarfocus colordiffuse="$INFO[Window(1100).Property(focus_current_color)]">trans/white35.png</texturesliderbarfocus>
+                <animation effect="fade" start="0" end="100" time="200" delay="300">Visible</animation>
+                <animation effect="fade" start="100" end="0" time="200">Hidden</animation>
+                <!--<visible>Integer.IsGreater(Container(1000).NumItems,12)</visible>-->
+                <!--<visible>Integer.IsGreater(Container(1000).NumItems,12) | Container(1000).IsUpdating</visible>-->
+            </control>
         </control>
     </controls>
 </window>

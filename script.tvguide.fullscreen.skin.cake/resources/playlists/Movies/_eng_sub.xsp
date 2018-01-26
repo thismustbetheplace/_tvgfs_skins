@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
+<smartplaylist type="movies">
+    <name>Movies with English Subtitles</name>
+    <match>all</match>
+    <rule field="subtitlelanguage" operator="is">
+        <value>eng</value>
+    </rule>
+    <group>none</group>
+</smartplaylist>

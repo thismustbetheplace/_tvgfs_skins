@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
+<smartplaylist type="movies">
+    <name>x265 Movies</name>
+    <!--<name>$LOCALIZE[40101]</name>-->
+    <match>all</match>
+    <rule field="videocodec" operator="is">
+        <value>hevc</value>
+        <value>hev1</value>
+        <value>hvc1</value>
+        <value>mp4v</value>
+    </rule>
+    <!--<group>years</group>-->
+    <order direction="ascending">sorttitle</order>
+</smartplaylist>

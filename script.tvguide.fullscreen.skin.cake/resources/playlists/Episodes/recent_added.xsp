@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
+<smartplaylist type="episodes">
+    <name>Recently Added</name>
+    <!--<name>$LOCALIZE[40247]</name>-->
+    <match>all</match>
+    <!--
+    <rule field="playcount" operator="lessthan">
+    <value>1</value>
+    <limit>25</limit>
+    </rule>
+    -->
+    <order direction="descending">dateadded</order>
+</smartplaylist>

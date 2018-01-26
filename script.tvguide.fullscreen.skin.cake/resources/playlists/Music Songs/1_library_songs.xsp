@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
+<smartplaylist type="songs">
+    <name>All</name>
+    <!--<name>$LOCALIZE[40098]</name>-->
+    <match>all</match>
+    <order direction="ascending">sorttitle</order>
+    <content>musicdb://songs/</content>
+</smartplaylist>

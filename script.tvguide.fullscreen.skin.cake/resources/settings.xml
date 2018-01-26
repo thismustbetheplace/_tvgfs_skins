@@ -1,0 +1,245 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<settings>
+
+
+    <category label="script.tvguide.fullscreen">
+        <setting type="lsep" label="EPG Source"/>
+        <setting id="xmltv.type" label="XMLTV Source" type="enum" enable="true" visible="false" default="1" />
+        <setting id="xmltv.url" label="XMLTV Url" type="text" default="https://raw.githubusercontent.com/reponame/_xmltv/master/xmltv.xml.gz" />
+        <setting id="gz" label="Look for .gz Files (Urls only)" type="bool" default="true" />
+        <setting id="md5" label="md5 Check (Urls only)" type="bool" default="true" />
+        <setting id="xmltv.refresh" label="Reset on Start" type="bool" default="false" />
+        <setting id="xmltv.interval" label="30128" type="enum" default="3" values="every start|12 hours|24 hours|48 hours|7 days|14 days" />
+
+        <setting type="lsep" label="Secondary XMLTV File"/>
+        <setting id="xmltv2.enabled" label="XMLTV Secondary Source" type="bool" default="false" />
+        <setting id="xmltv2.type" label="XMLTV Secondary Source Type" type="enum" enable="true" visible="eq(-1,true)" default="1" values="File|Url" />
+        <setting id="xmltv2.file" label="XMLTV Secondary File" type="file" visible="eq(-2,true) + eq(-1,0)" />
+        <setting id="xmltv2.url" label="XMLTV Secondary Url" type="text" visible="eq(-3,true) + eq(-2,1)" default="https://raw.githubusercontent.com/reponame/_xmltv/master/xmltv2.xml.gz" />
+        
+        <setting type="lsep" label="Tertiary XMLTV File"/>
+        <setting id="xmltv3.enabled" label="XMLTV Tertiary Source" type="bool" default="false" />
+        <setting id="xmltv3.type" label="XMLTV Tertiary Source Type" type="enum" enable="true" visible="eq(-1,true)" default="0" values="File|Url" />
+        <setting id="xmltv3.file" label="XMLTV Tertiary File" type="file" visible="eq(-2,true) + eq(-1,0)" />
+        <setting id="xmltv3.url" label="XMLTV Tertiary Url" type="text" visible="eq(-3,true) + eq(-2,1)"  />
+
+        <setting type="lsep" label="Optional"/>
+        <setting type="lsep" label="Import addons.ini will overwrite added addon folders!"/>
+        <setting id="addons.ini.enabled" label="Import addons.ini" type="bool" default="true" />
+        <setting id="addons.ini.type" label="addons.ini Source" type="enum" visible="eq(-1,true)" default="0" values="File|Url"/>
+        <setting id="addons.ini.file" label="addons.ini File" type="file" visible="eq(-2,true) + eq(-1,0)" mask="addons.ini" default="special://profile/addon_data/script.tvguide.fullscreen/addons2.ini"/>
+
+        <setting type="lsep" label="Logos"/>
+        <setting id="logos.enabled" label="Enable Channel Logos" type="bool" default="true" />
+        <setting id="logos.source" label="External Logo Source" type="enum" default="1" values="None|Folder|Url" visible="eq(-1,true)" />
+        <setting id="logos.folder" label="Logos Folder" type="folder" visible="eq(-2,true) + eq(-1,1)" default="special://home/addons/script.tvguide.fullscreen.skin.cake/resources/logos/Default/" />
+
+        <setting type="lsep" label="Playback"/>
+        <setting id="m3u.read" label="Use highest bandwidth stream from m3u url (Krypton+ fix)" type="bool" default="false" />
+        <setting type="sep"/>
+        <setting id="catchup.type" label="Catchup Channel Type" type="labelenum" default="0" values="Meta?|Direct"/>
+        <setting id="catchup.text" label="Catchup Meta Addon (plugin.video.?)" type="text" visible="eq(-1,0)" default="Metalliq" />
+        <setting id="channel.shortcut" label="Channel Shortcut Type" type="enum" default="None" values="None|Index|xmltv Id" />
+        <setting type="sep"/>
+        <setting id="play.alt.choose" label="Always Choose Channel if Alternative Streams Exist" type="bool" default="false" />
+        <setting id="play.alt.continue" label="Try Other Alternative Streams if Play Fails" type="bool" default="false" />
+        <setting type="sep"/>
+        <setting id="stop.on.exit" label="Stop Playing on Exit" type="bool" default="false" />
+        <setting id="exit.on.back" label="Exit from EPG on Back Button" type="bool" default="true" />
+
+
+        <setting type="lsep" label="Appearance"/>
+        <setting id="epg.video.pip" label="Small EPG Video Preview Window" type="bool" default="true" />
+        <setting type="sep"/>
+        <setting id="program.image.scale" label="Scale Program Image" type="bool" default="false" />
+        <setting type="sep"/>
+        <setting id="stream.addon.list" label="List View for Choose Stream" type="bool" default="true" />
+        <setting type="sep"/>
+        <setting id="up.cat.mode" label="Up to Categories Bar" type="select" default="No" values="No|First Channel|Always" />
+        <setting id="action.bar" label="Show Action Bar" type="bool" default="true" />
+        <setting id="down.action" label="Down to Action Bar" type="bool" default="true" />
+        <setting id="program.search.plot" label="Program Search in Synopsis/Title" type="bool" default="true" />
+        <setting type="sep"/>
+        <setting id="mouse.controls" label="Show Touch Control Buttons" type="bool" default="true" />
+        <setting id="channel.logo" label="Show Channel Logo in EPG above Program Image" type="bool" default="true" />
+        <setting id="addon.logo" label="Show Addon Logo in EPG above Program Image" type="bool" default="true" />
+        <setting type="sep"/>
+        <setting id="channels.per.page" label="Channels per Page" type="labelenum" default="12" values="1|2|3|4|5|6|7|8|9|10|11|12|13|14|15|16"/>
+        <setting type="sep"/>
+        <setting id="channel.filter.sort" label="Sort Order for Channels in Categories" type="enum" default="2" values="Default|Sorted|categories.ini"/>
+        <setting type="sep"/>
+        <setting id="menu.addon" label="Show Addon in Context Menu" type="bool" default="true"/>
+
+        <setting type="lsep" label="Background"/>
+        <setting id="program.background.enabled" label="Enable Background Program Image" type="bool" default="false" />
+        <setting id="program.background.image.source" label="Background Image Source" type="enum" default="0" values="None|File|Url" visible="true" />
+        <setting id="program.background.color" label="Background EPG Colour" visible="eq(-4,0)" type="select" default="[COLOR ff4682b4]steelblue[/COLOR]" values="[COLOR fff0f8ff]aliceblue[/COLOR]|[COLOR fffaebd7]antiquewhite[/COLOR]|[COLOR ff00ffff]aqua[/COLOR]|[COLOR ff7fffd4]aquamarine[/COLOR]|[COLOR fff0ffff]azure[/COLOR]|[COLOR fff5f5dc]beige[/COLOR]|[COLOR ffffe4c4]bisque[/COLOR]|[COLOR ff606060]black[/COLOR]|[COLOR ffffebcd]blanchedalmond[/COLOR]|[COLOR ff0000ff]blue[/COLOR]|[COLOR ff8a2be2]blueviolet[/COLOR]|[COLOR ffa52a2a]brown[/COLOR]|[COLOR ffdeb887]burlywood[/COLOR]|[COLOR ff5f9ea0]cadetblue[/COLOR]|[COLOR ff7fff00]chartreuse[/COLOR]|[COLOR ffd2691e]chocolate[/COLOR]|[COLOR ffff7f50]coral[/COLOR]|[COLOR ff6495ed]cornflowerblue[/COLOR]|[COLOR fffff8dc]cornsilk[/COLOR]|[COLOR ffdc143c]crimson[/COLOR]|[COLOR ff00ffff]cyan[/COLOR]|[COLOR ff00008b]darkblue[/COLOR]|[COLOR ff008b8b]darkcyan[/COLOR]|[COLOR ffb8860b]darkgoldenrod[/COLOR]|[COLOR ffa9a9a9]darkgray[/COLOR]|[COLOR ff006400]darkgreen[/COLOR]|[COLOR ffa9a9a9]darkgrey[/COLOR]|[COLOR ffbdb76b]darkkhaki[/COLOR]|[COLOR ff8b008b]darkmagenta[/COLOR]|[COLOR ff556b2f]darkolivegreen[/COLOR]|[COLOR ffff8c00]darkorange[/COLOR]|[COLOR ff9932cc]darkorchid[/COLOR]|[COLOR ff8b0000]darkred[/COLOR]|[COLOR ffe9967a]darksalmon[/COLOR]|[COLOR ff8fbc8f]darkseagreen[/COLOR]|[COLOR ff483d8b]darkslateblue[/COLOR]|[COLOR ff2f4f4f]darkslategray[/COLOR]|[COLOR ff2f4f4f]darkslategrey[/COLOR]|[COLOR ff00ced1]darkturquoise[/COLOR]|[COLOR ff9400d3]darkviolet[/COLOR]|[COLOR ffff1493]deeppink[/COLOR]|[COLOR ff00bfff]deepskyblue[/COLOR]|[COLOR ff696969]dimgray[/COLOR]|[COLOR ff696969]dimgrey[/COLOR]|[COLOR ff1e90ff]dodgerblue[/COLOR]|[COLOR ffb22222]firebrick[/COLOR]|[COLOR fffffaf0]floralwhite[/COLOR]|[COLOR ff228b22]forestgreen[/COLOR]|[COLOR ffff00ff]fuchsia[/COLOR]|[COLOR ffdcdcdc]gainsboro[/COLOR]|[COLOR fff8f8ff]ghostwhite[/COLOR]|[COLOR ffffd700]gold[/COLOR]|[COLOR ffdaa520]goldenrod[/COLOR]|[COLOR ff808080]gray[/COLOR]|[COLOR ff008000]green[/COLOR]|[COLOR ffadff2f]greenyellow[/COLOR]|[COLOR ff808080]grey[/COLOR]|[COLOR fff0fff0]honeydew[/COLOR]|[COLOR ffff69b4]hotpink[/COLOR]|[COLOR ffcd5c5c]indianred[/COLOR]|[COLOR ff4b0082]indigo[/COLOR]|[COLOR fffffff0]ivory[/COLOR]|[COLOR fff0e68c]khaki[/COLOR]|[COLOR ffe6e6fa]lavender[/COLOR]|[COLOR fffff0f5]lavenderblush[/COLOR]|[COLOR ff7cfc00]lawngreen[/COLOR]|[COLOR fffffacd]lemonchiffon[/COLOR]|[COLOR ffadd8e6]lightblue[/COLOR]|[COLOR fff08080]lightcoral[/COLOR]|[COLOR ffe0ffff]lightcyan[/COLOR]|[COLOR fffafad2]lightgoldenrodyellow[/COLOR]|[COLOR ffd3d3d3]lightgray[/COLOR]|[COLOR ff90ee90]lightgreen[/COLOR]|[COLOR ffd3d3d3]lightgrey[/COLOR]|[COLOR ffffb6c1]lightpink[/COLOR]|[COLOR ffffa07a]lightsalmon[/COLOR]|[COLOR ff20b2aa]lightseagreen[/COLOR]|[COLOR ff87cefa]lightskyblue[/COLOR]|[COLOR ff778899]lightslategray[/COLOR]|[COLOR ff778899]lightslategrey[/COLOR]|[COLOR ffb0c4de]lightsteelblue[/COLOR]|[COLOR ffffffe0]lightyellow[/COLOR]|[COLOR ff00ff00]lime[/COLOR]|[COLOR ff32cd32]limegreen[/COLOR]|[COLOR fffaf0e6]linen[/COLOR]|[COLOR ffff00ff]magenta[/COLOR]|[COLOR ff800000]maroon[/COLOR]|[COLOR ff66cdaa]mediumaquamarine[/COLOR]|[COLOR ff0000cd]mediumblue[/COLOR]|[COLOR ffba55d3]mediumorchid[/COLOR]|[COLOR ff9370db]mediumpurple[/COLOR]|[COLOR ff3cb371]mediumseagreen[/COLOR]|[COLOR ff7b68ee]mediumslateblue[/COLOR]|[COLOR ff00fa9a]mediumspringgreen[/COLOR]|[COLOR ff48d1cc]mediumturquoise[/COLOR]|[COLOR ffc71585]mediumvioletred[/COLOR]|[COLOR ff191970]midnightblue[/COLOR]|[COLOR fff5fffa]mintcream[/COLOR]|[COLOR ffffe4e1]mistyrose[/COLOR]|[COLOR ffffe4b5]moccasin[/COLOR]|[COLOR ffffdead]navajowhite[/COLOR]|[COLOR ff000080]navy[/COLOR]|[COLOR 00000000]none[/COLOR]|[COLOR fffdf5e6]oldlace[/COLOR]|[COLOR ff808000]olive[/COLOR]|[COLOR ff6b8e23]olivedrab[/COLOR]|[COLOR ffffa500]orange[/COLOR]|[COLOR ffff4500]orangered[/COLOR]|[COLOR ffda70d6]orchid[/COLOR]|[COLOR ffeee8aa]palegoldenrod[/COLOR]|[COLOR ff98fb98]palegreen[/COLOR]|[COLOR ffafeeee]paleturquoise[/COLOR]|[COLOR ffdb7093]palevioletred[/COLOR]|[COLOR ffffefd5]papayawhip[/COLOR]|[COLOR ffffdab9]peachpuff[/COLOR]|[COLOR ffcd853f]peru[/COLOR]|[COLOR ffffc0cb]pink[/COLOR]|[COLOR ffdda0dd]plum[/COLOR]|[COLOR ffb0e0e6]powderblue[/COLOR]|[COLOR ff800080]purple[/COLOR]|[COLOR ffff0000]red[/COLOR]|[COLOR ffbc8f8f]rosybrown[/COLOR]|[COLOR ff4169e1]royalblue[/COLOR]|[COLOR ff8b4513]saddlebrown[/COLOR]|[COLOR fffa8072]salmon[/COLOR]|[COLOR fff4a460]sandybrown[/COLOR]|[COLOR ff2e8b57]seagreen[/COLOR]|[COLOR fffff5ee]seashell[/COLOR]|[COLOR ffa0522d]sienna[/COLOR]|[COLOR ffc0c0c0]silver[/COLOR]|[COLOR ff87ceeb]skyblue[/COLOR]|[COLOR ff6a5acd]slateblue[/COLOR]|[COLOR ff708090]slategray[/COLOR]|[COLOR ff708090]slategrey[/COLOR]|[COLOR fffffafa]snow[/COLOR]|[COLOR ff00ff7f]springgreen[/COLOR]|[COLOR ff4682b4]steelblue[/COLOR]|[COLOR ffd2b48c]tan[/COLOR]|[COLOR ff008080]teal[/COLOR]|[COLOR ffd8bfd8]thistle[/COLOR]|[COLOR ffff6347]tomato[/COLOR]|[COLOR 00000000]transparent[/COLOR]|[COLOR ff40e0d0]turquoise[/COLOR]|[COLOR ffee82ee]violet[/COLOR]|[COLOR fff5deb3]wheat[/COLOR]|[COLOR ffffffff]white[/COLOR]|[COLOR fff5f5f5]whitesmoke[/COLOR]|[COLOR ffffff00]yellow[/COLOR]|[COLOR ff9acd32]yellowgreen[/COLOR]|" />
+        <setting id="program.background.flat" label="Flat Background Image" visible="eq(-5,0)" type="bool" default="true" />
+        <setting id="timebar.color" label="EPG Timebar Colour" type="select" default="[COLOR ffffff00]yellow[/COLOR]" values="[COLOR fff0f8ff]aliceblue[/COLOR]|[COLOR fffaebd7]antiquewhite[/COLOR]|[COLOR ff00ffff]aqua[/COLOR]|[COLOR ff7fffd4]aquamarine[/COLOR]|[COLOR fff0ffff]azure[/COLOR]|[COLOR fff5f5dc]beige[/COLOR]|[COLOR ffffe4c4]bisque[/COLOR]|[COLOR ff606060]black[/COLOR]|[COLOR ffffebcd]blanchedalmond[/COLOR]|[COLOR ff0000ff]blue[/COLOR]|[COLOR ff8a2be2]blueviolet[/COLOR]|[COLOR ffa52a2a]brown[/COLOR]|[COLOR ffdeb887]burlywood[/COLOR]|[COLOR ff5f9ea0]cadetblue[/COLOR]|[COLOR ff7fff00]chartreuse[/COLOR]|[COLOR ffd2691e]chocolate[/COLOR]|[COLOR ffff7f50]coral[/COLOR]|[COLOR ff6495ed]cornflowerblue[/COLOR]|[COLOR fffff8dc]cornsilk[/COLOR]|[COLOR ffdc143c]crimson[/COLOR]|[COLOR ff00ffff]cyan[/COLOR]|[COLOR ff00008b]darkblue[/COLOR]|[COLOR ff008b8b]darkcyan[/COLOR]|[COLOR ffb8860b]darkgoldenrod[/COLOR]|[COLOR ffa9a9a9]darkgray[/COLOR]|[COLOR ff006400]darkgreen[/COLOR]|[COLOR ffa9a9a9]darkgrey[/COLOR]|[COLOR ffbdb76b]darkkhaki[/COLOR]|[COLOR ff8b008b]darkmagenta[/COLOR]|[COLOR ff556b2f]darkolivegreen[/COLOR]|[COLOR ffff8c00]darkorange[/COLOR]|[COLOR ff9932cc]darkorchid[/COLOR]|[COLOR ff8b0000]darkred[/COLOR]|[COLOR ffe9967a]darksalmon[/COLOR]|[COLOR ff8fbc8f]darkseagreen[/COLOR]|[COLOR ff483d8b]darkslateblue[/COLOR]|[COLOR ff2f4f4f]darkslategray[/COLOR]|[COLOR ff2f4f4f]darkslategrey[/COLOR]|[COLOR ff00ced1]darkturquoise[/COLOR]|[COLOR ff9400d3]darkviolet[/COLOR]|[COLOR ffff1493]deeppink[/COLOR]|[COLOR ff00bfff]deepskyblue[/COLOR]|[COLOR ff696969]dimgray[/COLOR]|[COLOR ff696969]dimgrey[/COLOR]|[COLOR ff1e90ff]dodgerblue[/COLOR]|[COLOR ffb22222]firebrick[/COLOR]|[COLOR fffffaf0]floralwhite[/COLOR]|[COLOR ff228b22]forestgreen[/COLOR]|[COLOR ffff00ff]fuchsia[/COLOR]|[COLOR ffdcdcdc]gainsboro[/COLOR]|[COLOR fff8f8ff]ghostwhite[/COLOR]|[COLOR ffffd700]gold[/COLOR]|[COLOR ffdaa520]goldenrod[/COLOR]|[COLOR ff808080]gray[/COLOR]|[COLOR ff008000]green[/COLOR]|[COLOR ffadff2f]greenyellow[/COLOR]|[COLOR ff808080]grey[/COLOR]|[COLOR fff0fff0]honeydew[/COLOR]|[COLOR ffff69b4]hotpink[/COLOR]|[COLOR ffcd5c5c]indianred[/COLOR]|[COLOR ff4b0082]indigo[/COLOR]|[COLOR fffffff0]ivory[/COLOR]|[COLOR fff0e68c]khaki[/COLOR]|[COLOR ffe6e6fa]lavender[/COLOR]|[COLOR fffff0f5]lavenderblush[/COLOR]|[COLOR ff7cfc00]lawngreen[/COLOR]|[COLOR fffffacd]lemonchiffon[/COLOR]|[COLOR ffadd8e6]lightblue[/COLOR]|[COLOR fff08080]lightcoral[/COLOR]|[COLOR ffe0ffff]lightcyan[/COLOR]|[COLOR fffafad2]lightgoldenrodyellow[/COLOR]|[COLOR ffd3d3d3]lightgray[/COLOR]|[COLOR ff90ee90]lightgreen[/COLOR]|[COLOR ffd3d3d3]lightgrey[/COLOR]|[COLOR ffffb6c1]lightpink[/COLOR]|[COLOR ffffa07a]lightsalmon[/COLOR]|[COLOR ff20b2aa]lightseagreen[/COLOR]|[COLOR ff87cefa]lightskyblue[/COLOR]|[COLOR ff778899]lightslategray[/COLOR]|[COLOR ff778899]lightslategrey[/COLOR]|[COLOR ffb0c4de]lightsteelblue[/COLOR]|[COLOR ffffffe0]lightyellow[/COLOR]|[COLOR ff00ff00]lime[/COLOR]|[COLOR ff32cd32]limegreen[/COLOR]|[COLOR fffaf0e6]linen[/COLOR]|[COLOR ffff00ff]magenta[/COLOR]|[COLOR ff800000]maroon[/COLOR]|[COLOR ff66cdaa]mediumaquamarine[/COLOR]|[COLOR ff0000cd]mediumblue[/COLOR]|[COLOR ffba55d3]mediumorchid[/COLOR]|[COLOR ff9370db]mediumpurple[/COLOR]|[COLOR ff3cb371]mediumseagreen[/COLOR]|[COLOR ff7b68ee]mediumslateblue[/COLOR]|[COLOR ff00fa9a]mediumspringgreen[/COLOR]|[COLOR ff48d1cc]mediumturquoise[/COLOR]|[COLOR ffc71585]mediumvioletred[/COLOR]|[COLOR ff191970]midnightblue[/COLOR]|[COLOR fff5fffa]mintcream[/COLOR]|[COLOR ffffe4e1]mistyrose[/COLOR]|[COLOR ffffe4b5]moccasin[/COLOR]|[COLOR ffffdead]navajowhite[/COLOR]|[COLOR ff000080]navy[/COLOR]|[COLOR 00000000]none[/COLOR]|[COLOR fffdf5e6]oldlace[/COLOR]|[COLOR ff808000]olive[/COLOR]|[COLOR ff6b8e23]olivedrab[/COLOR]|[COLOR ffffa500]orange[/COLOR]|[COLOR ffff4500]orangered[/COLOR]|[COLOR ffda70d6]orchid[/COLOR]|[COLOR ffeee8aa]palegoldenrod[/COLOR]|[COLOR ff98fb98]palegreen[/COLOR]|[COLOR ffafeeee]paleturquoise[/COLOR]|[COLOR ffdb7093]palevioletred[/COLOR]|[COLOR ffffefd5]papayawhip[/COLOR]|[COLOR ffffdab9]peachpuff[/COLOR]|[COLOR ffcd853f]peru[/COLOR]|[COLOR ffffc0cb]pink[/COLOR]|[COLOR ffdda0dd]plum[/COLOR]|[COLOR ffb0e0e6]powderblue[/COLOR]|[COLOR ff800080]purple[/COLOR]|[COLOR ffff0000]red[/COLOR]|[COLOR ffbc8f8f]rosybrown[/COLOR]|[COLOR ff4169e1]royalblue[/COLOR]|[COLOR ff8b4513]saddlebrown[/COLOR]|[COLOR fffa8072]salmon[/COLOR]|[COLOR fff4a460]sandybrown[/COLOR]|[COLOR ff2e8b57]seagreen[/COLOR]|[COLOR fffff5ee]seashell[/COLOR]|[COLOR ffa0522d]sienna[/COLOR]|[COLOR ffc0c0c0]silver[/COLOR]|[COLOR ff87ceeb]skyblue[/COLOR]|[COLOR ff6a5acd]slateblue[/COLOR]|[COLOR ff708090]slategray[/COLOR]|[COLOR ff708090]slategrey[/COLOR]|[COLOR fffffafa]snow[/COLOR]|[COLOR ff00ff7f]springgreen[/COLOR]|[COLOR ff4682b4]steelblue[/COLOR]|[COLOR ffd2b48c]tan[/COLOR]|[COLOR ff008080]teal[/COLOR]|[COLOR ffd8bfd8]thistle[/COLOR]|[COLOR ffff6347]tomato[/COLOR]|[COLOR 00000000]transparent[/COLOR]|[COLOR ff40e0d0]turquoise[/COLOR]|[COLOR ffee82ee]violet[/COLOR]|[COLOR fff5deb3]wheat[/COLOR]|[COLOR ffffffff]white[/COLOR]|[COLOR fff5f5f5]whitesmoke[/COLOR]|[COLOR ffffff00]yellow[/COLOR]|[COLOR ff9acd32]yellowgreen[/COLOR]|" />
+        <setting id="categories.background.color" label="Categories Background Colour" type="select" default="[COLOR ffb22222]firebrick[/COLOR]" values="[COLOR fff0f8ff]aliceblue[/COLOR]|[COLOR fffaebd7]antiquewhite[/COLOR]|[COLOR ff00ffff]aqua[/COLOR]|[COLOR ff7fffd4]aquamarine[/COLOR]|[COLOR fff0ffff]azure[/COLOR]|[COLOR fff5f5dc]beige[/COLOR]|[COLOR ffffe4c4]bisque[/COLOR]|[COLOR ff606060]black[/COLOR]|[COLOR ffffebcd]blanchedalmond[/COLOR]|[COLOR ff0000ff]blue[/COLOR]|[COLOR ff8a2be2]blueviolet[/COLOR]|[COLOR ffa52a2a]brown[/COLOR]|[COLOR ffdeb887]burlywood[/COLOR]|[COLOR ff5f9ea0]cadetblue[/COLOR]|[COLOR ff7fff00]chartreuse[/COLOR]|[COLOR ffd2691e]chocolate[/COLOR]|[COLOR ffff7f50]coral[/COLOR]|[COLOR ff6495ed]cornflowerblue[/COLOR]|[COLOR fffff8dc]cornsilk[/COLOR]|[COLOR ffdc143c]crimson[/COLOR]|[COLOR ff00ffff]cyan[/COLOR]|[COLOR ff00008b]darkblue[/COLOR]|[COLOR ff008b8b]darkcyan[/COLOR]|[COLOR ffb8860b]darkgoldenrod[/COLOR]|[COLOR ffa9a9a9]darkgray[/COLOR]|[COLOR ff006400]darkgreen[/COLOR]|[COLOR ffa9a9a9]darkgrey[/COLOR]|[COLOR ffbdb76b]darkkhaki[/COLOR]|[COLOR ff8b008b]darkmagenta[/COLOR]|[COLOR ff556b2f]darkolivegreen[/COLOR]|[COLOR ffff8c00]darkorange[/COLOR]|[COLOR ff9932cc]darkorchid[/COLOR]|[COLOR ff8b0000]darkred[/COLOR]|[COLOR ffe9967a]darksalmon[/COLOR]|[COLOR ff8fbc8f]darkseagreen[/COLOR]|[COLOR ff483d8b]darkslateblue[/COLOR]|[COLOR ff2f4f4f]darkslategray[/COLOR]|[COLOR ff2f4f4f]darkslategrey[/COLOR]|[COLOR ff00ced1]darkturquoise[/COLOR]|[COLOR ff9400d3]darkviolet[/COLOR]|[COLOR ffff1493]deeppink[/COLOR]|[COLOR ff00bfff]deepskyblue[/COLOR]|[COLOR ff696969]dimgray[/COLOR]|[COLOR ff696969]dimgrey[/COLOR]|[COLOR ff1e90ff]dodgerblue[/COLOR]|[COLOR ffb22222]firebrick[/COLOR]|[COLOR fffffaf0]floralwhite[/COLOR]|[COLOR ff228b22]forestgreen[/COLOR]|[COLOR ffff00ff]fuchsia[/COLOR]|[COLOR ffdcdcdc]gainsboro[/COLOR]|[COLOR fff8f8ff]ghostwhite[/COLOR]|[COLOR ffffd700]gold[/COLOR]|[COLOR ffdaa520]goldenrod[/COLOR]|[COLOR ff808080]gray[/COLOR]|[COLOR ff008000]green[/COLOR]|[COLOR ffadff2f]greenyellow[/COLOR]|[COLOR ff808080]grey[/COLOR]|[COLOR fff0fff0]honeydew[/COLOR]|[COLOR ffff69b4]hotpink[/COLOR]|[COLOR ffcd5c5c]indianred[/COLOR]|[COLOR ff4b0082]indigo[/COLOR]|[COLOR fffffff0]ivory[/COLOR]|[COLOR fff0e68c]khaki[/COLOR]|[COLOR ffe6e6fa]lavender[/COLOR]|[COLOR fffff0f5]lavenderblush[/COLOR]|[COLOR ff7cfc00]lawngreen[/COLOR]|[COLOR fffffacd]lemonchiffon[/COLOR]|[COLOR ffadd8e6]lightblue[/COLOR]|[COLOR fff08080]lightcoral[/COLOR]|[COLOR ffe0ffff]lightcyan[/COLOR]|[COLOR fffafad2]lightgoldenrodyellow[/COLOR]|[COLOR ffd3d3d3]lightgray[/COLOR]|[COLOR ff90ee90]lightgreen[/COLOR]|[COLOR ffd3d3d3]lightgrey[/COLOR]|[COLOR ffffb6c1]lightpink[/COLOR]|[COLOR ffffa07a]lightsalmon[/COLOR]|[COLOR ff20b2aa]lightseagreen[/COLOR]|[COLOR ff87cefa]lightskyblue[/COLOR]|[COLOR ff778899]lightslategray[/COLOR]|[COLOR ff778899]lightslategrey[/COLOR]|[COLOR ffb0c4de]lightsteelblue[/COLOR]|[COLOR ffffffe0]lightyellow[/COLOR]|[COLOR ff00ff00]lime[/COLOR]|[COLOR ff32cd32]limegreen[/COLOR]|[COLOR fffaf0e6]linen[/COLOR]|[COLOR ffff00ff]magenta[/COLOR]|[COLOR ff800000]maroon[/COLOR]|[COLOR ff66cdaa]mediumaquamarine[/COLOR]|[COLOR ff0000cd]mediumblue[/COLOR]|[COLOR ffba55d3]mediumorchid[/COLOR]|[COLOR ff9370db]mediumpurple[/COLOR]|[COLOR ff3cb371]mediumseagreen[/COLOR]|[COLOR ff7b68ee]mediumslateblue[/COLOR]|[COLOR ff00fa9a]mediumspringgreen[/COLOR]|[COLOR ff48d1cc]mediumturquoise[/COLOR]|[COLOR ffc71585]mediumvioletred[/COLOR]|[COLOR ff191970]midnightblue[/COLOR]|[COLOR fff5fffa]mintcream[/COLOR]|[COLOR ffffe4e1]mistyrose[/COLOR]|[COLOR ffffe4b5]moccasin[/COLOR]|[COLOR ffffdead]navajowhite[/COLOR]|[COLOR ff000080]navy[/COLOR]|[COLOR 00000000]none[/COLOR]|[COLOR fffdf5e6]oldlace[/COLOR]|[COLOR ff808000]olive[/COLOR]|[COLOR ff6b8e23]olivedrab[/COLOR]|[COLOR ffffa500]orange[/COLOR]|[COLOR ffff4500]orangered[/COLOR]|[COLOR ffda70d6]orchid[/COLOR]|[COLOR ffeee8aa]palegoldenrod[/COLOR]|[COLOR ff98fb98]palegreen[/COLOR]|[COLOR ffafeeee]paleturquoise[/COLOR]|[COLOR ffdb7093]palevioletred[/COLOR]|[COLOR ffffefd5]papayawhip[/COLOR]|[COLOR ffffdab9]peachpuff[/COLOR]|[COLOR ffcd853f]peru[/COLOR]|[COLOR ffffc0cb]pink[/COLOR]|[COLOR ffdda0dd]plum[/COLOR]|[COLOR ffb0e0e6]powderblue[/COLOR]|[COLOR ff800080]purple[/COLOR]|[COLOR ffff0000]red[/COLOR]|[COLOR ffbc8f8f]rosybrown[/COLOR]|[COLOR ff4169e1]royalblue[/COLOR]|[COLOR ff8b4513]saddlebrown[/COLOR]|[COLOR fffa8072]salmon[/COLOR]|[COLOR fff4a460]sandybrown[/COLOR]|[COLOR ff2e8b57]seagreen[/COLOR]|[COLOR fffff5ee]seashell[/COLOR]|[COLOR ffa0522d]sienna[/COLOR]|[COLOR ffc0c0c0]silver[/COLOR]|[COLOR ff87ceeb]skyblue[/COLOR]|[COLOR ff6a5acd]slateblue[/COLOR]|[COLOR ff708090]slategray[/COLOR]|[COLOR ff708090]slategrey[/COLOR]|[COLOR fffffafa]snow[/COLOR]|[COLOR ff00ff7f]springgreen[/COLOR]|[COLOR ff4682b4]steelblue[/COLOR]|[COLOR ffd2b48c]tan[/COLOR]|[COLOR ff008080]teal[/COLOR]|[COLOR ffd8bfd8]thistle[/COLOR]|[COLOR ffff6347]tomato[/COLOR]|[COLOR 00000000]transparent[/COLOR]|[COLOR ff40e0d0]turquoise[/COLOR]|[COLOR ffee82ee]violet[/COLOR]|[COLOR fff5deb3]wheat[/COLOR]|[COLOR ffffffff]white[/COLOR]|[COLOR fff5f5f5]whitesmoke[/COLOR]|[COLOR ffffff00]yellow[/COLOR]|[COLOR ff9acd32]yellowgreen[/COLOR]|" />
+
+        <setting type="lsep" label="Lab1"/>
+        <setting id="cat.order" label="Custom Category Order (use | to seperate)" type="text" default="POPULAR|NETWORKS|NEWS|SPORTS|AMERICA|CANADA|EUROPE|FILMS|MUSIC|KIDS|ALPHABETICAL" />
+
+    </category>
+
+
+
+    <category label="VOD">
+            
+        <setting type="sep"  label="[COLOR=lightblue]VOD[/COLOR]" />
+        <setting type="sep"  label="Set VOD Name (script-tvguide-vod-THE_NAME.xml)" />
+        <!-- Addons is the main non Library VOD  script-tvguide-vod-Addons.xml -->
+        <setting id="vod1" label="VOD1" type="text" default="Addons" />
+        <!-- script-tvguide-vod-plugin.video.ustvnow.xml -->
+        <setting id="vod2" label="VOD2" type="text" default="plugin.video.ustvnow" />
+        <setting id="vod3" label="VOD3" type="text" default="" />
+        <setting id="vod4" label="VOD4" type="text" default="" />
+        <setting id="vod5" label="VOD5" type="text" default="" />
+        <setting id="vod6" label="VOD6" type="text" default="" />
+        <setting id="vod7" label="VOD7" type="text" default="" />
+        <setting id="vod8" label="VOD8" type="text" default="" />
+        <setting id="vod9" label="VOD9" type="text" default="" />
+        <setting type="sep" />
+        <!--<setting type="sep"  label="[COLOR=lightblue]VOD[/COLOR]" />-->
+        <!--
+        <setting type="sep"  label="[COLOR=lightblue]Widget Paths[/COLOR]  3 Columns" />
+        <setting id="widget1_1" label="widget1_1" type="text" default="plugin://plugin.video.ustvnow/?mode=0&amp;name=Live&amp;url" />
+        <setting id="widget1_2" label="widget1_2" type="text" default="plugin://plugin.program.fixtures/bbc_sports_index/" />
+        <setting id="widget1_3" label="widget1_3" type="text" default="plugin://plugin.video.iptvsubs/?action=OoOo&amp;extra&amp;page&amp;plot&amp;thumbnail=&amp;title=Live%20TV&amp;url" />
+        <setting id="widget1_4" label="widget1_4" type="text" default="" />
+        <setting id="widget1_5" label="widget1_5" type="text" default="" />
+        <setting id="widget1_6" label="widget1_6" type="text" default="" />
+        <setting id="widget1_7" label="widget1_7" type="text" default="" />
+        <setting id="widget1_8" label="widget1_8" type="text" default="" />
+        <setting id="widget1_9" label="widget1_9" type="text" default="" />
+        <setting id="widget1_10" label="widget1_10" type="text" default="" />
+        <setting id="widget1_11" label="widget1_11" type="text" default="" />
+        <setting id="widget1_12" label="widget1_12" type="text" default="" />
+        <setting id="widget1_13" label="widget1_13" type="text" default="" />
+        <setting id="widget1_14" label="widget1_14" type="text" default="" />
+        <setting type="sep"  label="[COLOR=lightblue]Widget Paths[/COLOR]  2 Columns" />
+        <setting id="widget2_1" label="widget2_1" type="text" default="" />
+        <setting id="widget2_2" label="widget2_2" type="text" default="" />
+        <setting id="widget2_3" label="widget2_3" type="text" default="" />
+        <setting id="widget2_4" label="widget2_4" type="text" default="" />
+        <setting id="widget2_5" label="widget2_5" type="text" default="" />
+        <setting id="widget2_6" label="widget2_6" type="text" default="" />
+        <setting id="widget2_7" label="widget2_7" type="text" default="" />
+        <setting id="widget2_8" label="widget2_8" type="text" default="" />
+        <setting id="widget2_9" label="widget2_9" type="text" default="" />
+        <setting id="widget2_10" label="widget2_10" type="text" default="" />
+        <setting id="widget2_11" label="widget2_11" type="text" default="" />
+        <setting id="widget2_12" label="widget2_12" type="text" default="" />
+        <setting id="widget2_13" label="widget2_13" type="text" default="" />
+        <setting id="widget2_14" label="widget2_14" type="text" default="" />
+        -->
+        
+    </category>
+
+
+
+
+    <!--<category label="script.tvguide.fullscreen.skin.cake Settings">-->
+    <category label="[COLOR=gold]Skin[/COLOR]" >
+        <!--<setting id="version" label="" type="text" default="0.0.0" visible="false" />-->
+        <setting id="firstrun" label="firstrun" type="bool" default="true" visible="false" />
+        <setting id="view_mode" label="View Mode" type="number" default="51" visible="false" />
+        
+        <setting label="[COLOR=gold]Refresh[/COLOR] Built-in ini and m3u files (enable PVR first if applicable)" type="action" action="RunScript($CWD/skin.py,101)" />
+        <setting label="[COLOR=green]Menu[/COLOR]:  Delete Database" type="action" action="RunScript($CWD/skin.py,666)" />
+        <setting label="[COLOR=red]Menu[/COLOR]:  Help" type="action" action="RunScript($CWD/skin.py,200)" />
+        <!--
+        <setting type="sep" />
+        <setting type="sep"  label="[COLOR=lightblue]Skin Theme Colors[/COLOR]" />
+        <setting id="main_addon" label="Main Addon Core" type="text" default="script.tvguide.fullscreen" visible="false" />
+        <setting id="main_addon_usersettings" label="Main Addon usersettings" type="text" default="special://home/userdata/addon_data/script.tvguide.fullscreen/" visible="false" />
+        <setting id="skin_addon" label="Skin (This) Addon" type="text" default="script.tvguide.fullscreen.skin.cake" visible="false" />
+        <setting id="run_script" label="Run Script" type="text" default="special://home/addons/script.tvguide.fullscreen/skin.py" visible="false" />
+        <setting type="sep"  label="[COLOR=lightblue]Background and Catbar in the other tab[/COLOR]" />
+        <setting type="sep" label="[COLOR=lightblue]EPG Window description color same as background but will appear darker[/COLOR]" />
+        <setting id="description_color" label="Description Color" type="text" default="[COLOR ff4682b4]steelblue[/COLOR]" />
+        <setting id="description_info_color" label="Description Info Color" type="text" default="skyblue" />
+        <setting type="sep" label="[COLOR=lightblue]Button Colors[/COLOR]" />
+        <setting id="focus_color" label="Button Focus Color" type="text" default="firebrick" />
+        <setting id="focus_current_color" label="Button Focus Current Color" type="text" default="green" />
+        <setting id="radio_color" label="Radio Button Color" type="text" default="deepskyblue" />
+        <setting type="sep" label="[COLOR=lightblue]Scrollbar Colors[/COLOR]" />
+        <setting id="scrollbarbg_color" label="Scrollbar Background Color" type="text" default="black" />
+        <setting id="scrollbarnf_color" label="Scrollbar NF Color" type="text" default="black" />
+        <setting type="sep" label="[COLOR=lightblue]Slider Colors[/COLOR]" />
+        <setting id="progress_color" label="Progress Color" type="text" default="darkcyan" />
+        <setting id="progressbg_color" label="Progress Background Color" type="text" default="grey" />
+        <setting id="progresscache_color" label="Cache Background Color" type="text" default="darkgrey" />
+        -->
+        
+        <!-- hidden   FOR DEVS -->
+        <!-- help text not including built in by primevil # by default there is changelog, commands and playwith instructions -->
+        <setting id="help1" label="Help1" type="text" default="Buffering" visible="false" />
+        <setting id="help2" label="Help2" type="text" default="Cache_Explanation" visible="false" />
+        <setting id="help3" label="Help3" type="text" default="Yaste" visible="false" />
+        <setting id="help4" label="Help4" type="text" default="Record" visible="false" />
+        <setting id="help5" label="Help5" type="text" default="" visible="false" />
+        <setting id="help6" label="Help6" type="text" default="" visible="false" />
+        <setting id="help7" label="Help7" type="text" default="" visible="false" />
+        <setting id="help8" label="Help8" type="text" default="" visible="false" />
+        <setting id="help9" label="Help9" type="text" default="" visible="false" />
+        <!-- # Here on down the help are for the context menu -->
+        <setting id="help10" label="Help10" type="text" default="Watch_Channel" visible="false" />
+        <setting id="help11" label="Help11" type="text" default="Remove_Stream" visible="false" />
+        <setting id="help12" label="Help12" type="text" default="Alt_Stream" visible="false" />
+        <setting id="help13" label="Help13" type="text" default="Catchup" visible="false" />
+        <setting id="help14" label="Help14" type="text" default="Catchup_Meta" visible="false" />
+        <setting id="help15" label="Help15" type="text" default="Remind" visible="false" />
+        <setting id="help16" label="Help16" type="text" default="EPG_Lists" visible="false" />
+        <setting id="help17" label="Help17" type="text" default="Favourites" visible="false" />
+        <setting id="help18" label="Help18" type="text" default="VOD" visible="false" />
+        <setting id="help19" label="Help19" type="text" default="StreamSetup" visible="false" />
+        <setting id="help20" label="Help20" type="text" default="Refresh_ini" visible="false" />
+        <setting id="help21" label="Help21" type="text" default="Settings" visible="false" />
+        <setting id="help22" label="Help22" type="text" default="Quit" visible="false" />
+        
+        <!-- deletedatabase -->
+        <setting id="deletedatabasedb" label="deletedatabase" type="text" default="source.db" visible="false" />
+        <setting id="deletedatabase0" label="deletedatabase0" type="text" default="xmltv.xml" visible="false" />
+        <setting id="deletedatabase1" label="deletedatabase1" type="text" default="xmltv1.xml" visible="false" />
+        <setting id="deletedatabase2" label="deletedatabase2" type="text" default="xmltv2.xml" visible="false" />
+        <setting id="deletedatabase3" label="deletedatabase3" type="text" default="xmltv3.xml" visible="false" />
+        <setting id="deletedatabase4" label="deletedatabase4" type="text" default="addons.ini" visible="false" />
+        <setting id="deletedatabase5" label="deletedatabase5" type="text" default="addons.ini.local" visible="false" />
+        <setting id="deletedatabase6" label="deletedatabase6" type="text" default="folders.list" visible="false" />
+        <setting id="deletedatabase7" label="deletedatabase7" type="text" default="mapping.ini" visible="false" />
+        <setting id="deletedatabase8" label="deletedatabase8" type="text" default="subscriptions.ini" visible="false" />
+        <setting id="deletedatabase9" label="deletedatabase9" type="text" default="categories.ini" visible="false" />
+        <setting id="deletedatabase10" label="deletedatabase10" type="text" default="actions.json" visible="false" />
+        <setting id="deletedatabase11" label="deletedatabase11" type="text" default="channel_id_title.ini" visible="false" />
+        <setting id="deletedatabase12" label="deletedatabase12" type="text" default="channels.ini" visible="false" />
+        <setting id="deletedatabase13" label="deletedatabase13" type="text" default="custom_stream_urls_autosave.ini" visible="false" />
+        <setting id="deletedatabase14" label="deletedatabase14" type="text" default="custom_stream_urls_autosave.ini.last" visible="false" />
+        <setting id="deletedatabase15" label="deletedatabase15" type="text" default="tvdb.pickle" visible="false" />
+        <setting id="deletedatabase16" label="deletedatabase16" type="text" default="xmltv.xml.tmp" visible="false" />
+        <setting id="deletedatabase17" label="deletedatabase17" type="text" default="xmltv1.xml.tmp" visible="false" />
+        <setting id="deletedatabase18" label="deletedatabase18" type="text" default="xmltv2.xml.tmp" visible="false" />
+        <setting id="deletedatabase19" label="deletedatabase19" type="text" default="xmltv3.xml.tmp" visible="false" />
+        
+        <!--
+        <setting type="sep"  label="[COLOR=lightblue]RECORD:[/COLOR]  Windows Only" />
+        <setting id="rec.folder" label="Record Folder" type="folder" default="" />
+
+        <setting id="addons.ini.pvr.addon" label="PVR Addon to Use" type="text" default="pvr.iptvsimple" visible="true" />
+        <setting id="addons.ini.pvr" label="Enable PVR ini" type="bool" default="false" visible="true" />
+        <setting id="addons.ini.playlist" label="Enable addons_playlist.ini from m3us" type="bool" default="false" visible="true" />
+        <setting id="addons.ini.builtin" label="Enable built-in addon ini files (.list)" type="bool" default="true" visible="true" />
+        <setting id="iptvsubs.tsorm3u" type="bool" label=".m3u (Enabled) or .ts (Disabled - for cache)" default="true" />
+        -->
+        <!-- plugin.video.addons.ini.player -->
+        <!--<setting id="addons.type" label="addons.ini Source for ini player and search" type="enum" enable="true" visible="true" default="0" values="File|Url" />
+        <setting id="addons.file" label="addons.ini File" type="file" visible="eq(-1,0)" default="special://profile/addon_data/script.tvguide.fullscreen/addons.ini" />
+        <setting id="addons.url" label="addons.ini Url" type="text" visible="eq(-2,1)" />-->
+        <!-- stream searcher -->
+        <!--<setting id="cache.hours" label="Refresh Folders Period (hours)" type="number" default="0" />-->
+    </category>
+    
+
+
+</settings>

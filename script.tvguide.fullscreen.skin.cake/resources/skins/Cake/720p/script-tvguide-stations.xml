@@ -18,7 +18,7 @@
             <posy>0</posy>
             <width>1280</width>
             <height>720</height>
-            <texture>black-back.png</texture>
+            <texture>backgrounds/clear-black.png</texture>
         </control>
         <control type="image">
             <description>main mount</description>
@@ -35,7 +35,7 @@
             <posy>12</posy>
             <width>1256</width>
             <height>696</height>
-            <texture>black-back.png</texture>
+            <texture>backgrounds/clear-black.png</texture>
             <visible>true</visible>
         </control>
         <!-- # Remove channels Label -->

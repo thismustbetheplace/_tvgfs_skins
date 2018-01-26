@@ -1,0 +1,58 @@
+Kodi add-ons interface with content already made available online, they have nothing to do with the distribution
+of content whatsoever. Poor playback quality is something that every Kodi user will encounter sooner or later when using these websites. This poor playback may involve choppy video which might mean your hardware device can’t handle the video quality or the encoding of the stream itself is corrupt. Another issue may be constant buffering. Both of these issues really are something that are entirely out of developers' hands.
+
+Causes of Buffering
+Stream Source Slowness –
+
+sources are powered by servers, servers are connected to networks. These sources are providing free service and sometimes have limitations set in place as a result.
+Peak Time Congestion –
+
+certain times of day are busier on the internet than others. If you’re talking about a Sunday or Monday night, those are probably busier times for internet use in general, meaning this could affect the source’s network speed, or even your internet connection locally.
+Geographical Location –
+
+Believe it or not, servers have physical locations and some places on Earth aren’t as well connected as others. Depending on where you’re located, your connection to the source’s servers could be impaired.
+Internet Connection Speed –
+
+your internet connection might just be too slow to support video streaming.
+Hardware Issues –
+
+your router might not have strong enough wireless power, the cheap no-name modem your service provider gave you might be defective, or your streaming device might not have the latest firmware installed.
+Advanced Settings XML –
+
+generally speaking, modifying this file will not solve buffering issues and will likely cause more trouble than anything, such as device crashing because the custom buffer size is larger than the device can handle (Kodi already allocates 300% of the memory to the buffer size). It is only useful in the rare event that you see the “Cache Full: Cache filled before reaching required amount for continuous playback” notification.
+Possible Solutions
+Hardware Reboot –
+
+reboot your modem and router by unplugging them for five minutes or so, then do the same with your streaming device.
+Debrid Services –
+
+through a single paid subscription to Real-Debrid or Premiumize, these services allow you to take advantage of the premium services offered by dozens of sources. This will decrease buffering by giving you access to premium bandwith offered only to paid users.
+Update Kodi –
+
+if you’re using an older version of Kodi, it could likely result in less efficient streaming, it’s always a good idea to update to the latest stable version.
+Update the addon –
+
+if you’re using an older version of the addon, it could likely result in less efficient streaming, it’s always a good idea to update to the latest stable version.
+Update URL Resolver –
+
+if you’re using an older version of URL Resolver, it could likely result in less efficient streaming, it’s always a good idea to update to the latest stable version.
+Hardwired Ethernet –
+
+depending on the size of your home or building materials, you might experience wireless connection trouble, this can be fixed by hardwiring an ethernet cable from your router directly to your streaming device.
+Internet Connection Speed –
+
+call your internet service provider and upgrade your connection speeed, do your own speed test beforehand.
+Hardware Upgrades –
+
+if your streaming device is really old, you might want to consider purchasing a newer one. It might also be a good idea to look into a new, faster router, as those things aren’t built for life either.
+Modem Troubleshooting –
+
+if you’ve had your no-name modem for several years already, you might want to call your internet service provider and have them troubleshoot it, and if necessary replace it. It would be a good idea to do your own packet loss test beforehand.
+
+Additionally, some devices, the Amazon fire boxes especially, have a horrible time filtering the incoming wifi signal from radio frequency noise. TV's produce a huge amount of rf noise, right at 2.4 gHz, which is also the frequency that most wifi signals reside in. This can cause buffering, over heating, even hard reboots if it's really bad.
+
+You have two options to work around this:
+
+1) Use a newer 5 gHz wifi channel if your router and box are capable.
+
+2) Distance the box from the rf noise emanating from the TV. Simply moving a Fire TV Stick from being plugged into the back of a TV to sitting on a shelf a couple of inches in front of the TV can make a significant different. That few inches can mean the difference between Netflix content looking like newsprint at best or shutting down due to overheating at worst, and the picture coming in at full HD while the stick never gets beyond warm. Any HDMI extension cable should work fine, they can be found from amazon or monoprice for about $5.

@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
+<smartplaylist type="movies">
+    <name>Rated - NC-17</name>
+    <!--<name>$LOCALIZE[40101]</name>-->
+    <match>all</match>
+    <rule field="mpaarating" operator="is">
+        <value>Rated NC-17</value>
+    </rule>
+    <!--<group>years</group>-->
+    <order direction="ascending">sorttitle</order>
+</smartplaylist>

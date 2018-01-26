@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
+<smartplaylist type="musicvideos">
+    <name>AC3 Music Videos</name>
+    <!--<name>$LOCALIZE[40101]</name>-->
+    <match>all</match>
+    <rule field="audiocodec" operator="is">
+        <value>ac3</value>
+    </rule>
+    <!--<group>years</group>-->
+    <order direction="ascending">sorttitle</order>
+</smartplaylist>
