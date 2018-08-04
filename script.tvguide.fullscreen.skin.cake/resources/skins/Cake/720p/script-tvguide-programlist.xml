@@ -9,334 +9,452 @@
     </coordinates>
     <controls>
         <!-- # Backgrounds -->
-        <control type="image">
-            <description>background</description>
-            <posx>0</posx>
-            <posy>0</posy>
-            <width>1280</width>
-            <height>720</height>
-            <texture>tvg-background.png</texture>
-        </control>
-        <control type="videowindow">
-            <description>video window</description>
-            <posx>0</posx>
-            <posy>0</posy>
-            <width>1280</width>
-            <height>720</height>
-        </control>
-        <control type="image">
-            <description>background</description>
-            <posx>0</posx>
-            <posy>0</posy>
-            <width>1280</width>
-            <height>720</height>
-            <texture>backgrounds/clear-black.png</texture>
-        </control>
-        <!-- # Title -->
-        <control type="label" id="1001">
-            <description>Title</description>
-            <left>750</left>
-            <top>20</top>
-            <width>300</width>
-            <height>20</height>
-            <textcolor>orange</textcolor>
-            <shadowcolor>black</shadowcolor>
-            <align>center</align>
-            <aligny>center</aligny>
-            <label>Title</label>
-            <scroll>true</scroll>
-        </control>
-        <!-- # Displays todays date -->
-        <control type="label">
-            <description>Displays todays date</description>
-            <posx>5r</posx>
-            <posy>0</posy>
-            <width>280</width>
-            <height>30</height>
-            <textcolor>bbffffff</textcolor>
-            <shadowcolor>black</shadowcolor>
-            <align>right</align>
-            <aligny>center</aligny>
-            <visible>true</visible>
-            <label>$INFO[System.Date(DDD)], $INFO[System.Date(dd)] $INFO[System.Date(MMM)]</label>
-        </control>
-        <!-- # time label -->
-        <control type="label">
-            <description>time label</description>
-            <posx>10r</posx>
-            <posy>20</posy>
-            <width>200</width>
-            <height>30</height>
-            <align>right</align>
-            <aligny>center</aligny>
-            <textcolor>white</textcolor>
-            <shadowcolor>black</shadowcolor>
-            <label>$INFO[System.Time(hh:mm)]</label>
-        </control>
-        <!-- # Main Program List -->
         <control type="group">
-            <description>Program List</description>
-            <visible>true</visible>
-            <control type="group">
-                <left>0</left>
+            <left>0</left>
+            <top>0</top>
+            <!-- main Background -->
+            <control type="image">
+                <description>background</description>
+                <posx>0</posx>
+                <posy>0</posy>
+                <width>1280</width>
+                <height>720</height>
+                <colordiffuse>$INFO[Window(1100).Property(popup_background_color)]</colordiffuse>
+                <texture>white.png</texture>
+            </control>
+            <control type="image">
+                <description>background</description>
+                <posx>0</posx>
+                <posy>0</posy>
+                <width>1280</width>
+                <height>720</height>
+                <texture>$INFO[Window(1100).Property(image_fade)]</texture>
+                <visible>true</visible>
+            </control>
+            <control type="image">
+                <posx>0</posx>
+                <posy>0</posy>
+                <width>1280</width>
+                <height>720</height>
+                <texture>black.png</texture>
+                <visible>Player.HasMedia</visible>
+            </control>
+            <control type="videowindow">
+                <description>video window</description>
+                <posx>0</posx>
+                <posy>0</posy>
+                <width>1280</width>
+                <height>720</height>
+            </control>
+            <!-- exit -->
+            <control type="button">
+                <texturefocus></texturefocus>
+                <texturenofocus></texturenofocus>
+                <label></label>
+                <description>exit</description>
+                <posx>0</posx>
+                <posy>0</posy>
+                <width>1280</width>
+                <height>720</height>
+                <align>center</align>
+                <aligny>center</aligny>
+                <onclick>back</onclick>
+            </control>
+            <!-- # Header Titles -->
+            <control type="image">
                 <top>0</top>
-                <!-- Channel label -->
+                <left>876</left>
+                <width>404</width>
+                <height>90</height>
+                <aspectratio>keep</aspectratio>
+                <texture>backgrounds/headers/headerOnNow.png</texture>
+                <visible>String.IsEqual(Control.GetLabel(1001),NOW)</visible>
+            </control>
+            <control type="image">
+                <top>0</top>
+                <left>876</left>
+                <width>404</width>
+                <height>90</height>
+                <aspectratio>keep</aspectratio>
+                <texture>backgrounds/headers/headerOnNext.png</texture>
+                <visible>String.IsEqual(Control.GetLabel(1001),NEXT)</visible>
+            </control>
+            <control type="image">
+                <top>0</top>
+                <left>876</left>
+                <width>404</width>
+                <height>90</height>
+                <aspectratio>keep</aspectratio>
+                <texture>backgrounds/headers/headerOnChannel.png</texture>
+                <visible>!String.IsEqual(Control.GetLabel(1001),NOW)+!String.IsEqual(Control.GetLabel(1001),NEXT)</visible>
+            </control>
+            <control type="label" id="1001">
+                <description>Title</description>
+                <left>40</left>
+                <top>20</top>
+                <width>280</width>
+                <height>20</height>
+                <font>font13</font>
+                <textcolor>orange</textcolor>
+                <shadowcolor>black</shadowcolor>
+                <align>left</align>
+                <aligny>center</aligny>
+                <label>Title</label>
+                <scroll>true</scroll>
+                <visible>true</visible>
+            </control>
+            <control type="label">
+                <description>Displays todays date</description>
+                <posx>40</posx>
+                <posy>40</posy>
+                <width>280</width>
+                <height>30</height>
+                <textcolor>white</textcolor>
+                <font>font13</font>
+                <align>left</align>
+                <aligny>center</aligny>
+                <visible>true</visible>
+                <label>$INFO[System.Date(DDD)], $INFO[System.Date(dd)] $INFO[System.Date(MMM)]</label>
+            </control>
+            <control type="label">
+                <description>time label</description>
+                <posx>40</posx>
+                <posy>60</posy>
+                <width>200</width>
+                <height>30</height>
+                <align>left</align>
+                <aligny>center</aligny>
+                <font>font13</font>
+                <textcolor>white</textcolor>
+                <label>$INFO[System.Time(hh:mm)]</label>
+            </control>
+        </control>
+        <!-- # Main channel List -->
+        <control type="image">
+            <left>40</left>
+            <top>100</top>
+            <width>760</width>
+            <height>602</height>
+            <texture>backgrounds/listBorder400x360.png</texture>
+        </control>
+        <control type="list" id="1000">
+            <left>40</left>
+            <top>100</top>
+            <width>758</width>
+            <height>600</height>
+            <onup>1000</onup>
+            <ondown>1000</ondown>
+            <onleft></onleft>
+            <onright></onright>
+            <pagecontrol>1002</pagecontrol>
+            <itemlayout height="75">
+                <control type="image">
+                    <left>2</left>
+                    <top>2</top>
+                    <width>758</width>
+                    <height>73</height>
+                    <texture>tvg-program-nofocus.png</texture>
+                    <visible>true</visible>
+                </control>
+                <control type="image">
+                    <left>10</left>
+                    <top>0</top>
+                    <width>75</width>
+                    <height>75</height>
+                    <info>ListItem.Icon</info>
+                    <aspectratio>keep</aspectratio>
+                </control>
                 <control type="label">
-                    <description>Channel label</description>
-                    <left>150</left>
-                    <top>20</top>
-                    <width>180</width>
-                    <height>20</height>
+                    <left>100</left>
+                    <top>4</top>
+                    <width>460</width>
+                    <height>40</height>
+                    <font>font14</font>
                     <textcolor>white</textcolor>
-                    <shadowcolor>black</shadowcolor>
                     <align>left</align>
                     <aligny>center</aligny>
-                    <label>19148</label>
+                    <info>ListItem.Property(ChannelName)</info>
                 </control>
-                <!-- Time label -->
                 <control type="label">
-                    <description>Time label</description>
-                    <left>350</left>
-                    <top>20</top>
-                    <width>200</width>
-                    <height>20</height>
-                    <textcolor>white</textcolor>
-                    <shadowcolor>black</shadowcolor>
+                    <description>Program Title</description>
+                    <left>100</left>
+                    <top>30</top>
+                    <width>550</width>
+                    <height>40</height>
+                    <font>font13</font>
+                    <textcolor>grey</textcolor>
                     <align>left</align>
                     <aligny>center</aligny>
-                    <label>Start</label>
+                    <info>ListItem.Label</info>
                 </control>
-                <!-- Length -->
+                <!-- StartTime   19:00 yesterday -->
                 <control type="label">
-                    <description>Length</description>
-                    <left>500</left>
-                    <top>20</top>
-                    <width>100</width>
-                    <height>20</height>
+                    <left>450</left>
+                    <top>4</top>
+                    <width>300</width>
+                    <height>25</height>
+                    <font>font13</font>
                     <textcolor>white</textcolor>
-                    <shadowcolor>black</shadowcolor>
                     <align>right</align>
                     <aligny>center</aligny>
-                    <label>Length</label>
+                    <info>ListItem.Property(StartTime)</info>
                 </control>
-                <!-- Title -->
+                <!-- Duration 60 min -->
                 <control type="label">
-                    <description>Title</description>
-                    <left>700</left>
-                    <top>20</top>
-                    <width>550</width>
+                    <left>550</left>
+                    <top>30</top>
+                    <width>200</width>
+                    <height>25</height>
+                    <font>font13</font>
+                    <textcolor>grey</textcolor>
+                    <align>right</align>
+                    <aligny>center</aligny>
+                    <info>ListItem.Property(Duration)</info>
+                </control>
+                <!-- When in  -->
+                <control type="label">
+                    <left>550</left>
+                    <top>55</top>
+                    <width>200</width>
                     <height>20</height>
+                    <font>font12</font>
+                    <textcolor>dimgrey</textcolor>
+                    <align>right</align>
+                    <aligny>center</aligny>
+                    <info>ListItem.Property(When)</info>
+                </control>
+                <control type="progress">
+                    <left>670</left>
+                    <top>65</top>
+                    <width>80</width>
+                    <height>4</height>
+                    <lefttexture />
+                    <righttexture />
+                    <texturebg colordiffuse="$INFO[Window(1100).Property(progressbg_color)]">progress/texturebg.png</texturebg>
+                    <midtexture colordiffuse="$INFO[Window(1100).Property(progress_color)]">white.png</midtexture>
+                    <!--<texturebg border="3" colordiffuse="60FFFFFF">progress/texturebg.png</texturebg>
+                    <midtexture colordiffuse="$INFO[Window(1100).Property(progressbg_color)]">progress/midtexture.png</midtexture>-->
+                    <info>ListItem.Property(Completed)</info>
+                    <visible>ListItem.Property(Completed)</visible>
+                </control>
+            </itemlayout>
+            <focusedlayout height="75">
+                <control type="image">
+                    <left>2</left>
+                    <top>2</top>
+                    <width>758</width>
+                    <height>73</height>
+                    <texture>tvg-program-focus.png</texture>
+                    <visible>true</visible>
+                </control>
+                <control type="image">
+                    <left>10</left>
+                    <top>0</top>
+                    <width>75</width>
+                    <height>75</height>
+                    <info>ListItem.Icon</info>
+                    <aspectratio>keep</aspectratio>
+                </control>
+                <control type="label">
+                    <left>100</left>
+                    <top>4</top>
+                    <width>460</width>
+                    <height>40</height>
+                    <font>font14</font>
                     <textcolor>white</textcolor>
-                    <shadowcolor>black</shadowcolor>
                     <align>left</align>
                     <aligny>center</aligny>
-                    <label>369</label>
+                    <info>ListItem.Property(ChannelName)</info>
                 </control>
-                <!-- separator image -->
+                <control type="label">
+                    <description>Program Title</description>
+                    <left>100</left>
+                    <top>30</top>
+                    <width>550</width>
+                    <height>40</height>
+                    <font>font13</font>
+                    <textcolor>white</textcolor>
+                    <align>left</align>
+                    <aligny>center</aligny>
+                    <info>ListItem.Label</info>
+                </control>
+                <!-- StartTime   19:00 yesterday -->
+                <control type="label">
+                    <left>450</left>
+                    <top>4</top>
+                    <width>300</width>
+                    <height>25</height>
+                    <font>font13</font>
+                    <textcolor>white</textcolor>
+                    <align>right</align>
+                    <aligny>center</aligny>
+                    <info>ListItem.Property(StartTime)</info>
+                </control>
+                <!-- Duration 60 min -->
+                <control type="label">
+                    <left>550</left>
+                    <top>30</top>
+                    <width>200</width>
+                    <height>25</height>
+                    <font>font13</font>
+                    <textcolor>grey</textcolor>
+                    <align>right</align>
+                    <aligny>center</aligny>
+                    <info>ListItem.Property(Duration)</info>
+                </control>
+                <!-- When in  -->
+                <control type="label">
+                    <left>550</left>
+                    <top>55</top>
+                    <width>200</width>
+                    <height>20</height>
+                    <font>font12</font>
+                    <textcolor>dimgrey</textcolor>
+                    <align>right</align>
+                    <aligny>center</aligny>
+                    <info>ListItem.Property(When)</info>
+                </control>
+                <control type="progress">
+                    <left>670</left>
+                    <top>65</top>
+                    <width>80</width>
+                    <height>4</height>
+                    <lefttexture />
+                    <righttexture />
+                    <texturebg colordiffuse="$INFO[Window(1100).Property(progressbg_color)]">progress/texturebg.png</texturebg>
+                    <midtexture colordiffuse="$INFO[Window(1100).Property(progress_color)]">white.png</midtexture>
+                    <!--<texturebg border="3" colordiffuse="60FFFFFF">progress/texturebg.png</texturebg>
+                    <midtexture colordiffuse="$INFO[Window(1100).Property(progressbg_color)]">progress/midtexture.png</midtexture>-->
+                    <info>ListItem.Property(Completed)</info>
+                    <visible>ListItem.Property(Completed)</visible>
+                </control>
+            </focusedlayout>
+        </control>
+        <!-- Main channel List scroll bar -->
+        <control type="scrollbar" id="1002">
+            <description>scroll bar control</description>
+            <left>5</left>
+            <top>100</top>
+            <width>35</width>
+            <height>600</height>
+            <visible>true</visible>
+            <pulseonselect>true</pulseonselect>
+            <orientation>vertical</orientation>
+            <showonepage>false</showonepage>
+            <onleft>1000</onleft>
+            <onright>1000</onright>
+            <texturesliderbackground colordiffuse="$INFO[Window(1100).Property(scrollbarbg_color)]">scrollbar/scrollbar.png</texturesliderbackground>
+            <textureslidernib></textureslidernib>
+            <textureslidernibfocus></textureslidernibfocus>
+            <texturesliderbar colordiffuse="$INFO[Window(1100).Property(scrollbarnf_color)]">scrollbar/scrollbar.png</texturesliderbar>
+            <texturesliderbarfocus colordiffuse="$INFO[Window(1100).Property(focus_current_color)]">scrollbar/scrollbar.png</texturesliderbarfocus>
+            <!--<visible>Integer.IsGreater(Container(1000).NumItems,8)</visible>-->
+        </control>
+        <!-- descriptions-->
+        <control type="group">
+            <left>830</left>
+            <top>100</top>
+            <width>420</width>
+            <height>600</height>
+            <control type="image">
+                <left>0</left>
+                <top>0</top>
+                <width>420</width>
+                <height>600</height>
+                <texture>backgrounds/listBorder400x360.png</texture>
+            </control>
+            <!-- descriptions images -->
+            <control type="group">
+                <left>10</left>
+                <top>10</top>
+                <width>400</width>
+                <height>300</height>
                 <control type="image">
-                    <description>separator image</description>
-                    <left>0</left>
-                    <top>50</top>
-                    <width>1280</width>
-                    <height>1</height>
-                    <colordiffuse>88FFFFFF</colordiffuse>
-                    <texture>tvg-seperator.png</texture>
+                    <texture>$INFO[Window(1100).Property(image_panel)]</texture>
+                    <align>center</align>
+                    <aspectratio>stretch</aspectratio>
+                    <visible>!Player.HasMedia</visible>
                 </control>
-                <!-- ## List main everything -->
-                <control type="list" id="1000">
-                    <viewtype label="19030">list</viewtype>
+                <control type="image">
+                    <texture>$INFO[Container(1000).ListItem.Property(ProgramImage)]</texture>
+                    <align>center</align>
+                    <aspectratio>keep</aspectratio>
+                </control>
+            </control>
+            <!-- descriptions group -->
+            <control type="group">
+                <top>320</top>
+                <left>20</left>
+                <control type="image">
+                    <left>-18</left>
+                    <top>-10</top>
+                    <width>416</width>
+                    <height>288</height>
+                    <texture>$INFO[Window(1100).Property(image_panel)]</texture>
+                    <align>center</align>
+                    <aspectratio>stretch</aspectratio>
+                    <visible>Player.HasMedia</visible>
+                </control>
+                <control type="label">
+                    <description>Start Time for TVShow</description>
+                    <left>0</left>
+                    <top>0</top>
+                    <width>380</width>
+                    <height>25</height>
+                    <font>font13</font>
+                    <align>left</align>
+                    <aligny>top</aligny>
+                    <label>$INFO[Container(1000).ListItem.Label]</label>
+                </control>
+                <control type="label">
+                    <description>Duration label</description>
+                    <left>0</left>
+                    <top>30</top>
+                    <width>380</width>
+                    <height>25</height>
+                    <font>font13</font>
+                    <align>left</align>
+                    <aligny>top</aligny>
+                    <label>[COLOR grey]$INFO[Container(1000).ListItem.Property(StartTime)][/COLOR]  $INFO[Container(1000).ListItem.Property(Duration)]</label>
+                </control>
+                <control type="progress">
+                    <top>45</top>
+                    <left>290</left>
+                    <width>80</width>
+                    <height>4</height>
+                    <lefttexture />
+                    <righttexture />
+                    <texturebg colordiffuse="$INFO[Window(1100).Property(progressbg_color)]">progress/texturebg.png</texturebg>
+                    <midtexture colordiffuse="$INFO[Window(1100).Property(progress_color)]">white.png</midtexture>
+                    <!--<texturebg border="3" colordiffuse="60FFFFFF">progress/texturebg.png</texturebg>
+                    <midtexture colordiffuse="$INFO[Window(1100).Property(progressbg_color)]">progress/midtexture.png</midtexture>-->
+                    <info>Container(1000).ListItem.Property(Completed)</info>
+                    <visible>Container(1000).ListItem.Property(Completed)</visible>
+                </control>
+                <control type="label">
+                    <description>Plot Value for TVShow</description>
                     <left>0</left>
                     <top>60</top>
-                    <width>1280</width>
-                    <height>660</height>
-                    <onup>1000</onup>
-                    <ondown>1000</ondown>
-                    <itemlayout height="40">
-                        <control type="image">
-                            <left>0</left>
-                            <top>1</top>
-                            <width>140</width>
-                            <height>38</height>
-                            <info>ListItem.Icon</info>
-                            <aspectratio>keep</aspectratio>
-                        </control>
-                        <control type="label">
-                            <left>150</left>
-                            <top>0</top>
-                            <width>200</width>
-                            <height>40</height>
-                            <textcolor>grey</textcolor>
-                            <align>left</align>
-                            <aligny>center</aligny>
-                            <info>ListItem.Property(ChannelName)</info>
-                        </control>
-                        <control type="label">
-                            <left>350</left>
-                            <top>0</top>
-                            <width>200</width>
-                            <height>40</height>
-                            <textcolor>dimgrey</textcolor>
-                            <align>left</align>
-                            <aligny>center</aligny>
-                            <info>ListItem.Property(StartTime)</info>
-                        </control>
-                        <control type="label">
-                            <left>500</left>
-                            <top>0</top>
-                            <width>100</width>
-                            <height>40</height>
-                            <textcolor>grey</textcolor>
-                            <align>right</align>
-                            <aligny>center</aligny>
-                            <info>ListItem.Property(Duration)</info>
-                        </control>
-                        <control type="progress">
-                            <left>610</left>
-                            <top>20</top>
-                            <width>80</width>
-                            <height>4</height>
-                            <lefttexture />
-                            <righttexture />
-                            <texturebg>tvg-progress-bg.png</texturebg>
-                            <midtexture>tvg-progress-mid.png</midtexture>
-                            <info>ListItem.Property(Completed)</info>
-                            <visible>ListItem.Property(Completed)</visible>
-                        </control>
-                        <control type="label">
-                            <left>610</left>
-                            <top>0</top>
-                            <width>100</width>
-                            <height>40</height>
-                            <font>font12</font>
-                            <textcolor>dimgrey</textcolor>
-                            <align>left</align>
-                            <aligny>center</aligny>
-                            <info>ListItem.Property(When)</info>
-                        </control>
-                        <control type="label">
-                            <description>Program Title</description>
-                            <left>700</left>
-                            <top>0</top>
-                            <width>550</width>
-                            <height>40</height>
-                            <textcolor>grey</textcolor>
-                            <align>left</align>
-                            <aligny>center</aligny>
-                            <info>ListItem.Label</info>
-                        </control>
-                    </itemlayout>
-                    <focusedlayout height="100">
-                        <control type="image">
-                            <left>0</left>
-                            <top>0</top>
-                            <width>1280</width>
-                            <height>100</height>
-                            <texture>tvg-program-focus.png</texture>
-                            <visible>true</visible>
-                        </control>
-                        <control type="image">
-                            <left>0</left>
-                            <top>0</top>
-                            <width>1280</width>
-                            <height>100</height>
-                            <texture>backgrounds/clear-black.png</texture>
-                            <visible>true</visible>
-                        </control>
-                        <control type="image">
-                            <left>0</left>
-                            <top>30</top>
-                            <width>140</width>
-                            <height>40</height>
-                            <info>ListItem.Icon</info>
-                            <aspectratio>keep</aspectratio>
-                        </control>
-                        <control type="label">
-                            <left>150</left>
-                            <top>0</top>
-                            <width>200</width>
-                            <height>40</height>
-                            <textcolor>white</textcolor>
-                            <align>left</align>
-                            <aligny>center</aligny>
-                            <info>ListItem.Property(ChannelName)</info>
-                        </control>
-                        <control type="label">
-                            <left>350</left>
-                            <top>0</top>
-                            <width>200</width>
-                            <height>40</height>
-                            <textcolor>dimgrey</textcolor>
-                            <align>left</align>
-                            <aligny>center</aligny>
-                            <info>ListItem.Property(StartTime)</info>
-                        </control>
-                        <control type="label">
-                            <left>500</left>
-                            <top>0</top>
-                            <width>100</width>
-                            <height>40</height>
-                            <textcolor>white</textcolor>
-                            <align>right</align>
-                            <aligny>center</aligny>
-                            <info>ListItem.Property(Duration)</info>
-                        </control>
-                        <control type="progress">
-                            <left>610</left>
-                            <top>20</top>
-                            <width>80</width>
-                            <height>4</height>
-                            <lefttexture />
-                            <righttexture />
-                            <texturebg>tvg-progress-bg.png</texturebg>
-                            <midtexture>tvg-progress-mid.png</midtexture>
-                            <info>ListItem.Property(Completed)</info>
-                            <visible>ListItem.Property(Completed)</visible>
-                        </control>
-                        <control type="label">
-                            <left>610</left>
-                            <top>0</top>
-                            <width>100</width>
-                            <height>40</height>
-                            <font>font12</font>
-                            <textcolor>dimgrey</textcolor>
-                            <align>left</align>
-                            <aligny>center</aligny>
-                            <info>ListItem.Property(When)</info>
-                        </control>
-                        <control type="image">
-                            <left>1030</left>
-                            <top>0</top>
-                            <width>250</width>
-                            <height>100</height>
-                            <info>ListItem.Property(ProgramImage)</info>
-                            <aspectratio>keep</aspectratio>
-                        </control>
-                        <control type="label">
-                            <description>Program Title</description>
-                            <left>700</left>
-                            <top>0</top>
-                            <width>550</width>
-                            <height>40</height>
-                            <textcolor>white</textcolor>
-                            <shadowcolor>black</shadowcolor>
-                            <align>left</align>
-                            <aligny>center</aligny>
-                            <info>ListItem.Label</info>
-                        </control>
-                        <control type="textbox">
-                            <description>Plot Value for TVShow</description>
-                            <left>150</left>
-                            <top>30</top>
-                            <width>860</width>
-                            <height>66</height>
-                            <font>font12</font>
-                            <textcolor>white</textcolor>
-                            <align>left</align>
-                            <autoscroll time="3600" delay="6000" repeat="6000">true</autoscroll>
-                            <pagecontrol>-</pagecontrol>
-                            <info>ListItem.Property(Plot)</info>
-                        </control>
-                    </focusedlayout>
+                    <width>380</width>
+                    <height>200</height>
+                    <font>font10</font>
+                    <textcolor>white</textcolor>
+                    <align>left</align>
+                    <aligny>top</aligny>
+                    <label>$INFO[Container(1000).ListItem.Property(Plot)]</label>
+                    <wrapmultiline>true</wrapmultiline>
+                </control>
+                <control type="label">
+                    <description>Duration label</description>
+                    <left>0</left>
+                    <top>220</top>
+                    <width>380</width>
+                    <height>66</height>
+                    <font>font_MainMenu</font>
+                    <align>left</align>
+                    <aligny>top</aligny>
+                    <label>$INFO[Container(1000).ListItem.Property(When)]</label>
+                    <visible>Container(1000).ListItem.Property(When)</visible>
                 </control>
             </control>
         </control>

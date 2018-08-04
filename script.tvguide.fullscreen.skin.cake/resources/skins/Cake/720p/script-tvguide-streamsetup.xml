@@ -2,7 +2,7 @@
 <!-- 18
 16 SubStrin-g  to  17 String.Contain-s
 -->
-<window id="1100" type="dialog">
+<window type="dialog">
     <!-- Extra -  101 Refresh subs -->
     <!-- There are variables in this window that are carried over from main xml.  You can put them below to override something -->
     <allowoverlay>no</allowoverlay>
@@ -21,12 +21,24 @@
         <control type="group">
             <posx>0</posx>
             <posy>0</posy>
+            <!-- main Background -->
             <control type="image">
+                <description>background</description>
                 <posx>0</posx>
                 <posy>0</posy>
                 <width>1280</width>
                 <height>720</height>
-                <texture>black.png</texture>
+                <colordiffuse>$INFO[Window(1100).Property(popup_background_color)]</colordiffuse>
+                <texture>white.png</texture>
+            </control>
+            <!-- # Background clear Black Default -->
+            <control type="image">
+                <description>background</description>
+                <posx>0</posx>
+                <posy>0</posy>
+                <width>1280</width>
+                <height>720</height>
+                <texture>$INFO[Window(1100).Property(image_fadebg)]</texture>
             </control>
             <control type="image">
                 <description>top buttons mount</description>
@@ -34,7 +46,9 @@
                 <posy>30</posy>
                 <width>1260</width>
                 <height>60</height>
-                <texture>grey.png</texture>
+                <colordiffuse>$INFO[Window(1100).Property(bar_color)]</colordiffuse>
+                <texture>$INFO[Window(1100).Property(image_fadewhite)]</texture>
+                <!--<texture>backgrounds/grey.png</texture>-->
             </control>
             <control type="image">
                 <description>top button background</description>
@@ -42,7 +56,7 @@
                 <posy>32</posy>
                 <width>1256</width>
                 <height>56</height>
-                <texture>backgrounds/clear-black.png</texture>
+                <texture>$INFO[Window(1100).Property(image_fade)]</texture>
             </control>
             <control type="image">
                 <description>bottom buttons mount</description>
@@ -50,7 +64,9 @@
                 <posy>640</posy>
                 <width>1260</width>
                 <height>60</height>
-                <texture>grey.png</texture>
+                <colordiffuse>$INFO[Window(1100).Property(bar_color)]</colordiffuse>
+                <texture>$INFO[Window(1100).Property(image_fadewhite)]</texture>
+                <!--<texture>backgrounds/grey.png</texture>-->
             </control>
             <control type="image">
                 <description>bottom buttons background</description>
@@ -58,18 +74,19 @@
                 <posy>642</posy>
                 <width>1256</width>
                 <height>56</height>
-                <texture>backgrounds/clear-black.png</texture>
+                <texture>$INFO[Window(1100).Property(image_fade)]</texture>
             </control>
+            <!--
             <control type="image">
                 <description>main background</description>
                 <posx>10</posx>
                 <posy>100</posy>
                 <width>1260</width>
                 <height>530</height>
-                <colordiffuse>$INFO[Window(1100).Property(background_color)]</colordiffuse>
+                <colordiffuse>$INFO[Window(1100).Property(popup_background_color)]</colordiffuse>
                 <texture>white.png</texture>
-                <!--<texture>backgrounds/background.png</texture>-->
             </control>
+            -->
             <!-- # Background clear Black Default -->
             <control type="image">
                 <description>background</description>
@@ -77,9 +94,16 @@
                 <posy>100</posy>
                 <width>1260</width>
                 <height>530</height>
-                <!--<texture>trans/black50.png</texture>-->
-                <texture>backgrounds/clear-black.png</texture>
+                <texture>$INFO[Window(1100).Property(image_panel)]</texture>
             </control>
+        </control>
+        <control type="image">
+            <posx>40</posx>
+            <posy>585</posy>
+            <width>256</width>
+            <height>45</height>
+            <aspectratio>keep</aspectratio>
+            <texture>backgrounds/headers/headerStreamSetup.png</texture>
         </control>
         <!-- # Video window preview -->
         <control type="videowindow">
@@ -90,6 +114,67 @@
             <height>210</height>
             <aspectratio align="left">keep</aspectratio>
             <aligny>center</aligny>
+        </control>
+        <!-- # OSD Codecs flags confluence -->
+        <control type="grouplist">
+            <description>estuary style vertical codec flags top right aligned for logo</description>
+            <posx>-230</posx>
+            <posy>475</posy>
+            <width>600</width>
+            <orientation>horizontal</orientation>
+            <itemgap>4</itemgap>
+            <align>left</align>
+            <aligny>center</aligny>
+            <visible>Player.HasMedia</visible>
+            <!-- OSD resoulution -->
+            <control type="textbox">
+                <posx>0</posx>
+                <posy>0</posy>
+                <width>320</width>
+                <height>28</height>
+                <label>$INFO[Player.Process(videowidth),,x]$INFO[Player.Process(videoheight),,]$INFO[MusicPlayer.BitRate,   , kbps]$INFO[MusicPlayer.BitsPerSample, | , bit]$INFO[MusicPlayer.SampleRate, | , KHz]</label>
+                <font>font10</font>
+                <textcolor>white</textcolor>
+                <shadowcolor>black</shadowcolor>
+                <align>right</align>
+                <aligny>top</aligny>
+                <visible>!String.IsEmpty(VideoPlayer.VideoResolution)</visible>
+            </control>
+            <control type="image">
+                <description>Video Resolution Image</description>
+                <width>30</width>
+                <height>19</height>
+                <texture>$INFO[VideoPlayer.VideoResolution,codecflags/videoresolution/,.png]</texture>
+                <visible>!String.IsEmpty(VideoPlayer.VideoCodec)</visible>
+            </control>
+            <control type="image">
+                <description>Video AspectRatio Image</description>
+                <width>30</width>
+                <height>20</height>
+                <texture>$INFO[VideoPlayer.VideoAspect,codecflags/aspectratio/,.png]</texture>
+                <visible>!String.IsEmpty(VideoPlayer.VideoAspect)</visible>
+            </control>
+            <control type="image">
+                <description>Video VideoCodec Image</description>
+                <width>30</width>
+                <height>20</height>
+                <texture>$INFO[VideoPlayer.VideoCodec,codecflags/videocodec/,.png]</texture>
+                <visible>!String.IsEmpty(VideoPlayer.VideoCodec)</visible>
+            </control>
+            <control type="image">
+                <description>Audio Codec Image</description>
+                <width>30</width>
+                <height>20</height>
+                <texture>$INFO[VideoPlayer.AudioCodec,codecflags/audiocodec/,.png]</texture>
+                <visible>!String.IsEmpty(VideoPlayer.AudioCodec)</visible>
+            </control>
+            <control type="image">
+                <description>Audio Channels Image</description>
+                <width>30</width>
+                <height>20</height>
+                <texture>$INFO[VideoPlayer.AudioChannels,codecflags/audiochannel/,.png]</texture>
+                <visible>!String.IsEmpty(VideoPlayer.AudioChannels)</visible>
+            </control>
         </control>
         <!-- # Channel Logo -->
         <control type="image" id="4023">
@@ -142,18 +227,18 @@
             <font>font13</font>
             <textcolor>yellow</textcolor>
         </control>
-        <!-- # top Set Up Stream Text -->
-        <!--
-        <control type="label">
-            <description>Set Up Stream Text</description>
-            <posx>40</posx>
-            <posy>100</posy>
-            <width>500</width>
-            <height>40</height>
-            <label>[B]Setup Stream[/B]</label>
-            <align>left</align>
+        <!-- exit -->
+        <control type="button">
+            <texturefocus></texturefocus>
+            <texturenofocus></texturenofocus>
+            <label></label>
+            <description>invisible Epg back</description>
+            <posx>0</posx>
+            <posy>0</posy>
+            <height>720</height>
+            <width>1280</width>
+            <onclick>back</onclick>
         </control>
-        -->
         <!-- # Top menu tab -->
         <control type="group">
             <posx>0</posx>
@@ -169,8 +254,8 @@
                 <textcolor>white</textcolor>
                 <focusedcolor>black</focusedcolor>
                 <label>strm|m3u|pvr</label>
-                <texturefocus>tvg-button-focus.png</texturefocus>
-                <texturenofocus>tvg-button-nofocus.png</texturenofocus>
+                <texturefocus>buttons/tvg-button-focus.png</texturefocus>
+                <texturenofocus>buttons/tvg-button-nofocus.png</texturenofocus>
                 <onleft>104</onleft>
                 <onright>102</onright>
                 <ondown>1001</ondown>
@@ -187,9 +272,8 @@
                 <textcolor>white</textcolor>
                 <focusedcolor>black</focusedcolor>
                 <label>Favourites</label>
-                <!--<label>$ADDON[script.tvguide.fullscreen 30602]</label>-->
-                <texturefocus>tvg-button-focus.png</texturefocus>
-                <texturenofocus>tvg-button-nofocus.png</texturenofocus>
+                <texturefocus>buttons/tvg-button-focus.png</texturefocus>
+                <texturenofocus>buttons/tvg-button-nofocus.png</texturenofocus>
                 <onleft>101</onleft>
                 <onright>103</onright>
                 <ondown>2001</ondown>
@@ -206,10 +290,8 @@
                 <textcolor>white</textcolor>
                 <focusedcolor>black</focusedcolor>
                 <label>addons.ini</label>
-                <!--<label>Addons</label>-->
-                <!--<label>$ADDON[script.tvguide.fullscreen 30603]</label>-->
-                <texturefocus>tvg-button-focus.png</texturefocus>
-                <texturenofocus>tvg-button-nofocus.png</texturenofocus>
+                <texturefocus>buttons/tvg-button-focus.png</texturefocus>
+                <texturenofocus>buttons/tvg-button-nofocus.png</texturenofocus>
                 <onleft>102</onleft>
                 <onright>104</onright>
                 <ondown>3001</ondown>
@@ -219,16 +301,15 @@
             <control type="button" id="104">
                 <posx>1050</posx>
                 <posy>40</posy>
-                <width>170</width>
+                <width>200</width>
                 <height>40</height>
                 <align>center</align>
                 <aligny>center</aligny>
                 <textcolor>white</textcolor>
                 <focusedcolor>black</focusedcolor>
-                <label>Subscribe</label>
-                <!--<label>Browse</label>-->
-                <texturefocus>tvg-button-focus.png</texturefocus>
-                <texturenofocus>tvg-button-nofocus.png</texturenofocus>
+                <label>Addons Choose</label>
+                <texturefocus>buttons/tvg-button-focus.png</texturefocus>
+                <texturenofocus>buttons/tvg-button-nofocus.png</texturenofocus>
                 <onleft>103</onleft>
                 <onright>101</onright>
                 <ondown>4001</ondown>
@@ -246,202 +327,214 @@
                 <width>800</width>
                 <height>340</height>
                 <visible>String.Contains(Control.GetLabel(100),strm)</visible>
-                <!-- Main stream strm m3u File -->
-                <control type="button" id="1001">
-                    <description>strm|m3u File</description>
-                    <posx>450</posx>
-                    <posy>420</posy>
-                    <width>200</width>
-                    <height>50</height>
-                    <label>strm|m3u File</label>
-                    <align>center</align>
-                    <aligny>center</aligny>
-                    <textcolor>white</textcolor>
-                    <focusedcolor>black</focusedcolor>
-                    <texturefocus>tvg-button-focus.png</texturefocus>
-                    <texturenofocus>tvg-button-nofocus.png</texturenofocus>
-                    <onup>101</onup>
-                    <onright>1006</onright>
-                    <ondown>1002</ondown>
-                </control>
-                <!-- help Main stream strm m3u File -->
-                <control type="textbox">
-                    <posx>450</posx>
-                    <posy>380</posy>
-                    <width>1260</width>
-                    <height>80</height>
-                    <align>left</align>
-                    <label>Choose stream or substream from strm|m3u playlist to add to addons.ini.</label>
-                    <visible>Control.HasFocus(1001)</visible>
-                </control>
-                <!-- Main Import Playlist -->
-                <control type="button" id="1006">
-                    <description>Import Playlist</description>
-                    <posx>670</posx>
-                    <posy>420</posy>
-                    <width>190</width>
-                    <height>50</height>
-                    <label>Playlist</label>
-                    <align>center</align>
-                    <aligny>center</aligny>
-                    <textcolor>white</textcolor>
-                    <focusedcolor>black</focusedcolor>
-                    <texturefocus>tvg-button-focus.png</texturefocus>
-                    <texturenofocus>tvg-button-nofocus.png</texturenofocus>
-                    <onup>101</onup>
-                    <onleft>1001</onleft>
-                    <onright>1007</onright>
-                    <ondown>1002</ondown>
-                </control>
-                <!-- help Main Import Playlist -->
-                <control type="textbox">
-                    <posx>450</posx>
-                    <posy>380</posy>
-                    <width>1260</width>
-                    <height>80</height>
-                    <align>left</align>
-                    <label>Import Playlist from strm|m3u playlist to add to addons.ini.</label>
-                    <visible>Control.HasFocus(1006)</visible>
-                </control>
-                <!-- Main Import PVR -->
-                <control type="button" id="1007">
-                    <description>Import PVR</description>
-                    <posx>880</posx>
-                    <posy>420</posy>
-                    <width>100</width>
-                    <height>50</height>
-                    <label>PVR</label>
-                    <align>center</align>
-                    <aligny>center</aligny>
-                    <textcolor>white</textcolor>
-                    <focusedcolor>black</focusedcolor>
-                    <texturefocus>tvg-button-focus.png</texturefocus>
-                    <texturenofocus>tvg-button-nofocus.png</texturenofocus>
-                    <onup>101</onup>
-                    <onleft>1006</onleft>
-                    <onright>1008</onright>
-                    <ondown>1002</ondown>
-                </control>
-                <!-- help Main Import PVR -->
-                <control type="textbox">
-                    <posx>450</posx>
-                    <posy>380</posy>
-                    <width>1260</width>
-                    <height>80</height>
-                    <align>left</align>
-                    <label>Import PVR channels and add to addons.ini.</label>
-                    <visible>Control.HasFocus(1007)</visible>
-                </control>
-                <!-- Main Import catchup -->
-                <control type="button" id="1008">
-                    <description>catchup</description>
-                    <posx>1000</posx>
-                    <posy>420</posy>
-                    <width>260</width>
-                    <height>50</height>
-                    <label>Catchup Channel</label>
-                    <align>center</align>
-                    <aligny>center</aligny>
-                    <textcolor>white</textcolor>
-                    <focusedcolor>black</focusedcolor>
-                    <texturefocus>tvg-button-focus.png</texturefocus>
-                    <texturenofocus>tvg-button-nofocus.png</texturenofocus>
-                    <onup>101</onup>
-                    <onleft>1007</onleft>
-                    <onright>1002</onright>
-                    <ondown>1002</ondown>
-                </control>
-                <!-- help Main Import catchup -->
-                <control type="textbox">
-                    <posx>450</posx>
-                    <posy>380</posy>
-                    <width>1260</width>
-                    <height>80</height>
-                    <align>left</align>
-                    <label>Add Catchup Channel to addons.ini.</label>
-                    <visible>Control.HasFocus(1008)</visible>
-                </control>
-                <!-- Main STRM FILE LABEL -->
-                <control type="textbox" id="1005">
-                    <description>STRM FILE LABEL</description>
-                    <posx>140</posx>
-                    <posy>240</posy>
-                    <width>1280</width>
-                    <height>80</height>
-                </control>
                 <!-- Main stream HELP -->
                 <!-- Main stream HELP Main Mainscreen Streamsetup Help about what to do -->
                 <control type="textbox">
                     <description>Main Mainscreen Streamsetup Help about what to do</description>
                     <posx>40</posx>
-                    <posy>10</posy>
+                    <posy>-15</posy>
                     <width>1260</width>
-                    <height>80</height>
+                    <height>38</height>
                     <align>left</align>
                     <textcolor>yellow</textcolor>
-                    <label>All available channels are in addons.ini. This will help you add your own channels.</label>
+                    <font>font13</font>
+                    <label>All available channels are in addons.ini and folders.list.  This will help you add your own custom channels.</label>
                 </control>
-                <!-- Main stream HELP Main Mainscreen Streamsetup Help about what to do -->
+                <!-- 1 Main stream HELP Main Mainscreen Streamsetup Help about what to do -->
                 <control type="textbox">
                     <description>Mainscreen Textbox Help about what to do</description>
                     <posx>40</posx>
-                    <posy>60</posy>
+                    <posy>30</posy>
                     <width>1260</width>
                     <height>80</height>
                     <align>left</align>
-                    <label>1 | Choose stream or substream from strm|m3u|pvr playlist</label>
+                    <label>strm|m3u|pvr  | Choose stream from external strm|m3u|pvr playlist file.</label>
                 </control>
-                <!-- Main stream HELP Main Mainscreen Streamsetup Help about what to do -->
+                <!-- 2 Main stream HELP Main Mainscreen Streamsetup Help about what to do -->
                 <control type="textbox">
                     <description>Mainscreen Textbox Help about what to do 2</description>
                     <posx>40</posx>
-                    <posy>100</posy>
+                    <posy>70</posy>
                     <width>1260</width>
                     <height>80</height>
                     <align>left</align>
-                    <label>2 | Add a channel from your Favourites</label>
+                    <label>Favourites    | Add a channel from your Favourites</label>
                 </control>
-                <!-- Main stream HELP Main Mainscreen Streamsetup Help about what to do -->
+                <!-- 3 Main stream HELP Main Mainscreen Streamsetup Help about what to do -->
                 <control type="textbox">
                     <description>Mainscreen Textbox Help about what to do 2</description>
                     <posx>40</posx>
-                    <posy>140</posy>
+                    <posy>110</posy>
                     <width>1260</width>
                     <height>80</height>
                     <align>left</align>
-                    <label>3 | Choose from your available channels in addons.ini. Subscribe for more.</label>
+                    <label>addons.ini    | Choose from your available channels in addons.ini. "Addons Choose" for more.</label>
                 </control>
-                <!-- Main stream HELP Main Mainscreen Streamsetup Help about what to do -->
+                <!-- 4 Main stream HELP Main Mainscreen Streamsetup Help about what to do -->
                 <control type="textbox">
                     <description>Mainscreen Textbox Help about what to do 2</description>
                     <posx>40</posx>
-                    <posy>180</posy>
+                    <posy>150</posy>
                     <width>1260</width>
                     <height>80</height>
                     <align>left</align>
-                    <label>4 | Subscribe will let you browse addons and choose channels to subscribe to in addons.ini. Refresh Addons.ini afterwards.</label>
+                    <label>Addons Choose | Browse video addons and choose channel sources to add in folders.list (Refresh Addons.ini afterwards).</label>
+                </control>
+                <control type="image">
+                    <posx>38</posx>
+                    <posy>188</posy>
+                    <width>304</width>
+                    <height>164</height>
+                    <description>List Border</description>
+                    <visible>true</visible>
+                    <texture>backgrounds/listborder400x360.png</texture>
+                </control>
+                <control type="button" id="1001">
+                    <texturenofocus>buttons/popup_button.png</texturenofocus>
+                    <description>Single Stream From Playlist</description>
+                    <posx>40</posx>
+                    <posy>190</posy>
+                    <width>300</width>
+                    <height>38</height>
+                    <label>strm|m3u File</label>
+                    <align>left</align>
+                    <aligny>center</aligny>
+                    <font>font13</font>
+                    <textcolor>blue</textcolor>
+                    <focusedcolor>white</focusedcolor>
+                    <texturefocus>buttons/popup_buttonFO.png</texturefocus>
+                    <onup>101</onup>
+                    <onright>1002</onright>
+                    <ondown>1006</ondown>
+                </control>
+                <control type="button" id="1006">
+                    <texturenofocus>buttons/popup_button.png</texturenofocus>
+                    <description>Import Playlist</description>
+                    <posx>40</posx>
+                    <posy>230</posy>
+                    <width>300</width>
+                    <height>38</height>
+                    <label>Import Playlist</label>
+                    <align>left</align>
+                    <aligny>center</aligny>
+                    <font>font13</font>
+                    <textcolor>blue</textcolor>
+                    <focusedcolor>white</focusedcolor>
+                    <texturefocus>buttons/popup_buttonFO.png</texturefocus>
+                    <onup>1001</onup>
+                    <onleft>101</onleft>
+                    <onright>1002</onright>
+                    <ondown>1007</ondown>
+                </control>
+                <control type="button" id="1007">
+                    <texturenofocus>buttons/popup_button.png</texturenofocus>
+                    <description>Import PVR </description>
+                    <posx>40</posx>
+                    <posy>270</posy>
+                    <width>300</width>
+                    <height>38</height>
+                    <label>Import PVR</label>
+                    <align>left</align>
+                    <aligny>center</aligny>
+                    <font>font13</font>
+                    <textcolor>blue</textcolor>
+                    <focusedcolor>white</focusedcolor>
+                    <texturefocus>buttons/popup_buttonFO.png</texturefocus>
+                    <onup>1006</onup>
+                    <onleft>101</onleft>
+                    <onright>1002</onright>
+                    <ondown>1008</ondown>
+                </control>
+                <control type="button" id="1008">
+                    <texturenofocus>buttons/popup_button.png</texturenofocus>
+                    <description>catchup</description>
+                    <posx>40</posx>
+                    <posy>310</posy>
+                    <width>300</width>
+                    <height>38</height>
+                    <label>Catchup Channel</label>
+                    <align>left</align>
+                    <aligny>center</aligny>
+                    <font>font13</font>
+                    <textcolor>blue</textcolor>
+                    <focusedcolor>white</focusedcolor>
+                    <texturefocus>buttons/popup_buttonFO.png</texturefocus>
+                    <onup>1007</onup>
+                    <onleft>101</onleft>
+                    <onright>1002</onright>
+                    <ondown>1001</ondown>
+                </control>
+                <!-- Main STRM FILE LABEL -->
+                <control type="textbox" id="1005">
+                    <description>STRM FILE LABEL</description>
+                    <posx>400</posx>
+                    <posy>200</posy>
+                    <width>860</width>
+                    <height>80</height>
+                    <align>left</align>
+                </control>
+                <!-- help Main stream strm m3u File -->
+                <control type="textbox">
+                    <posx>400</posx>
+                    <posy>260</posy>
+                    <width>860</width>
+                    <height>80</height>
+                    <align>left</align>
+                    <label>Choose stream or substream from strm|m3u playlist to add to addons.ini.</label>
+                    <visible>Control.HasFocus(1001)</visible>
+                </control>
+                <!-- help Main Import Playlist -->
+                <control type="textbox">
+                    <posx>400</posx>
+                    <posy>260</posy>
+                    <width>860</width>
+                    <height>80</height>
+                    <align>left</align>
+                    <label>Import Playlist from strm|m3u playlist to add to addons.ini.</label>
+                    <visible>Control.HasFocus(1006)</visible>
+                </control>
+                <!-- help Main Import PVR -->
+                <control type="textbox">
+                    <posx>400</posx>
+                    <posy>260</posy>
+                    <width>860</width>
+                    <height>80</height>
+                    <align>left</align>
+                    <label>Import PVR channels and add to addons.ini.</label>
+                    <visible>Control.HasFocus(1007)</visible>
+                </control>
+                <!-- help Main Import catchup -->
+                <control type="textbox">
+                    <posx>400</posx>
+                    <posy>260</posy>
+                    <width>860</width>
+                    <height>80</height>
+                    <align>left</align>
+                    <label>Add Catchup Channel to addons.ini.</label>
+                    <visible>Control.HasFocus(1008)</visible>
                 </control>
                 <!-- Main stream buttons -->
-                <!-- actionbar Player Stop -->
+                <!-- Main Player Stop -->
                 <control type="radiobutton" id="5100">
                     <texturenofocus />
                     <label></label>
                     <description>Player stop</description>
-                    <textureradioonfocus colordiffuse="white">buttons/actionbar/stop.png</textureradioonfocus>
-                    <textureradioonnofocus>buttons/actionbar/stop.png</textureradioonnofocus>
-                    <textureradioofffocus colordiffuse="white">buttons/actionbar/stop.png</textureradioofffocus>
-                    <textureradiooffnofocus>buttons/actionbar/stop.png</textureradiooffnofocus>
-                    <texturefocus colordiffuse="$INFO[Window(1100).Property(radio_color)]">buttons/actionbar/button-fo.png</texturefocus>
+                    <textureradioonfocus colordiffuse="white">player/stop.png</textureradioonfocus>
+                    <textureradioonnofocus>player/stop.png</textureradioonnofocus>
+                    <textureradioofffocus colordiffuse="white">player/stop.png</textureradioofffocus>
+                    <textureradiooffnofocus>player/stop.png</textureradiooffnofocus>
+                    <texturefocus colordiffuse="$INFO[Window(1100).Property(radio_color)]">buttons/round-fo.png</texturefocus>
+                    <animation center="50,30" effect="zoom" end="100" reversible="false" start="95" time="0" tween="back">Focus</animation>
                     <posx>380</posx>
                     <posy>530</posy>
                     <width>32</width>
-                    <animation center="38,38" effect="zoom" end="100" reversible="false" start="95" time="480" tween="back">Focus</animation>
                     <height>32</height>
                     <radiowidth>30</radiowidth>
                     <radioheight>30</radioheight>
                     <radioposx>1</radioposx>
                     <radioposy>0</radioposy>
                     <onclick>PlayerControl(Stop)</onclick>
+                    <visible>Player.HasMedia</visible>
                     <onright>1002</onright>
                 </control>
                 <!-- Main stream Preview stream -->
@@ -455,13 +548,11 @@
                     <textcolor>white</textcolor>
                     <focusedcolor>black</focusedcolor>
                     <label>Preview</label>
-                    <!--<label>$ADDON[script.tvguide.fullscreen 30604]</label>-->
-                    <texturefocus>tvg-button-focus.png</texturefocus>
-                    <texturenofocus>tvg-button-nofocus.png</texturenofocus>
+                    <texturefocus>buttons/tvg-button-focus.png</texturefocus>
+                    <texturenofocus>buttons/tvg-button-nofocus.png</texturenofocus>
                     <ondown>101</ondown>
                     <onup>101</onup>
                     <onleft>5100</onleft>
-                    <!--<onleft>1001</onleft>-->
                     <onright>1003</onright>
                 </control>
                 <!-- Main stream Save -->
@@ -475,9 +566,8 @@
                     <textcolor>white</textcolor>
                     <focusedcolor>black</focusedcolor>
                     <label>Save</label>
-                    <!--<label>$ADDON[script.tvguide.fullscreen 30605]</label>-->
-                    <texturefocus>tvg-button-focus.png</texturefocus>
-                    <texturenofocus>tvg-button-nofocus.png</texturenofocus>
+                    <texturefocus>buttons/tvg-button-focus.png</texturefocus>
+                    <texturenofocus>buttons/tvg-button-nofocus.png</texturenofocus>
                     <onup>101</onup>
                     <onleft>1002</onleft>
                     <onright>1004</onright>
@@ -493,9 +583,8 @@
                     <textcolor>white</textcolor>
                     <focusedcolor>black</focusedcolor>
                     <label>Cancel</label>
-                    <!--<label>$ADDON[script.tvguide.fullscreen 30606]</label>-->
-                    <texturefocus>tvg-button-focus.png</texturefocus>
-                    <texturenofocus>tvg-button-nofocus.png</texturenofocus>
+                    <texturefocus>buttons/tvg-button-focus.png</texturefocus>
+                    <texturenofocus>buttons/tvg-button-nofocus.png</texturenofocus>
                     <onup>101</onup>
                     <onleft>1003</onleft>
                     <onright>1009</onright>
@@ -512,8 +601,8 @@
                     <textcolor>white</textcolor>
                     <focusedcolor>black</focusedcolor>
                     <label>Clear Alt</label>
-                    <texturefocus>tvg-button-focus.png</texturefocus>
-                    <texturenofocus>tvg-button-nofocus.png</texturenofocus>
+                    <texturefocus>buttons/tvg-button-focus.png</texturefocus>
+                    <texturenofocus>buttons/tvg-button-nofocus.png</texturenofocus>
                     <onup>101</onup>
                     <onleft>1004</onleft>
                     <onright>10099</onright>
@@ -522,11 +611,11 @@
                 <control type="radiobutton" id="10099">
                     <texturenofocus />
                     <description>custom refresh sub ini</description>
-                    <textureradioonfocus colordiffuse="white">buttons/actionbar/refresh.png</textureradioonfocus>
-                    <textureradioonnofocus>buttons/actionbar/refresh.png</textureradioonnofocus>
-                    <textureradioofffocus colordiffuse="white">buttons/actionbar/refresh.png</textureradioofffocus>
-                    <textureradiooffnofocus>buttons/actionbar/refresh.png</textureradiooffnofocus>
-                    <texturefocus colordiffuse="$INFO[Window(1100).Property(radio_color)]">buttons/actionbar/button-fo.png</texturefocus>
+                    <textureradioonfocus colordiffuse="white">icons/refresh.png</textureradioonfocus>
+                    <textureradioonnofocus>icons/refresh.png</textureradioonnofocus>
+                    <textureradioofffocus colordiffuse="white">icons/refresh.png</textureradioofffocus>
+                    <textureradiooffnofocus>icons/refresh.png</textureradiooffnofocus>
+                    <texturefocus colordiffuse="$INFO[Window(1100).Property(radio_color)]">buttons/round-fo.png</texturefocus>
                     <posx>1220</posx>
                     <posy>530</posy>
                     <width>42</width>
@@ -539,7 +628,7 @@
                     <ondown>101</ondown>
                     <onleft>1002</onleft>
                     <onright>1002</onright>
-                    <onclick>RunScript($INFO[Window(1100).Property(run_script)],101)</onclick>
+                    <onclick>RunScript($INFO[Window(1100).Property(run_script)],refresh_ini)</onclick>
                 </control>
             </control>
             <!-- # Main Favourites -->
@@ -551,55 +640,78 @@
                 <visible>String.Contains(Control.GetLabel(100),favourites)</visible>
                 <!-- Choose a Favourite Stream label -->
                 <control type="textbox">
-                    <posx>140</posx>
-                    <posy>60</posy>
-                    <width>350</width>
-                    <height>80</height>
+                    <posx>40</posx>
+                    <posy>-15</posy>
+                    <width>1260</width>
+                    <height>38</height>
                     <align>left</align>
-                    <label>Choose a Favourite Stream.</label>
+                    <textcolor>yellow</textcolor>
+                    <label>Choose a source from your "Favourites".</label>
+                </control>
+                <control type="label">
+                    <description>subscriptions Help about what to do</description>
+                    <posx>40</posx>
+                    <posy>60</posy>
+                    <width>360</width>
+                    <height>148</height>
+                    <align>left</align>
+                    <textcolor>white</textcolor>
+                    <font>font13</font>
+                    <wrapmultiline>true</wrapmultiline>
+                    <label>Inside an addon right click and save a channel to "favourites".  Then you can select it on the right and set it as the channel.</label>
+                </control>
+                <control type="image">
+                    <posx>548</posx>
+                    <posy>18</posy>
+                    <width>604</width>
+                    <height>484</height>
+                    <description>List Border</description>
+                    <visible>true</visible>
+                    <texture>backgrounds/listborder400x360.png</texture>
                 </control>
                 <!-- Choose a fav list array -->
                 <control type="list" id="2001">
                     <posx>550</posx>
                     <posy>20</posy>
-                    <width>400</width>
+                    <width>600</width>
                     <height>480</height>
                     <viewtype label="list">list</viewtype>
                     <orientation>vertical</orientation>
                     <focusposition>7</focusposition>
                     <onleft>2002</onleft>
-                    <onright>2002</onright>
-                    <itemlayout width="400" height="40">
+                    <onright>2022</onright>
+                    <pagecontrol>2022</pagecontrol>
+                    <itemlayout width="600" height="40">
                         <control type="image">
                             <posx>0</posx>
                             <posy>0</posy>
-                            <width>400</width>
+                            <width>600</width>
                             <height>38</height>
-                            <texture>tvg-button-nofocus.png</texture>
+                            <texture>buttons/tvg-button-nofocus.png</texture>
                         </control>
                         <control type="label">
                             <posx>16</posx>
                             <posy>0</posy>
-                            <width>400</width>
+                            <width>600</width>
                             <height>38</height>
                             <aligny>center</aligny>
                             <textcolor>white</textcolor>
                             <info>ListItem.Label</info>
                         </control>
                     </itemlayout>
-                    <focusedlayout width="400" height="40">
+                    <focusedlayout width="600" height="40">
                         <control type="image">
                             <posx>0</posx>
                             <posy>0</posy>
-                            <width>400</width>
+                            <width>600</width>
                             <height>38</height>
-                            <texture>tvg-button-focus.png</texture>
+                            <texture>buttons/tvg-button-focus.png</texture>
                             <visible>true</visible>
                         </control>
                         <control type="label">
                             <posx>16</posx>
                             <posy>0</posy>
-                            <width>400</width>
+                            <width>600</width>
                             <height>38</height>
                             <aligny>center</aligny>
                             <textcolor>white</textcolor>
@@ -609,7 +721,7 @@
                         <control type="label">
                             <posx>16</posx>
                             <posy>0</posy>
-                            <width>400</width>
+                            <width>600</width>
                             <height>38</height>
                             <aligny>center</aligny>
                             <textcolor>black</textcolor>
@@ -618,27 +730,49 @@
                         </control>
                     </focusedlayout>
                 </control>
+                <control type="scrollbar" id="2022">
+                    <description>scroll bar control</description>
+                    <posx>1150</posx>
+                    <posy>20</posy>
+                    <width>45</width>
+                    <height>480</height>
+                    <visible>true</visible>
+                    <pulseonselect>true</pulseonselect>
+                    <orientation>vertical</orientation>
+                    <showonepage>false</showonepage>
+                    <onleft>2001</onleft>
+                    <onright>2001</onright>
+                    <texturesliderbackground colordiffuse="$INFO[Window(1100).Property(scrollbarbg_color)]">scrollbar/scrollbar.png</texturesliderbackground>
+                    <textureslidernib></textureslidernib>
+                    <textureslidernibfocus></textureslidernibfocus>
+                    <texturesliderbar colordiffuse="$INFO[Window(1100).Property(scrollbarnf_color)]">scrollbar/scrollbar.png</texturesliderbar>
+                    <texturesliderbarfocus colordiffuse="$INFO[Window(1100).Property(focus_current_color)]">scrollbar/scrollbar.png</texturesliderbarfocus>
+                    <animation effect="fade" start="0" end="100" time="200" delay="300">Visible</animation>
+                    <animation effect="fade" start="100" end="0" time="200">Hidden</animation>
+                    <visible>Integer.IsGreater(Container(2001).NumItems,12)</visible>
+                </control>
                 <!-- fav buttons -->
-                <!-- actionbar Player Stop -->
+                <!-- Player Stop -->
                 <control type="radiobutton" id="5200">
                     <texturenofocus />
                     <label></label>
                     <description>Player stop</description>
-                    <textureradioonfocus colordiffuse="white">buttons/actionbar/stop.png</textureradioonfocus>
-                    <textureradioonnofocus>buttons/actionbar/stop.png</textureradioonnofocus>
-                    <textureradioofffocus colordiffuse="white">buttons/actionbar/stop.png</textureradioofffocus>
-                    <textureradiooffnofocus>buttons/actionbar/stop.png</textureradiooffnofocus>
-                    <texturefocus colordiffuse="$INFO[Window(1100).Property(radio_color)]">buttons/actionbar/button-fo.png</texturefocus>
+                    <textureradioonfocus colordiffuse="white">player/stop.png</textureradioonfocus>
+                    <textureradioonnofocus>player/stop.png</textureradioonnofocus>
+                    <textureradioofffocus colordiffuse="white">player/stop.png</textureradioofffocus>
+                    <textureradiooffnofocus>player/stop.png</textureradiooffnofocus>
+                    <texturefocus colordiffuse="$INFO[Window(1100).Property(radio_color)]">buttons/round-fo.png</texturefocus>
+                    <animation center="50,30" effect="zoom" end="100" reversible="false" start="95" time="0" tween="back">Focus</animation>
                     <posx>380</posx>
                     <posy>530</posy>
                     <width>32</width>
-                    <animation center="38,38" effect="zoom" end="100" reversible="false" start="95" time="480" tween="back">Focus</animation>
                     <height>32</height>
                     <radiowidth>30</radiowidth>
                     <radioheight>30</radioheight>
                     <radioposx>1</radioposx>
                     <radioposy>0</radioposy>
                     <onclick>PlayerControl(Stop)</onclick>
+                    <visible>Player.HasMedia</visible>
                     <onright>2002</onright>
                 </control>
                 <!-- Preview Stream -->
@@ -652,9 +786,8 @@
                     <textcolor>white</textcolor>
                     <focusedcolor>black</focusedcolor>
                     <label>Preview</label>
-                    <!--<label>$ADDON[script.tvguide.fullscreen 30604]</label>-->
-                    <texturefocus>tvg-button-focus.png</texturefocus>
-                    <texturenofocus>tvg-button-nofocus.png</texturenofocus>
+                    <texturefocus>buttons/tvg-button-focus.png</texturefocus>
+                    <texturenofocus>buttons/tvg-button-nofocus.png</texturenofocus>
                     <ondown>102</ondown>
                     <onup>102</onup>
                     <onleft>5200</onleft>
@@ -672,9 +805,8 @@
                     <textcolor>white</textcolor>
                     <focusedcolor>black</focusedcolor>
                     <label>Save</label>
-                    <!--<label>$ADDON[script.tvguide.fullscreen 30605]</label>-->
-                    <texturefocus>tvg-button-focus.png</texturefocus>
-                    <texturenofocus>tvg-button-nofocus.png</texturenofocus>
+                    <texturefocus>buttons/tvg-button-focus.png</texturefocus>
+                    <texturenofocus>buttons/tvg-button-nofocus.png</texturenofocus>
                     <onup>102</onup>
                     <onleft>2002</onleft>
                     <onright>2004</onright>
@@ -690,9 +822,8 @@
                     <textcolor>white</textcolor>
                     <focusedcolor>black</focusedcolor>
                     <label>Cancel</label>
-                    <!--<label>$ADDON[script.tvguide.fullscreen 30606]</label>-->
-                    <texturefocus>tvg-button-focus.png</texturefocus>
-                    <texturenofocus>tvg-button-nofocus.png</texturenofocus>
+                    <texturefocus>buttons/tvg-button-focus.png</texturefocus>
+                    <texturenofocus>buttons/tvg-button-nofocus.png</texturenofocus>
                     <onup>102</onup>
                     <onleft>2003</onleft>
                     <onright>2005</onright>
@@ -708,8 +839,8 @@
                     <textcolor>white</textcolor>
                     <focusedcolor>black</focusedcolor>
                     <label>Alt Stream</label>
-                    <texturefocus>tvg-button-focus.png</texturefocus>
-                    <texturenofocus>tvg-button-nofocus.png</texturenofocus>
+                    <texturefocus>buttons/tvg-button-focus.png</texturefocus>
+                    <texturenofocus>buttons/tvg-button-nofocus.png</texturenofocus>
                     <onup>102</onup>
                     <onleft>2004</onleft>
                     <onright>20099</onright>
@@ -718,11 +849,11 @@
                 <control type="radiobutton" id="20099">
                     <texturenofocus />
                     <description>custom refresh sub ini</description>
-                    <textureradioonfocus colordiffuse="white">buttons/actionbar/refresh.png</textureradioonfocus>
-                    <textureradioonnofocus>buttons/actionbar/refresh.png</textureradioonnofocus>
-                    <textureradioofffocus colordiffuse="white">buttons/actionbar/refresh.png</textureradioofffocus>
-                    <textureradiooffnofocus>buttons/actionbar/refresh.png</textureradiooffnofocus>
-                    <texturefocus colordiffuse="$INFO[Window(1100).Property(radio_color)]">buttons/actionbar/button-fo.png</texturefocus>
+                    <textureradioonfocus colordiffuse="white">icons/refresh.png</textureradioonfocus>
+                    <textureradioonnofocus>icons/refresh.png</textureradioonnofocus>
+                    <textureradioofffocus colordiffuse="white">icons/refresh.png</textureradioofffocus>
+                    <textureradiooffnofocus>icons/refresh.png</textureradiooffnofocus>
+                    <texturefocus colordiffuse="$INFO[Window(1100).Property(radio_color)]">buttons/round-fo.png</texturefocus>
                     <posx>1220</posx>
                     <posy>530</posy>
                     <width>42</width>
@@ -735,7 +866,7 @@
                     <ondown>2002</ondown>
                     <onleft>2002</onleft>
                     <onright>2002</onright>
-                    <onclick>RunScript($INFO[Window(1100).Property(run_script)],101)</onclick>
+                    <onclick>RunScript($INFO[Window(1100).Property(run_script)],refresh_ini)</onclick>
                 </control>
             </control>
             <!-- # Main Addons ini browse -->
@@ -745,13 +876,23 @@
                 <width>1280</width>
                 <height>600</height>
                 <visible>String.Contains(Control.GetLabel(100),addons)</visible>
+                <control type="textbox">
+                    <posx>40</posx>
+                    <posy>-15</posy>
+                    <width>1260</width>
+                    <height>38</height>
+                    <align>left</align>
+                    <textcolor>yellow</textcolor>
+                    <font>font13</font>
+                    <label>You can select a channel from your PVR. If blank, go to strm|m3u, click Import PVR, exit out and come back to this screen.</label>
+                </control>
                 <!-- arrow -->
                 <control type="image">
                     <posx>90</posx>
                     <posy>20</posy>
                     <width>40</width>
                     <height>12</height>
-                    <texture>tvguide-channel-arrow.png</texture>
+                    <texture>buttons/tvguide-channel-arrow.png</texture>
                 </control>
                 <!-- arrow -->
                 <control type="image">
@@ -759,7 +900,16 @@
                     <posy>230</posy>
                     <width>40</width>
                     <height>-12</height>
-                    <texture>tvguide-channel-arrow.png</texture>
+                    <texture>buttons/tvguide-channel-arrow.png</texture>
+                </control>
+                <control type="image">
+                    <posx>38</posx>
+                    <posy>63</posy>
+                    <width>154</width>
+                    <height>154</height>
+                    <description>List Border</description>
+                    <visible>true</visible>
+                    <texture>backgrounds/listborder400x360.png</texture>
                 </control>
                 <!-- addons list array -->
                 <control type="wraplist" id="3001">
@@ -779,7 +929,7 @@
                             <posy>0</posy>
                             <width>150</width>
                             <height>150</height>
-                            <texture>tvg-button-nofocus.png</texture>
+                            <texture>buttons/tvg-button-nofocus.png</texture>
                         </control>
                         <control type="image">
                             <posx>10</posx>
@@ -795,7 +945,7 @@
                             <posy>0</posy>
                             <width>150</width>
                             <height>150</height>
-                            <texture>tvg-button-nofocus.png</texture>
+                            <texture>buttons/tvg-button-nofocus.png</texture>
                             <visible>!Control.HasFocus(3001)</visible>
                         </control>
                         <control type="image">
@@ -803,7 +953,7 @@
                             <posy>0</posy>
                             <width>150</width>
                             <height>150</height>
-                            <texture>tvg-button-focus.png</texture>
+                            <texture>buttons/tvg-button-focus.png</texture>
                             <visible>Control.HasFocus(3001)</visible>
                         </control>
                         <control type="image">
@@ -835,50 +985,59 @@
                     <font>font12</font>
                     <align>left</align>
                     <autoscroll time="3600" delay="6000" repeat="6000">true</autoscroll>
-                    <!--<visible>!Player.HasMedia</visible>-->
                 </control>
                 <!-- addons list array second window -->
+                <control type="image">
+                    <posx>548</posx>
+                    <posy>18</posy>
+                    <width>604</width>
+                    <height>484</height>
+                    <description>List Border</description>
+                    <visible>true</visible>
+                    <texture>backgrounds/listborder400x360.png</texture>
+                </control>
                 <control type="list" id="3002">
                     <posx>550</posx>
                     <posy>20</posy>
-                    <width>400</width>
+                    <width>600</width>
                     <height>480</height>
                     <viewtype label="list">list</viewtype>
                     <orientation>vertical</orientation>
                     <focusposition>7</focusposition>
                     <onleft>3001</onleft>
                     <onright>3005</onright>
-                    <itemlayout width="400" height="40">
+                    <pagecontrol>3022</pagecontrol>
+                    <itemlayout width="600" height="40">
                         <control type="image">
                             <posx>0</posx>
                             <posy>0</posy>
-                            <width>400</width>
+                            <width>600</width>
                             <height>38</height>
-                            <texture>tvg-button-nofocus.png</texture>
+                            <texture>buttons/tvg-button-nofocus.png</texture>
                         </control>
                         <control type="label">
                             <posx>16</posx>
                             <posy>0</posy>
-                            <width>400</width>
+                            <width>600</width>
                             <height>38</height>
                             <aligny>center</aligny>
                             <textcolor>white</textcolor>
                             <info>ListItem.Label</info>
                         </control>
                     </itemlayout>
-                    <focusedlayout width="400" height="40">
+                    <focusedlayout width="600" height="40">
                         <control type="image">
                             <posx>0</posx>
                             <posy>0</posy>
-                            <width>400</width>
+                            <width>600</width>
                             <height>38</height>
-                            <texture>tvg-button-focus.png</texture>
+                            <texture>buttons/tvg-button-focus.png</texture>
                             <visible>true</visible>
                         </control>
                         <control type="label">
                             <posx>16</posx>
                             <posy>0</posy>
-                            <width>400</width>
+                            <width>600</width>
                             <height>38</height>
                             <aligny>center</aligny>
                             <textcolor>white</textcolor>
@@ -888,7 +1047,7 @@
                         <control type="label">
                             <posx>16</posx>
                             <posy>0</posy>
-                            <width>400</width>
+                            <width>600</width>
                             <height>38</height>
                             <aligny>center</aligny>
                             <textcolor>black</textcolor>
@@ -897,28 +1056,50 @@
                         </control>
                     </focusedlayout>
                 </control>
+                <control type="scrollbar" id="3022">
+                    <description>scroll bar control</description>
+                    <posx>1150</posx>
+                    <posy>20</posy>
+                    <width>45</width>
+                    <height>480</height>
+                    <visible>true</visible>
+                    <pulseonselect>true</pulseonselect>
+                    <orientation>vertical</orientation>
+                    <showonepage>false</showonepage>
+                    <onleft>3002</onleft>
+                    <onright>3002</onright>
+                    <texturesliderbackground colordiffuse="$INFO[Window(1100).Property(scrollbarbg_color)]">scrollbar/scrollbar.png</texturesliderbackground>
+                    <textureslidernib></textureslidernib>
+                    <textureslidernibfocus></textureslidernibfocus>
+                    <texturesliderbar colordiffuse="$INFO[Window(1100).Property(scrollbarnf_color)]">scrollbar/scrollbar.png</texturesliderbar>
+                    <texturesliderbarfocus colordiffuse="$INFO[Window(1100).Property(focus_current_color)]">scrollbar/scrollbar.png</texturesliderbarfocus>
+                    <animation effect="fade" start="0" end="100" time="200" delay="300">Visible</animation>
+                    <animation effect="fade" start="100" end="0" time="200">Hidden</animation>
+                    <visible>Integer.IsGreater(Container(3002).NumItems,12)</visible>
+                </control>
                 <!-- Buttons -->
-                <!-- actionbar Player Stop -->
+                <!-- Player Stop -->
                 <control type="radiobutton" id="5300">
                     <texturenofocus />
                     <label></label>
                     <description>Player stop</description>
-                    <textureradioonfocus colordiffuse="white">buttons/actionbar/stop.png</textureradioonfocus>
-                    <textureradioonnofocus>buttons/actionbar/stop.png</textureradioonnofocus>
-                    <textureradioofffocus colordiffuse="white">buttons/actionbar/stop.png</textureradioofffocus>
-                    <textureradiooffnofocus>buttons/actionbar/stop.png</textureradiooffnofocus>
-                    <texturefocus colordiffuse="$INFO[Window(1100).Property(radio_color)]">buttons/actionbar/button-fo.png</texturefocus>
+                    <textureradioonfocus colordiffuse="white">player/stop.png</textureradioonfocus>
+                    <textureradioonnofocus>player/stop.png</textureradioonnofocus>
+                    <textureradioofffocus colordiffuse="white">player/stop.png</textureradioofffocus>
+                    <textureradiooffnofocus>player/stop.png</textureradiooffnofocus>
+                    <texturefocus colordiffuse="$INFO[Window(1100).Property(radio_color)]">buttons/round-fo.png</texturefocus>
+                    <animation center="50,30" effect="zoom" end="100" reversible="false" start="95" time="0" tween="back">Focus</animation>
                     <posx>380</posx>
                     <posy>530</posy>
                     <width>32</width>
-                    <animation center="38,38" effect="zoom" end="100" reversible="false" start="95" time="480" tween="back">Focus</animation>
                     <height>32</height>
                     <radiowidth>30</radiowidth>
                     <radioheight>30</radioheight>
                     <radioposx>1</radioposx>
                     <radioposy>0</radioposy>
                     <onclick>PlayerControl(Stop)</onclick>
-                    <onright>3005</onright>
+                    <visible>Player.HasMedia</visible>
+                    <onright>3002</onright>
                 </control>
                 <!-- Preview Stream -->
                 <control type="button" id="3005">
@@ -931,13 +1112,11 @@
                     <textcolor>white</textcolor>
                     <focusedcolor>black</focusedcolor>
                     <label>Preview</label>
-                    <!--<label>$ADDON[script.tvguide.fullscreen 30604]</label>-->
-                    <texturefocus>tvg-button-focus.png</texturefocus>
-                    <texturenofocus>tvg-button-nofocus.png</texturenofocus>
+                    <texturefocus>buttons/tvg-button-focus.png</texturefocus>
+                    <texturenofocus>buttons/tvg-button-nofocus.png</texturenofocus>
                     <onup>3001</onup>
                     <ondown>103</ondown>
                     <onleft>5300</onleft>
-                    <!--<onleft>3002</onleft>-->
                     <onright>3006</onright>
                 </control>
                 <!-- Save -->
@@ -951,9 +1130,8 @@
                     <textcolor>white</textcolor>
                     <focusedcolor>black</focusedcolor>
                     <label>Save</label>
-                    <!--<label>$ADDON[script.tvguide.fullscreen 30605]</label>-->
-                    <texturefocus>tvg-button-focus.png</texturefocus>
-                    <texturenofocus>tvg-button-nofocus.png</texturenofocus>
+                    <texturefocus>buttons/tvg-button-focus.png</texturefocus>
+                    <texturenofocus>buttons/tvg-button-nofocus.png</texturenofocus>
                     <onup>103</onup>
                     <onleft>3005</onleft>
                     <onright>3007</onright>
@@ -969,9 +1147,8 @@
                     <textcolor>white</textcolor>
                     <focusedcolor>black</focusedcolor>
                     <label>Cancel</label>
-                    <!--<label>$ADDON[script.tvguide.fullscreen 30606]</label>-->
-                    <texturefocus>tvg-button-focus.png</texturefocus>
-                    <texturenofocus>tvg-button-nofocus.png</texturenofocus>
+                    <texturefocus>buttons/tvg-button-focus.png</texturefocus>
+                    <texturenofocus>buttons/tvg-button-nofocus.png</texturenofocus>
                     <onup>103</onup>
                     <onleft>3006</onleft>
                     <onright>3009</onright>
@@ -987,8 +1164,8 @@
                     <textcolor>white</textcolor>
                     <focusedcolor>black</focusedcolor>
                     <label>Alt Stream</label>
-                    <texturefocus>tvg-button-focus.png</texturefocus>
-                    <texturenofocus>tvg-button-nofocus.png</texturenofocus>
+                    <texturefocus>buttons/tvg-button-focus.png</texturefocus>
+                    <texturenofocus>buttons/tvg-button-nofocus.png</texturenofocus>
                     <onup>103</onup>
                     <onleft>3007</onleft>
                     <onright>30099</onright>
@@ -997,11 +1174,11 @@
                 <control type="radiobutton" id="30099">
                     <texturenofocus />
                     <description>custom refresh sub ini</description>
-                    <textureradioonfocus colordiffuse="white">buttons/actionbar/refresh.png</textureradioonfocus>
-                    <textureradioonnofocus>buttons/actionbar/refresh.png</textureradioonnofocus>
-                    <textureradioofffocus colordiffuse="white">buttons/actionbar/refresh.png</textureradioofffocus>
-                    <textureradiooffnofocus>buttons/actionbar/refresh.png</textureradiooffnofocus>
-                    <texturefocus colordiffuse="$INFO[Window(1100).Property(radio_color)]">buttons/actionbar/button-fo.png</texturefocus>
+                    <textureradioonfocus colordiffuse="white">icons/refresh.png</textureradioonfocus>
+                    <textureradioonnofocus>icons/refresh.png</textureradioonnofocus>
+                    <textureradioofffocus colordiffuse="white">icons/refresh.png</textureradioofffocus>
+                    <textureradiooffnofocus>icons/refresh.png</textureradiooffnofocus>
+                    <texturefocus colordiffuse="$INFO[Window(1100).Property(radio_color)]">buttons/round-fo.png</texturefocus>
                     <posx>1220</posx>
                     <posy>530</posy>
                     <width>42</width>
@@ -1014,7 +1191,7 @@
                     <ondown>3005</ondown>
                     <onleft>3009</onleft>
                     <onright>3005</onright>
-                    <onclick>RunScript($INFO[Window(1100).Property(run_script)],101)</onclick>
+                    <onclick>RunScript($INFO[Window(1100).Property(run_script)],refresh_ini)</onclick>
                 </control>
             </control>
             <!-- # Main browse and add addon subscriptions -->
@@ -1024,247 +1201,326 @@
                 <width>1280</width>
                 <height>600</height>
                 <visible>String.Contains(Control.GetLabel(100),browse)</visible>
-                <!-- arrow -->
-                <control type="image">
-                    <posx>90</posx>
-                    <posy>20</posy>
-                    <width>40</width>
-                    <height>12</height>
-                    <texture>tvguide-channel-arrow.png</texture>
-                </control>
-                <!-- arrow -->
-                <control type="image">
-                    <posx>90</posx>
-                    <posy>280</posy>
-                    <width>40</width>
-                    <height>-12</height>
-                    <texture>tvguide-channel-arrow.png</texture>
-                </control>
-                <!-- subs list array -->
-                <control type="list" id="4001">
-                    <posx>40</posx>
-                    <posy>65</posy>
-                    <width>300</width>
-                    <height>200</height>
-                    <aspectratio>keep</aspectratio>
-                    <viewtype label="list">list</viewtype>
-                    <orientation>vertical</orientation>
-                    <focusposition>0</focusposition>
-                    <onleft>4005</onleft>
-                    <onright>4008</onright>
-                    <itemlayout width="150" height="200">
-                        <control type="image">
-                            <posx>0</posx>
-                            <posy>0</posy>
-                            <width>150</width>
-                            <height>150</height>
-                            <texture>tvg-button-nofocus.png</texture>
-                        </control>
-                        <control type="image">
-                            <posx>10</posx>
-                            <posy>10</posy>
-                            <width>130</width>
-                            <height>130</height>
-                            <info>ListItem.Icon</info>
-                        </control>
-                        <control type="label">
-                            <posx>10</posx>
-                            <posy>150</posy>
-                            <width>300</width>
-                            <height>40</height>
-                            <aligny>center</aligny>
-                            <textcolor>white</textcolor>
-                            <info>ListItem.Label</info>
-                        </control>
-                    </itemlayout>
-                    <focusedlayout width="150" height="200">
-                        <control type="image">
-                            <posx>0</posx>
-                            <posy>0</posy>
-                            <width>150</width>
-                            <height>150</height>
-                            <texture>tvg-button-nofocus.png</texture>
-                            <visible>!Control.HasFocus(4001)</visible>
-                        </control>
-                        <control type="image">
-                            <posx>0</posx>
-                            <posy>0</posy>
-                            <width>150</width>
-                            <height>150</height>
-                            <texture>tvg-button-focus.png</texture>
-                            <visible>Control.HasFocus(4001)</visible>
-                        </control>
-                        <control type="image">
-                            <posx>10</posx>
-                            <posy>10</posy>
-                            <width>130</width>
-                            <height>130</height>
-                            <info>ListItem.Icon</info>
-                        </control>
-                        <control type="label">
-                            <posx>10</posx>
-                            <posy>150</posy>
-                            <width>300</width>
-                            <height>40</height>
-                            <aligny>center</aligny>
-                            <textcolor>white</textcolor>
-                            <info>ListItem.Label</info>
-                        </control>
-                    </focusedlayout>
-                </control>
                 <!-- help subscriptions Help about what to do -->
                 <control type="label">
                     <description>subscriptions Help about what to do</description>
                     <posx>40</posx>
-                    <posy>-20</posy>
+                    <posy>-15</posy>
                     <width>1260</width>
                     <height>38</height>
-                    <aligny>center</aligny>
-                    <textcolor>white</textcolor>
+                    <align>left</align>
+                    <textcolor>yellow</textcolor>
+                    <font>font13</font>
                     <label>Click on the addon icon and wait until the addon loads. Then browse to the directory you want and click Add Folder button.</label>
                 </control>
-                <!-- subs list array -->
-                <control type="list" id="4008">
-                    <posx>400</posx>
+                <!-- small choose addon list array -->
+                <control type="group">
+                    <posx>0</posx>
+                    <posy>0</posy>
+                    <!-- arrow -->
+                    <control type="image">
+                        <posx>90</posx>
+                        <posy>20</posy>
+                        <width>40</width>
+                        <height>12</height>
+                        <texture>buttons/tvguide-channel-arrow.png</texture>
+                    </control>
+                    <!-- arrow -->
+                    <control type="image">
+                        <posx>90</posx>
+                        <posy>280</posy>
+                        <width>40</width>
+                        <height>-12</height>
+                        <texture>buttons/tvguide-channel-arrow.png</texture>
+                    </control>
+                    <!-- choose addon  list array -->
+                    <control type="list" id="4001">
+                        <posx>40</posx>
+                        <posy>65</posy>
+                        <width>200</width>
+                        <height>200</height>
+                        <aspectratio>keep</aspectratio>
+                        <viewtype label="list">list</viewtype>
+                        <orientation>vertical</orientation>
+                        <focusposition>0</focusposition>
+                        <onleft>4005</onleft>
+                        <onright>4008</onright>
+                        <itemlayout width="150" height="200">
+                            <control type="image">
+                                <posx>0</posx>
+                                <posy>0</posy>
+                                <width>150</width>
+                                <height>150</height>
+                                <texture>buttons/tvg-button-nofocus.png</texture>
+                            </control>
+                            <control type="image">
+                                <posx>10</posx>
+                                <posy>10</posy>
+                                <width>130</width>
+                                <height>130</height>
+                                <info>ListItem.Icon</info>
+                            </control>
+                            <control type="label">
+                                <posx>0</posx>
+                                <posy>150</posy>
+                                <width>150</width>
+                                <height>40</height>
+                                <aligny>center</aligny>
+                                <align>center</align>
+                                <textcolor>white</textcolor>
+                                <info>ListItem.Label</info>
+                            </control>
+                        </itemlayout>
+                        <focusedlayout width="150" height="200">
+                            <control type="image">
+                                <posx>0</posx>
+                                <posy>0</posy>
+                                <width>150</width>
+                                <height>150</height>
+                                <texture>buttons/tvg-button-nofocus.png</texture>
+                                <visible>!Control.HasFocus(4001)</visible>
+                            </control>
+                            <control type="image">
+                                <posx>0</posx>
+                                <posy>0</posy>
+                                <width>150</width>
+                                <height>150</height>
+                                <texture>buttons/tvg-button-focus.png</texture>
+                                <visible>Control.HasFocus(4001)</visible>
+                            </control>
+                            <control type="image">
+                                <posx>10</posx>
+                                <posy>10</posy>
+                                <width>130</width>
+                                <height>130</height>
+                                <info>ListItem.Icon</info>
+                            </control>
+                            <control type="label">
+                                <posx>0</posx>
+                                <posy>150</posy>
+                                <width>150</width>
+                                <height>40</height>
+                                <align>center</align>
+                                <aligny>center</aligny>
+                                <textcolor>white</textcolor>
+                                <info>ListItem.Label</info>
+                            </control>
+                        </focusedlayout>
+                    </control>
+                    <!-- disabled subs addon name -->
+                    <control type="label" id="4003">
+                        <description>addon name</description>
+                        <posx>0</posx>
+                        <posy>280</posy>
+                        <width>230</width>
+                        <height>40</height>
+                        <label>[B][/B]</label>
+                        <align>left</align>
+                        <aligny>center</aligny>
+                        <textcolor>white</textcolor>
+                        <visible>false</visible>
+                    </control>
+                    <!-- subs addon info -->
+                    <control type="textbox" id="4004">
+                        <label />
+                        <description>addon info</description>
+                        <posx>40</posx>
+                        <posy>290</posy>
+                        <width>235</width>
+                        <height>200</height>
+                        <font>font12</font>
+                        <align>left</align>
+                        <autoscroll time="3600" delay="6000" repeat="6000">true</autoscroll>
+                    </control>
+                </control>
+                <!-- inside addon list array -->
+                <control type="group">
+                    <posx>300</posx>
                     <posy>20</posy>
-                    <width>300</width>
-                    <height>480</height>
-                    <viewtype label="list">list</viewtype>
-                    <orientation>vertical</orientation>
-                    <focusposition>7</focusposition>
-                    <onleft>4001</onleft>
-                    <onright>4002</onright>
-                    <itemlayout width="300" height="40">
-                        <control type="image">
-                            <posx>0</posx>
-                            <posy>0</posy>
-                            <width>300</width>
-                            <height>38</height>
-                            <texture>tvg-button-nofocus.png</texture>
-                        </control>
-                        <control type="label">
-                            <posx>16</posx>
-                            <posy>0</posy>
-                            <width>300</width>
-                            <height>38</height>
-                            <aligny>center</aligny>
-                            <textcolor>white</textcolor>
-                            <info>ListItem.Label</info>
-                        </control>
-                    </itemlayout>
-                    <focusedlayout width="300" height="40">
-                        <control type="image">
-                            <posx>0</posx>
-                            <posy>0</posy>
-                            <width>300</width>
-                            <height>38</height>
-                            <texture>tvg-button-focus.png</texture>
-                            <visible>true</visible>
-                        </control>
-                        <control type="label">
-                            <posx>16</posx>
-                            <posy>0</posy>
-                            <width>300</width>
-                            <height>38</height>
-                            <aligny>center</aligny>
-                            <textcolor>white</textcolor>
-                            <info>ListItem.Label</info>
-                            <visible>!Control.HasFocus(4008)</visible>
-                        </control>
-                        <control type="label">
-                            <posx>16</posx>
-                            <posy>0</posy>
-                            <width>300</width>
-                            <height>38</height>
-                            <aligny>center</aligny>
-                            <textcolor>black</textcolor>
-                            <info>ListItem.Label</info>
-                            <visible>Control.HasFocus(4008)</visible>
-                        </control>
-                    </focusedlayout>
+                    <control type="image">
+                        <posx>-2</posx>
+                        <posy>-2</posy>
+                        <width>404</width>
+                        <height>484</height>
+                        <description>List Border</description>
+                        <visible>true</visible>
+                        <texture>backgrounds/listborder400x360.png</texture>
+                    </control>
+                    <control type="list" id="4008">
+                        <posx>0</posx>
+                        <posy>0</posy>
+                        <width>400</width>
+                        <height>480</height>
+                        <viewtype label="list">list</viewtype>
+                        <orientation>vertical</orientation>
+                        <focusposition>7</focusposition>
+                        <onleft>4001</onleft>
+                        <onright>4002</onright>
+                        <pagecontrol>4088</pagecontrol>
+                        <itemlayout width="400" height="40">
+                            <control type="image">
+                                <posx>0</posx>
+                                <posy>0</posy>
+                                <width>400</width>
+                                <height>38</height>
+                                <texture>buttons/tvg-button-nofocus.png</texture>
+                            </control>
+                            <control type="label">
+                                <posx>16</posx>
+                                <posy>0</posy>
+                                <width>400</width>
+                                <height>38</height>
+                                <aligny>center</aligny>
+                                <textcolor>white</textcolor>
+                                <info>ListItem.Label</info>
+                            </control>
+                        </itemlayout>
+                        <focusedlayout width="400" height="40">
+                            <control type="image">
+                                <posx>0</posx>
+                                <posy>0</posy>
+                                <width>400</width>
+                                <height>38</height>
+                                <texture>buttons/tvg-button-focus.png</texture>
+                                <visible>true</visible>
+                            </control>
+                            <control type="label">
+                                <posx>16</posx>
+                                <posy>0</posy>
+                                <width>400</width>
+                                <height>38</height>
+                                <aligny>center</aligny>
+                                <textcolor>white</textcolor>
+                                <info>ListItem.Label</info>
+                                <visible>!Control.HasFocus(4008)</visible>
+                            </control>
+                            <control type="label">
+                                <posx>16</posx>
+                                <posy>0</posy>
+                                <width>400</width>
+                                <height>38</height>
+                                <aligny>center</aligny>
+                                <textcolor>black</textcolor>
+                                <info>ListItem.Label</info>
+                                <visible>Control.HasFocus(4008)</visible>
+                            </control>
+                        </focusedlayout>
+                    </control>
+                    <control type="scrollbar" id="4088">
+                        <description>scroll bar control</description>
+                        <posx>400</posx>
+                        <posy>0</posy>
+                        <width>45</width>
+                        <height>480</height>
+                        <visible>true</visible>
+                        <pulseonselect>true</pulseonselect>
+                        <orientation>vertical</orientation>
+                        <showonepage>false</showonepage>
+                        <onleft>4008</onleft>
+                        <onright>4002</onright>
+                        <texturesliderbackground colordiffuse="$INFO[Window(1100).Property(scrollbarbg_color)]">scrollbar/scrollbar.png</texturesliderbackground>
+                        <textureslidernib></textureslidernib>
+                        <textureslidernibfocus></textureslidernibfocus>
+                        <texturesliderbar colordiffuse="$INFO[Window(1100).Property(scrollbarnf_color)]">scrollbar/scrollbar.png</texturesliderbar>
+                        <texturesliderbarfocus colordiffuse="$INFO[Window(1100).Property(focus_current_color)]">scrollbar/scrollbar.png</texturesliderbarfocus>
+                        <animation effect="fade" start="0" end="100" time="200" delay="300">Visible</animation>
+                        <animation effect="fade" start="100" end="0" time="200">Hidden</animation>
+                        <visible>Integer.IsGreater(Container(4008).NumItems,12)</visible>
+                    </control>
                 </control>
-                <!-- subs addon name -->
-                <control type="label" id="4003">
-                    <description>addon name</description>
-                    <posx>40</posx>
-                    <posy>280</posy>
-                    <width>350</width>
-                    <height>40</height>
-                    <label>[B][/B]</label>
-                    <textcolor>white</textcolor>
-                </control>
-                <!-- subs addon info -->
-                <control type="textbox" id="4004">
-                    <label />
-                    <description>addon info</description>
-                    <posx>40</posx>
-                    <posy>310</posy>
-                    <width>350</width>
-                    <height>90</height>
-                    <font>font12</font>
-                    <align>left</align>
-                    <autoscroll time="3600" delay="6000" repeat="6000">true</autoscroll>
-                    <!--<visible>!Player.HasMedia</visible>-->
-                </control>
-                <!-- subs list array window 2 -->
-                <control type="list" id="4002">
-                    <posx>750</posx>
+                <!-- addon channels list array window 2 -->
+                <control type="group">
+                    <posx>780</posx>
                     <posy>20</posy>
-                    <width>400</width>
-                    <height>480</height>
-                    <viewtype label="list">list</viewtype>
-                    <orientation>vertical</orientation>
-                    <focusposition>7</focusposition>
-                    <onleft>4008</onleft>
-                    <onright>4005</onright>
-                    <itemlayout width="400" height="40">
-                        <control type="image">
-                            <posx>0</posx>
-                            <posy>0</posy>
-                            <width>400</width>
-                            <height>38</height>
-                            <texture>tvg-button-nofocus.png</texture>
-                        </control>
-                        <control type="label">
-                            <posx>16</posx>
-                            <posy>0</posy>
-                            <width>400</width>
-                            <height>38</height>
-                            <aligny>center</aligny>
-                            <textcolor>white</textcolor>
-                            <info>ListItem.Label</info>
-                        </control>
-                    </itemlayout>
-                    <focusedlayout width="400" height="40">
-                        <control type="image">
-                            <posx>0</posx>
-                            <posy>0</posy>
-                            <width>400</width>
-                            <height>38</height>
-                            <texture>tvg-button-focus.png</texture>
-                            <visible>true</visible>
-                        </control>
-                        <control type="label">
-                            <posx>16</posx>
-                            <posy>0</posy>
-                            <width>400</width>
-                            <height>38</height>
-                            <aligny>center</aligny>
-                            <textcolor>white</textcolor>
-                            <info>ListItem.Label</info>
-                            <visible>!Control.HasFocus(4002)</visible>
-                        </control>
-                        <control type="label">
-                            <posx>16</posx>
-                            <posy>0</posy>
-                            <width>400</width>
-                            <height>38</height>
-                            <aligny>center</aligny>
-                            <textcolor>black</textcolor>
-                            <info>ListItem.Label</info>
-                            <visible>Control.HasFocus(4002)</visible>
-                        </control>
-                    </focusedlayout>
+                    <control type="image">
+                        <posx>-2</posx>
+                        <posy>-2</posy>
+                        <width>404</width>
+                        <height>484</height>
+                        <description>List Border</description>
+                        <texture>backgrounds/listborder400x360.png</texture>
+                    </control>
+                    <control type="list" id="4002">
+                        <posx>0</posx>
+                        <posy>0</posy>
+                        <width>400</width>
+                        <height>480</height>
+                        <viewtype label="list">list</viewtype>
+                        <orientation>vertical</orientation>
+                        <focusposition>7</focusposition>
+                        <pagecontrol>4022</pagecontrol>
+                        <onleft>4022</onleft>
+                        <onright>4022</onright>
+                        <itemlayout width="400" height="40">
+                            <control type="image">
+                                <posx>0</posx>
+                                <posy>0</posy>
+                                <width>400</width>
+                                <height>38</height>
+                                <texture>buttons/tvg-button-nofocus.png</texture>
+                            </control>
+                            <control type="label">
+                                <posx>16</posx>
+                                <posy>0</posy>
+                                <width>400</width>
+                                <height>38</height>
+                                <aligny>center</aligny>
+                                <textcolor>white</textcolor>
+                                <info>ListItem.Label</info>
+                            </control>
+                        </itemlayout>
+                        <focusedlayout width="400" height="40">
+                            <control type="image">
+                                <posx>0</posx>
+                                <posy>0</posy>
+                                <width>400</width>
+                                <height>38</height>
+                                <texture>buttons/tvg-button-focus.png</texture>
+                                <visible>true</visible>
+                            </control>
+                            <control type="label">
+                                <posx>16</posx>
+                                <posy>0</posy>
+                                <width>400</width>
+                                <height>38</height>
+                                <aligny>center</aligny>
+                                <textcolor>white</textcolor>
+                                <info>ListItem.Label</info>
+                                <visible>!Control.HasFocus(4002)</visible>
+                            </control>
+                            <control type="label">
+                                <posx>16</posx>
+                                <posy>0</posy>
+                                <width>400</width>
+                                <height>38</height>
+                                <aligny>center</aligny>
+                                <textcolor>black</textcolor>
+                                <info>ListItem.Label</info>
+                                <visible>Control.HasFocus(4002)</visible>
+                            </control>
+                        </focusedlayout>
+                    </control>
+                    <control type="scrollbar" id="4022">
+                        <description>scroll bar control</description>
+                        <posx>400</posx>
+                        <posy>0</posy>
+                        <width>45</width>
+                        <height>480</height>
+                        <visible>true</visible>
+                        <pulseonselect>true</pulseonselect>
+                        <orientation>vertical</orientation>
+                        <showonepage>false</showonepage>
+                        <onleft>2001</onleft>
+                        <onright>2001</onright>
+                        <texturesliderbackground colordiffuse="$INFO[Window(1100).Property(scrollbarbg_color)]">scrollbar/scrollbar.png</texturesliderbackground>
+                        <textureslidernib></textureslidernib>
+                        <textureslidernibfocus></textureslidernibfocus>
+                        <texturesliderbar colordiffuse="$INFO[Window(1100).Property(scrollbarnf_color)]">scrollbar/scrollbar.png</texturesliderbar>
+                        <texturesliderbarfocus colordiffuse="$INFO[Window(1100).Property(focus_current_color)]">scrollbar/scrollbar.png</texturesliderbarfocus>
+                        <animation effect="fade" start="0" end="100" time="200" delay="300">Visible</animation>
+                        <animation effect="fade" start="100" end="0" time="200">Hidden</animation>
+                        <visible>Integer.IsGreater(Container(4002).NumItems,12)</visible>
+                    </control>
                 </control>
                 <!-- Buttons -->
                 <!-- actionbar Player Stop -->
@@ -1272,22 +1528,23 @@
                     <texturenofocus />
                     <label></label>
                     <description>Player stop</description>
-                    <textureradioonfocus colordiffuse="white">buttons/actionbar/stop.png</textureradioonfocus>
-                    <textureradioonnofocus>buttons/actionbar/stop.png</textureradioonnofocus>
-                    <textureradioofffocus colordiffuse="white">buttons/actionbar/stop.png</textureradioofffocus>
-                    <textureradiooffnofocus>buttons/actionbar/stop.png</textureradiooffnofocus>
-                    <texturefocus colordiffuse="$INFO[Window(1100).Property(radio_color)]">buttons/actionbar/button-fo.png</texturefocus>
+                    <textureradioonfocus colordiffuse="white">player/stop.png</textureradioonfocus>
+                    <textureradioonnofocus>player/stop.png</textureradioonnofocus>
+                    <textureradioofffocus colordiffuse="white">player/stop.png</textureradioofffocus>
+                    <textureradiooffnofocus>player/stop.png</textureradiooffnofocus>
+                    <texturefocus colordiffuse="$INFO[Window(1100).Property(radio_color)]">buttons/round-fo.png</texturefocus>
+                    <animation center="50,30" effect="zoom" end="100" reversible="false" start="95" time="0" tween="back">Focus</animation>
                     <posx>380</posx>
                     <posy>530</posy>
                     <width>32</width>
-                    <animation center="38,38" effect="zoom" end="100" reversible="false" start="95" time="480" tween="back">Focus</animation>
                     <height>32</height>
                     <radiowidth>30</radiowidth>
                     <radioheight>30</radioheight>
                     <radioposx>1</radioposx>
                     <radioposy>0</radioposy>
                     <onclick>PlayerControl(Stop)</onclick>
-                    <onright>4005</onright>
+                    <visible>Player.HasMedia</visible>
+                    <onright>4002</onright>
                 </control>
                 <!-- Preview -->
                 <control type="button" id="4005">
@@ -1300,12 +1557,11 @@
                     <textcolor>white</textcolor>
                     <focusedcolor>black</focusedcolor>
                     <label>Preview</label>
-                    <texturefocus>tvg-button-focus.png</texturefocus>
-                    <texturenofocus>tvg-button-nofocus.png</texturenofocus>
+                    <texturefocus>buttons/tvg-button-focus.png</texturefocus>
+                    <texturenofocus>buttons/tvg-button-nofocus.png</texturenofocus>
                     <onup>4001</onup>
                     <ondown>104</ondown>
                     <onleft>5400</onleft>
-                    <!--<onleft>4002</onleft>-->
                     <onright>4006</onright>
                 </control>
                 <!-- Save -->
@@ -1319,9 +1575,8 @@
                     <textcolor>white</textcolor>
                     <focusedcolor>black</focusedcolor>
                     <label>Save</label>
-                    <!--<label>$ADDON[script.tvguide.fullscreen 30605]</label>-->
-                    <texturefocus>tvg-button-focus.png</texturefocus>
-                    <texturenofocus>tvg-button-nofocus.png</texturenofocus>
+                    <texturefocus>buttons/tvg-button-focus.png</texturefocus>
+                    <texturenofocus>buttons/tvg-button-nofocus.png</texturenofocus>
                     <onup>104</onup>
                     <onleft>4005</onleft>
                     <onright>4007</onright>
@@ -1337,9 +1592,8 @@
                     <textcolor>white</textcolor>
                     <focusedcolor>black</focusedcolor>
                     <label>Cancel</label>
-                    <!--<label>$ADDON[script.tvguide.fullscreen 30606]</label>-->
-                    <texturefocus>tvg-button-focus.png</texturefocus>
-                    <texturenofocus>tvg-button-nofocus.png</texturenofocus>
+                    <texturefocus>buttons/tvg-button-focus.png</texturefocus>
+                    <texturenofocus>buttons/tvg-button-nofocus.png</texturenofocus>
                     <onup>104</onup>
                     <onleft>4006</onleft>
                     <onright>4010</onright>
@@ -1355,8 +1609,8 @@
                     <textcolor>white</textcolor>
                     <focusedcolor>black</focusedcolor>
                     <label>Add Alt</label>
-                    <texturefocus>tvg-button-focus.png</texturefocus>
-                    <texturenofocus>tvg-button-nofocus.png</texturenofocus>
+                    <texturefocus>buttons/tvg-button-focus.png</texturefocus>
+                    <texturenofocus>buttons/tvg-button-nofocus.png</texturenofocus>
                     <onup>104</onup>
                     <onleft>4007</onleft>
                     <onright>4009</onright>
@@ -1372,8 +1626,8 @@
                     <textcolor>white</textcolor>
                     <focusedcolor>black</focusedcolor>
                     <label>Add Folder</label>
-                    <texturefocus>tvg-button-focus.png</texturefocus>
-                    <texturenofocus>tvg-button-nofocus.png</texturenofocus>
+                    <texturefocus>buttons/tvg-button-focus.png</texturefocus>
+                    <texturenofocus>buttons/tvg-button-nofocus.png</texturenofocus>
                     <onup>104</onup>
                     <onleft>4010</onleft>
                     <onright>40099</onright>
@@ -1382,11 +1636,11 @@
                 <control type="radiobutton" id="40099">
                     <texturenofocus />
                     <description>custom refresh sub ini</description>
-                    <textureradioonfocus colordiffuse="white">buttons/actionbar/refresh.png</textureradioonfocus>
-                    <textureradioonnofocus>buttons/actionbar/refresh.png</textureradioonnofocus>
-                    <textureradioofffocus colordiffuse="white">buttons/actionbar/refresh.png</textureradioofffocus>
-                    <textureradiooffnofocus>buttons/actionbar/refresh.png</textureradiooffnofocus>
-                    <texturefocus colordiffuse="$INFO[Window(1100).Property(radio_color)]">buttons/actionbar/button-fo.png</texturefocus>
+                    <textureradioonfocus colordiffuse="white">icons/refresh.png</textureradioonfocus>
+                    <textureradioonnofocus>icons/refresh.png</textureradioonnofocus>
+                    <textureradioofffocus colordiffuse="white">icons/refresh.png</textureradioofffocus>
+                    <textureradiooffnofocus>icons/refresh.png</textureradiooffnofocus>
+                    <texturefocus colordiffuse="$INFO[Window(1100).Property(radio_color)]">buttons/round-fo.png</texturefocus>
                     <posx>1220</posx>
                     <posy>530</posy>
                     <width>42</width>
@@ -1399,7 +1653,7 @@
                     <ondown>4005</ondown>
                     <onleft>4009</onleft>
                     <onright>4005</onright>
-                    <onclick>RunScript($INFO[Window(1100).Property(run_script)],101)</onclick>
+                    <onclick>RunScript($INFO[Window(1100).Property(run_script)],refresh_ini)</onclick>
                 </control>
             </control>
         </control>

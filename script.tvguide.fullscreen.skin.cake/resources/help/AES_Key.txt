@@ -1,0 +1,6 @@
+#AES Key
+
+- Settings\Optional\addons.ini key
+- Settings\Optional\mappings.m3u key
+- encode the server file with the Encode button.
+- encoding will happen on next tvgf start

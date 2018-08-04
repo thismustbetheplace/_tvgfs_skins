@@ -1,2 +1,26 @@
- Catchup
+#Catchup
+ 
+ - Playback\Catchup Channel can be Meta style or Direct addon style
+ 
+- Settings \ Lab1 \ Catchup url
+- Catchup Command Action and Button
+- eg plugin://plugin.video.XXX/catchup/%I/%Y-%m-%d:%H-%M/%T/%D
+- Catchup Addon button is hidden in Default skin and has id 4017
+
+
+- Catchup Urls for imdb/tvdb ids
+- use "Settings\Lab1\Ask to Catchup = Always" for future programs too
+- Settings \ Lab1 \ %B IMDb Id %V TVDb Id %W tv show title
+- eg catchup.ini:
+-   My Addon TV=plugin://plugin.video.MY_ADDON/?action=play&amp;year=%Y&amp;tvshowtitle=%W&amp;season=%S&amp;episode=%E&amp;tvdb=%V&amp;title=%T
+-   My Addon Movie=plugin://plugin.video.MY_ADDON/?action=play&amp;imdb=%B&amp;year=%Y&amp;title=%T
+
+
+
+- Catchup Channel - play channel programs with catchup addon
+- the current program is started from the beginning, all others are offset to compensate
+- Settings \ Playback \ Show Catchup Channel
+- Stream Setup \ strm|m3u \ Catchup Channel
+- set channel url to "catchup" in ini|m3u files
+
  

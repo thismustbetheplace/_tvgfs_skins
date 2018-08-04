@@ -1,3 +1,2 @@
-
 version 0.0.1
-- start here
+- start here.  Too much to mention.  Read help txts or notes in the code.

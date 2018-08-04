@@ -20,24 +20,36 @@
             <texturenofocus></texturenofocus>
             <description>invisible exit</description>
             <posx>0</posx>
+            <!--<posx>180</posx>-->
             <posy>0</posy>
             <width>1280</width>
-            <height>687</height>
+            <height>685</height>
             <onclick>back</onclick>
         </control>
         <!-- # Category align bottom  -->
         <control type="group">
-            <description>Main Texture Workaround Backgrounds</description>
+            <description>Main Texture Backgrounds</description>
             <posx>0</posx>
+            <!--<posx>180</posx>-->
             <posy>685</posy>
-            <!-- Cat Background colour from settings -->
-            <control type="image" id="7000">
+            <!-- dark layer -->
+            <control type="image">
+                <description>dark layer</description>
                 <posx>0</posx>
                 <posy>0</posy>
                 <width>1280</width>
                 <height>35</height>
-                <texture>white.png</texture>
-                <visible>true</visible>
+                <texture>black.png</texture>
+            </control>
+            <!-- Cat Background colour from settings -->
+            <control type="image" id="7000">
+                <posx>1</posx>
+                <posy>1</posy>
+                <width>1278</width>
+                <height>33</height>
+                <colordiffuse>blue</colordiffuse>
+                <texture>$INFO[Window(1100).Property(image_fadewhite)]</texture>
+                <!--<texture>white.png</texture>-->
             </control>
             <!-- extra dark layer -->
             <control type="image">
@@ -46,17 +58,7 @@
                 <posy>0</posy>
                 <width>1280</width>
                 <height>35</height>
-                <texture>backgrounds/clear-black.png</texture>
-            </control>
-            <!-- cat bar image header background -->
-            <control type="image">
-                <description>cat bar image header background</description>
-                <posx>0</posx>
-                <posy>0</posy>
-                <width>1280</width>
-                <height>35</height>
-                <texture>tvg-program-nofocus.png</texture>
-                <!--<visible>!Control.HasFocus(7000)</visible>-->
+                <texture>$INFO[Window(1100).Property(image_fadebg)]</texture>
             </control>
             <!-- # quit -->
             <control type="button" id="7003">
@@ -70,32 +72,102 @@
                 <align>center</align>
                 <textcolor>grey</textcolor>
                 <focusedcolor>black</focusedcolor>
-                <texturefocus>buttons/actionbar/left.png</texturefocus>
-                <texturenofocus>buttons/actionbar/left.png</texturenofocus>
+                <texturefocus>icons/left.png</texturefocus>
+                <texturenofocus>icons/left.png</texturenofocus>
             </control>
             <!-- Search program category -->
-            <!--
-        <control type="button" id="7005">
-            <label></label>
-            <description>Search program category</description>
-            <posx>1220</posx>
-            <posy>0</posy>
-            <width>28</width>
-            <height>28</height>
-            <font>font10</font>
-            <align>center</align>
-            <aligny>center</aligny>
-            <textcolor>grey</textcolor>
-            <focusedcolor>yellow</focusedcolor>
-            <texturefocus>tvg-button-focus.png</texturefocus>
-            <texturenofocus>buttons/actionbar/search.png</texturenofocus>
-            <onright>7004</onright>
-            <onleft>7004</onleft>
-            <onclick></onclick>
-            <visible>false</visible>
-        </control>
-        -->
+            <!--  
+                        <control type="button" id="7005">
+                            <description>program category</description>
+                            <posx>10</posx>
+                            <posy>2</posy>
+                            <width>100</width>
+                            <height>28</height>
+                            <label>Category</label>
+                            <font>font13</font>
+                            <aligny>center</aligny>
+                            <align>center</align>
+                            <textcolor>grey</textcolor>
+                            <focusedcolor>black</focusedcolor>
+                            <texturefocus>buttons/tvg-button-focus.png</texturefocus>
+                            <texturenofocus>buttons/tvg-button-nofocus.png</texturenofocus>
+                            <onright>7004</onright>
+                            <onup>7004</onup>
+                            <ondown>7004</ondown>
+                        </control>
+                        -->
+            <!-- MAIN  -->
+            <control type="list" id="7004">
+                <left>21</left>
+                <posy>0</posy>
+                <width>1280</width>
+                <height>40</height>
+                <orientation>horizontal</orientation>
+                <onright>SetFocus($INFO[Container(7004).ListItem.Property(menu_id)])</onright>
+                <scrolltime tween="cubic" easing="out">500</scrolltime>
+                <onleft>7004</onleft>
+                <onright>7004</onright>
+                <focusedlayout height="38" width="142">
+                    <control type="image">
+                        <left>2</left>
+                        <right>2</right>
+                        <bottom>0</bottom>
+                        <texture colordiffuse="$INFO[Window(1100).Property(focus_color)]">buttons/panel-focus.png</texture>
+                    </control>
+                    <control type="image">
+                        <left>2</left>
+                        <right>2</right>
+                        <bottom>0</bottom>
+                        <texture colordiffuse="$INFO[Window(1100).Property(focus_current_color)]">buttons/panel-focus.png</texture>
+                        <animation effect="fade" start="100" end="0" time="0" condition="!Control.HasFocus(7004)">Conditional</animation>
+                    </control>
+                    <control type="image">
+                        <left>0</left>
+                        <width>33</width>
+                        <bottom>0</bottom>
+                        <texture colordiffuse="51FFFFFF">black.png</texture>
+                        <animation effect="fade" start="100" end="0" time="0" condition="!Control.HasFocus(7004)">Conditional</animation>
+                    </control>
+                    <control type="image">
+                        <left>-2</left>
+                        <top>0</top>
+                        <width>33</width>
+                        <bottom>0</bottom>
+                        <!--<texture colordiffuse="FFFFFFFF">$INFO[ListItem.Art(thumb)]</texture>-->
+                        <texture fallback="categories/Default.png" colordiffuse="FFFFFFFF">$INFO[ListItem.Label,categories/,.png]</texture>
+                    </control>
+                    <control type="label">
+                        <left>39</left>
+                        <bottom>0</bottom>
+                        <right>7</right>
+                        <aligny>center</aligny>
+                        <font>font10</font>
+                        <label>$INFO[ListItem.Label]</label>
+                        <shadowcolor>black</shadowcolor>
+                    </control>
+                </focusedlayout>
+                <itemlayout height="38" width="142">
+                    <control type="image">
+                        <left>-2</left>
+                        <top>0</top>
+                        <width>33</width>
+                        <bottom>0</bottom>
+                        <!--<texture colordiffuse="FFFFFFFF">$INFO[ListItem.Art(thumb)]</texture>-->
+                        <texture fallback="categories/Default.png" colordiffuse="FFFFFFFF">$INFO[ListItem.Label,categories/,.png]</texture>
+                    </control>
+                    <control type="label">
+                        <left>39</left>
+                        <bottom>0</bottom>
+                        <right>7</right>
+                        <aligny>center</aligny>
+                        <font>font10</font>
+                        <label>$INFO[ListItem.Label]</label>
+                        <shadowcolor>black</shadowcolor>
+                    </control>
+                </itemlayout>
+            </control>
             <!-- # categories list array -->
+            <!--
             <control type="list" id="7004">
                 <description>categories</description>
                 <left>20</left>
@@ -104,13 +176,14 @@
                 <height>30</height>
                 <viewtype label="3D list">list</viewtype>
                 <orientation>horizontal</orientation>
+                <itemgap>2</itemgap>
                 <itemlayout width="160" height="30">
                     <control type="image">
                         <posx>1</posx>
                         <posy>2</posy>
                         <width>158</width>
                         <height>26</height>
-                        <texture>backgrounds/clear-black.png</texture>
+                        <texture>tvg-program-nofocus.png</texture>
                         <visible>true</visible>
                     </control>
                     <control type="label">
@@ -147,6 +220,7 @@
                     </control>
                 </focusedlayout>
             </control>
+            -->
         </control>
     </controls>
 </window>

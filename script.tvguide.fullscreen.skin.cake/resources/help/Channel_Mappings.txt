@@ -1,0 +1,14 @@
+#Channel and Alt Mappings
+
+
+- Settings \ Backup \ Export/Import Alternative Channel Mappings
+- userdata\addon_data\script.tvguide.fullscreen\alt_custom_stream_urls.tsv
+- tsv fields (id,name,url)
+
+- Channel Id to Shortcut map = addon_data/script.tvguide.fullscreen/channel_id_shortcut.ini
+- copy and edit this file that is made on startup - addon_data/script.tvguide.fullscreen/channel_id_title.ini
+
+- Settings\Optional\alt.mappings.tsv key / encode
+- export tsv file from Settings \ Backup
+- format is: channel id \t channel name \t url
+-  without the spaces

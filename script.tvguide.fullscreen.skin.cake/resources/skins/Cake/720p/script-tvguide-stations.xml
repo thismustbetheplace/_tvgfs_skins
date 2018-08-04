@@ -13,12 +13,15 @@
             <description>visibility marker for selection box</description>
         </control>
         <!-- # Backgrounds -->
+        <!-- main Background -->
         <control type="image">
+            <description>background</description>
             <posx>0</posx>
             <posy>0</posy>
             <width>1280</width>
             <height>720</height>
-            <texture>backgrounds/clear-black.png</texture>
+            <colordiffuse>$INFO[Window(1100).Property(popup_background_color)]</colordiffuse>
+            <texture>white.png</texture>
         </control>
         <control type="image">
             <description>main mount</description>
@@ -26,8 +29,9 @@
             <posy>10</posy>
             <width>1260</width>
             <height>700</height>
-            <texture>grey.png</texture>
-            <visible>true</visible>
+            <colordiffuse>$INFO[Window(1100).Property(bar_color)]</colordiffuse>
+            <texture>$INFO[Window(1100).Property(image_fadewhite)]</texture>
+            <!--<texture>backgrounds/grey.png</texture>-->
         </control>
         <control type="image">
             <description>main background</description>
@@ -35,8 +39,7 @@
             <posy>12</posy>
             <width>1256</width>
             <height>696</height>
-            <texture>backgrounds/clear-black.png</texture>
-            <visible>true</visible>
+            <texture>$INFO[Window(1100).Property(image_fade)]</texture>
         </control>
         <!-- # Remove channels Label -->
         <control type="label">
@@ -47,7 +50,7 @@
             <align>left</align>
             <aligny>center</aligny>
             <textcolor>white</textcolor>
-            <label>[B]Add &amp; Remove channels from your lineup[/B]</label>
+            <label>[B]Add and Remove channels from your lineup[/B]</label>
         </control>
         <!-- # Available channels Label -->
         <control type="label">
@@ -76,7 +79,7 @@
                     <posy>0</posy>
                     <width>400</width>
                     <height>38</height>
-                    <texture>tvg-button-nofocus.png</texture>
+                    <texture>buttons/tvg-button-nofocus.png</texture>
                 </control>
                 <control type="label">
                     <posx>16</posx>
@@ -95,7 +98,7 @@
                     <posy>0</posy>
                     <width>400</width>
                     <height>38</height>
-                    <texture>tvg-button-nofocus.png</texture>
+                    <texture>buttons/tvg-button-nofocus.png</texture>
                     <visible>!Control.HasFocus(7000)</visible>
                 </control>
                 <control type="image">
@@ -103,7 +106,7 @@
                     <posy>0</posy>
                     <width>400</width>
                     <height>38</height>
-                    <texture>tvg-button-focus.png</texture>
+                    <texture>buttons/tvg-button-focus.png</texture>
                     <visible>Control.HasFocus(7000)</visible>
                 </control>
                 <control type="label">
@@ -144,7 +147,7 @@
                     <posy>0</posy>
                     <width>400</width>
                     <height>38</height>
-                    <texture>tvg-button-nofocus.png</texture>
+                    <texture>buttons/tvg-button-nofocus.png</texture>
                 </control>
                 <control type="label">
                     <posx>16</posx>
@@ -163,7 +166,7 @@
                     <posy>0</posy>
                     <width>400</width>
                     <height>38</height>
-                    <texture>tvg-button-nofocus.png</texture>
+                    <texture>buttons/tvg-button-nofocus.png</texture>
                     <visible>!Control.HasFocus(6000)</visible>
                 </control>
                 <control type="image">
@@ -171,7 +174,7 @@
                     <posy>0</posy>
                     <width>400</width>
                     <height>38</height>
-                    <texture>tvg-button-focus.png</texture>
+                    <texture>buttons/tvg-button-focus.png</texture>
                     <visible>Control.HasFocus(6000)</visible>
                 </control>
                 <control type="label">
@@ -196,8 +199,8 @@
             <textcolor>white</textcolor>
             <focusedcolor>black</focusedcolor>
             <label>Save</label>
-            <texturefocus>tvg-button-focus.png</texturefocus>
-            <texturenofocus>tvg-button-nofocus.png</texturenofocus>
+            <texturefocus>buttons/tvg-button-focus.png</texturefocus>
+            <texturenofocus>buttons/tvg-button-nofocus.png</texturenofocus>
             <onleft>6000</onleft>
             <onright>6004</onright>
             <onup>6000</onup>
@@ -213,8 +216,8 @@
             <textcolor>white</textcolor>
             <focusedcolor>black</focusedcolor>
             <label>Cancel</label>
-            <texturefocus>tvg-button-focus.png</texturefocus>
-            <texturenofocus>tvg-button-nofocus.png</texturenofocus>
+            <texturefocus>buttons/tvg-button-focus.png</texturefocus>
+            <texturenofocus>buttons/tvg-button-nofocus.png</texturenofocus>
             <onleft>6003</onleft>
             <onright>6000</onright>
             <onup>6000</onup>

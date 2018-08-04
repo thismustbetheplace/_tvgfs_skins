@@ -1,0 +1,253 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Edit py -->
+<window>
+    <coordinates>
+        <left>0</left>
+        <top>0</top>
+    </coordinates>
+    <controls>
+        <control type="group">
+            <control type="image">
+                <description>Background Image</description>
+                <posx>0</posx>
+                <posy>0</posy>
+                <width>1280</width>
+                <height>720</height>
+                <texture border="2">LogViewer/loguploader-dialog-bg.png</texture>
+            </control>
+            <!-- # Background fallback Black Default -->
+            <control type="image">
+                <description>Background Image</description>
+                <posx>0</posx>
+                <posy>0</posy>
+                <width>1280</width>
+                <height>720</height>
+                <texture>LogViewer/black.png</texture>
+            </control>
+            <control type="image">
+                <description>Dialog Header image</description>
+                <posx>0</posx>
+                <posy>0</posy>
+                <width>1280</width>
+                <height>40</height>
+                <texture colordiffuse="FF12B2E7" border="2">LogViewer/loguploader-white.png</texture>
+            </control>
+            <control type="image">
+                <description>Dialog Header image</description>
+                <posx>0</posx>
+                <posy>673</posy>
+                <width>1280</width>
+                <height>40</height>
+                <texture colordiffuse="FF12B2E7" border="2">LogViewer/loguploader-white.png</texture>
+            </control>
+            <control type="label" id="101">
+                <label></label>
+                <description>header label</description>
+                <posx>0</posx>
+                <posy>0</posy>
+                <width>1280</width>
+                <height>40</height>
+                <font>font13</font>
+                <align>center</align>
+                <aligny>center</aligny>
+            </control>
+            <control type="textbox" id="102">
+                <left>7</left>
+                <top>47</top>
+                <width>1247</width>
+                <height>607</height>
+                <font>font10</font>
+                <align>left</align>
+                <aligny>top</aligny>
+                <pagecontrol>103</pagecontrol>
+            </control>
+            <control type="scrollbar" id="103">
+                <left>1253</left>
+                <top>47</top>
+                <width>20</width>
+                <height>610</height>
+                <visible>true</visible>
+                <texturesliderbackground>LogViewer/scrollbar-V-background.png</texturesliderbackground>
+                <texturesliderbar>LogViewer/scrollbar-V.png</texturesliderbar>
+                <texturesliderbarfocus colordiffuse="FF12B2E7">LogViewer/scrollbar-V-focus.png</texturesliderbarfocus>
+                <orientation>vertical</orientation>
+                <showonepage>true</showonepage>
+                <onup>102</onup>
+                <ondown>102</ondown>
+                <onleft>205</onleft>
+                <onright>205</onright>
+            </control>
+            <!-- Upload Log -->
+            <control type="button" id="201">
+                <left>13</left>
+                <top>677</top>
+                <width>120</width>
+                <height>33</height>
+                <font>font10</font>
+                <textcolor>FFF0F0F0</textcolor>
+                <textoffsetx>13</textoffsetx>
+                <label>Skin</label>
+                <align>center</align>
+                <aligny>center</aligny>
+                <texturefocus colordiffuse="FF12B2E7">LogViewer/testbuttonfo.png</texturefocus>
+                <texturenofocus>LogViewer/testbuttonnf.png</texturenofocus>
+                <onup>103</onup>
+                <ondown>103</ondown>
+                <onleft>205</onleft>
+                <onright>202</onright>
+            </control>
+            <!-- koi Log -->
+            <control type="button" id="202">
+                <left>147</left>
+                <top>677</top>
+                <width>120</width>
+                <height>33</height>
+                <font>font10</font>
+                <textcolor>FFF0F0F0</textcolor>
+                <textoffsetx>13</textoffsetx>
+                <label>Kodi.Log</label>
+                <align>center</align>
+                <aligny>center</aligny>
+                <texturefocus colordiffuse="FF12B2E7">LogViewer/testbuttonfo.png</texturefocus>
+                <texturenofocus>LogViewer/testbuttonnf.png</texturenofocus>
+                <onup>103</onup>
+                <ondown>103</ondown>
+                <onleft>201</onleft>
+                <onright>203</onright>
+            </control>
+            <!-- Upload kodi old Log -->
+            <control type="button" id="203">
+                <left>280</left>
+                <top>677</top>
+                <width>120</width>
+                <height>33</height>
+                <font>font10</font>
+                <textcolor>FFF0F0F0</textcolor>
+                <textoffsetx>13</textoffsetx>
+                <label>Kodi.Old.Log</label>
+                <align>center</align>
+                <aligny>center</aligny>
+                <texturefocus colordiffuse="FF12B2E7">LogViewer/testbuttonfo.png</texturefocus>
+                <texturenofocus>LogViewer/testbuttonnf.png</texturenofocus>
+                <onup>103</onup>
+                <ondown>103</ondown>
+                <onleft>202</onleft>
+                <onright>204</onright>
+            </control>
+            <!-- wizard Log -->
+            <control type="button" id="204">
+                <left>413</left>
+                <top>677</top>
+                <width>120</width>
+                <height>33</height>
+                <font>font10</font>
+                <textcolor>FFF0F0F0</textcolor>
+                <textoffsetx>13</textoffsetx>
+                <label>advancedsettings GUI</label>
+                <align>center</align>
+                <aligny>center</aligny>
+                <texturefocus colordiffuse="FF12B2E7">LogViewer/testbuttonfo.png</texturefocus>
+                <texturenofocus>LogViewer/testbuttonnf.png</texturenofocus>
+                <onup>103</onup>
+                <ondown>103</ondown>
+                <onleft>203</onleft>
+                <onright>206</onright>
+            </control>
+            <!-- advancedsettings -->
+            <control type="button" id="206">
+                <left>547</left>
+                <top>677</top>
+                <width>160</width>
+                <height>33</height>
+                <font>font10</font>
+                <textcolor>FFF0F0F0</textcolor>
+                <textoffsetx>13</textoffsetx>
+                <label>advancedsettings</label>
+                <align>center</align>
+                <aligny>center</aligny>
+                <texturefocus colordiffuse="FF12B2E7">LogViewer/testbuttonfo.png</texturefocus>
+                <texturenofocus>LogViewer/testbuttonnf.png</texturenofocus>
+                <onup>103</onup>
+                <ondown>103</ondown>
+                <onleft>204</onleft>
+                <onright>207</onright>
+            </control>
+            <!-- playercorefactory -->
+            <control type="button" id="207">
+                <left>720</left>
+                <top>677</top>
+                <width>160</width>
+                <height>33</height>
+                <font>font10</font>
+                <textcolor>FFF0F0F0</textcolor>
+                <textoffsetx>13</textoffsetx>
+                <label>playercorefactory</label>
+                <align>center</align>
+                <aligny>center</aligny>
+                <texturefocus colordiffuse="FF12B2E7">LogViewer/testbuttonfo.png</texturefocus>
+                <texturenofocus>LogViewer/testbuttonnf.png</texturenofocus>
+                <onup>103</onup>
+                <ondown>103</ondown>
+                <onleft>206</onleft>
+                <onright>208</onright>
+            </control>
+            <!-- sources -->
+            <control type="button" id="208">
+                <left>887</left>
+                <top>677</top>
+                <width>147</width>
+                <height>33</height>
+                <font>font10</font>
+                <textcolor>FFF0F0F0</textcolor>
+                <textoffsetx>13</textoffsetx>
+                <label>sources.xml</label>
+                <align>center</align>
+                <aligny>center</aligny>
+                <texturefocus colordiffuse="FF12B2E7">LogViewer/testbuttonfo.png</texturefocus>
+                <texturenofocus>LogViewer/testbuttonnf.png</texturenofocus>
+                <onup>103</onup>
+                <ondown>103</ondown>
+                <onleft>207</onleft>
+                <onright>209</onright>
+            </control>
+            <!-- rssfeeds Log -->
+            <control type="button" id="209">
+                <left>1040</left>
+                <top>677</top>
+                <width>147</width>
+                <height>33</height>
+                <font>font10</font>
+                <textcolor>FFF0F0F0</textcolor>
+                <textoffsetx>13</textoffsetx>
+                <label>RssFeeds.xml</label>
+                <align>center</align>
+                <aligny>center</aligny>
+                <texturefocus colordiffuse="FF12B2E7">LogViewer/testbuttonfo.png</texturefocus>
+                <texturenofocus>LogViewer/testbuttonnf.png</texturenofocus>
+                <onup>103</onup>
+                <ondown>103</ondown>
+                <onleft>208</onleft>
+                <onright>205</onright>
+            </control>
+            <!-- close -->
+            <control type="button" id="205">
+                <left>1203</left>
+                <top>677</top>
+                <width>67</width>
+                <height>33</height>
+                <font>font10</font>
+                <textcolor>FFF0F0F0</textcolor>
+                <textoffsetx>13</textoffsetx>
+                <label>Close</label>
+                <align>center</align>
+                <aligny>center</aligny>
+                <texturefocus colordiffuse="FF12B2E7">LogViewer/testbuttonfo.png</texturefocus>
+                <texturenofocus>LogViewer/testbuttonnf.png</texturenofocus>
+                <onup>103</onup>
+                <ondown>103</ondown>
+                <onleft>209</onleft>
+                <onright>201</onright>
+            </control>
+        </control>
+    </controls>
+</window>
