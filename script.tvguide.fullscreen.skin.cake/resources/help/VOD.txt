@@ -1,6 +1,0 @@
-#VOD
-
-You can set custom VOD widget paths in settings.xml
-
-
-

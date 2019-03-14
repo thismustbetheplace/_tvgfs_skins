@@ -19,7 +19,7 @@
                 <posy>0</posy>
                 <width>1280</width>
                 <height>720</height>
-                <colordiffuse>$INFO[Window(1100).Property(popup_background_color)]</colordiffuse>
+                <colordiffuse>$INFO[Window(home).Property(color_popup_background)]</colordiffuse>
                 <texture>white.png</texture>
             </control>
             <control type="image">
@@ -28,7 +28,7 @@
                 <posy>0</posy>
                 <width>1280</width>
                 <height>720</height>
-                <texture>$INFO[Window(1100).Property(image_fade)]</texture>
+                <texture>$INFO[Window(home).Property(image_fade)]</texture>
                 <visible>true</visible>
             </control>
             <control type="image">
@@ -45,20 +45,6 @@
                 <posy>0</posy>
                 <width>1280</width>
                 <height>720</height>
-            </control>
-            <!-- exit -->
-            <control type="button">
-                <texturefocus></texturefocus>
-                <texturenofocus></texturenofocus>
-                <label></label>
-                <description>exit</description>
-                <posx>0</posx>
-                <posy>0</posy>
-                <width>1280</width>
-                <height>720</height>
-                <align>center</align>
-                <aligny>center</aligny>
-                <onclick>back</onclick>
             </control>
             <!-- # Header Titles -->
             <control type="image">
@@ -94,7 +80,7 @@
                 <top>20</top>
                 <width>280</width>
                 <height>20</height>
-                <font>font13</font>
+                <font>font14</font>
                 <textcolor>orange</textcolor>
                 <shadowcolor>black</shadowcolor>
                 <align>left</align>
@@ -128,6 +114,33 @@
                 <textcolor>white</textcolor>
                 <label>$INFO[System.Time(hh:mm)]</label>
             </control>
+            <!-- exit mouse -->
+            <control type="button">
+                <texturefocus></texturefocus>
+                <texturenofocus></texturenofocus>
+                <label></label>
+                <description>exit</description>
+                <posx>0</posx>
+                <posy>0</posy>
+                <width>1280</width>
+                <height>120</height>
+                <align>center</align>
+                <aligny>center</aligny>
+                <onclick>back</onclick>
+            </control>
+            <!-- right mouse  -->
+            <control type="button" id="1011">
+                <label></label>
+                <texturefocus>buttons/nav-right.png</texturefocus>
+                <texturenofocus>buttons/nav-right.png</texturenofocus>
+                <left>10</left>
+                <top>20</top>
+                <width>20</width>
+                <height>20</height>
+                <align>center</align>
+                <aligny>center</aligny>
+                <onclick>right</onclick>
+            </control>
         </control>
         <!-- # Main channel List -->
         <control type="image">
@@ -136,6 +149,20 @@
             <width>760</width>
             <height>602</height>
             <texture>backgrounds/listBorder400x360.png</texture>
+            <visible>Integer.IsGreater(Container(1000).NumItems,0)</visible>
+        </control>
+        <control type="label">
+            <description>none</description>
+            <posx>40</posx>
+            <posy>90</posy>
+            <width>200</width>
+            <height>30</height>
+            <align>left</align>
+            <aligny>center</aligny>
+            <font>font14</font>
+            <textcolor>orange</textcolor>
+            <label>NONE FOUND</label>
+            <visible>!Integer.IsGreater(Container(1000).NumItems,0)</visible>
         </control>
         <control type="list" id="1000">
             <left>40</left>
@@ -148,14 +175,15 @@
             <onright></onright>
             <pagecontrol>1002</pagecontrol>
             <itemlayout height="75">
+                <!-- bg -->
                 <control type="image">
                     <left>2</left>
                     <top>2</top>
                     <width>758</width>
                     <height>73</height>
-                    <texture>tvg-program-nofocus.png</texture>
-                    <visible>true</visible>
+                    <texture>backgrounds/panel.png</texture>
                 </control>
+                <!-- icon -->
                 <control type="image">
                     <left>10</left>
                     <top>0</top>
@@ -164,6 +192,7 @@
                     <info>ListItem.Icon</info>
                     <aspectratio>keep</aspectratio>
                 </control>
+                <!-- ChannelName -->
                 <control type="label">
                     <left>100</left>
                     <top>4</top>
@@ -175,6 +204,7 @@
                     <aligny>center</aligny>
                     <info>ListItem.Property(ChannelName)</info>
                 </control>
+                <!-- title -->
                 <control type="label">
                     <description>Program Title</description>
                     <left>100</left>
@@ -211,7 +241,7 @@
                     <aligny>center</aligny>
                     <info>ListItem.Property(Duration)</info>
                 </control>
-                <!-- When in  -->
+                <!-- When time  -->
                 <control type="label">
                     <left>550</left>
                     <top>55</top>
@@ -227,26 +257,25 @@
                     <left>670</left>
                     <top>65</top>
                     <width>80</width>
-                    <height>4</height>
+                    <height>5</height>
                     <lefttexture />
                     <righttexture />
-                    <texturebg colordiffuse="$INFO[Window(1100).Property(progressbg_color)]">progress/texturebg.png</texturebg>
-                    <midtexture colordiffuse="$INFO[Window(1100).Property(progress_color)]">white.png</midtexture>
-                    <!--<texturebg border="3" colordiffuse="60FFFFFF">progress/texturebg.png</texturebg>
-                    <midtexture colordiffuse="$INFO[Window(1100).Property(progressbg_color)]">progress/midtexture.png</midtexture>-->
+                    <texturebg colordiffuse="$INFO[Window(home).Property(color_scrollbarbg)]">backgrounds/progressbg.png</texturebg>
+                    <midtexture colordiffuse="$INFO[Window(home).Property(color_progress)]">white.png</midtexture>
                     <info>ListItem.Property(Completed)</info>
                     <visible>ListItem.Property(Completed)</visible>
                 </control>
             </itemlayout>
             <focusedlayout height="75">
+                <!-- panel color -->
                 <control type="image">
                     <left>2</left>
                     <top>2</top>
                     <width>758</width>
                     <height>73</height>
-                    <texture>tvg-program-focus.png</texture>
-                    <visible>true</visible>
+                    <texture colordiffuse="$INFO[Window(home).Property(color_focus)]">backgrounds/panel-white.png</texture>
                 </control>
+                <!-- icon -->
                 <control type="image">
                     <left>10</left>
                     <top>0</top>
@@ -255,6 +284,7 @@
                     <info>ListItem.Icon</info>
                     <aspectratio>keep</aspectratio>
                 </control>
+                <!-- ChannelName -->
                 <control type="label">
                     <left>100</left>
                     <top>4</top>
@@ -266,6 +296,7 @@
                     <aligny>center</aligny>
                     <info>ListItem.Property(ChannelName)</info>
                 </control>
+                <!-- title -->
                 <control type="label">
                     <description>Program Title</description>
                     <left>100</left>
@@ -318,37 +349,34 @@
                     <left>670</left>
                     <top>65</top>
                     <width>80</width>
-                    <height>4</height>
+                    <height>5</height>
                     <lefttexture />
                     <righttexture />
-                    <texturebg colordiffuse="$INFO[Window(1100).Property(progressbg_color)]">progress/texturebg.png</texturebg>
-                    <midtexture colordiffuse="$INFO[Window(1100).Property(progress_color)]">white.png</midtexture>
-                    <!--<texturebg border="3" colordiffuse="60FFFFFF">progress/texturebg.png</texturebg>
-                    <midtexture colordiffuse="$INFO[Window(1100).Property(progressbg_color)]">progress/midtexture.png</midtexture>-->
+                    <texturebg colordiffuse="$INFO[Window(home).Property(color_scrollbarbg)]">backgrounds/progressbg.png</texturebg>
+                    <midtexture colordiffuse="$INFO[Window(home).Property(color_progress)]">white.png</midtexture>
                     <info>ListItem.Property(Completed)</info>
                     <visible>ListItem.Property(Completed)</visible>
                 </control>
             </focusedlayout>
         </control>
-        <!-- Main channel List scroll bar -->
+        <!-- scroll bar mouse -->
         <control type="scrollbar" id="1002">
             <description>scroll bar control</description>
             <left>5</left>
             <top>100</top>
             <width>35</width>
             <height>600</height>
-            <visible>true</visible>
             <pulseonselect>true</pulseonselect>
             <orientation>vertical</orientation>
             <showonepage>false</showonepage>
             <onleft>1000</onleft>
             <onright>1000</onright>
-            <texturesliderbackground colordiffuse="$INFO[Window(1100).Property(scrollbarbg_color)]">scrollbar/scrollbar.png</texturesliderbackground>
-            <textureslidernib></textureslidernib>
-            <textureslidernibfocus></textureslidernibfocus>
-            <texturesliderbar colordiffuse="$INFO[Window(1100).Property(scrollbarnf_color)]">scrollbar/scrollbar.png</texturesliderbar>
-            <texturesliderbarfocus colordiffuse="$INFO[Window(1100).Property(focus_current_color)]">scrollbar/scrollbar.png</texturesliderbarfocus>
-            <!--<visible>Integer.IsGreater(Container(1000).NumItems,8)</visible>-->
+            <textureslidernib>backgrounds/progress_nub_updown.png</textureslidernib>
+            <textureslidernibfocus>backgrounds/progress_nub_updown.png</textureslidernibfocus>
+            <texturesliderbackground colordiffuse="$INFO[Window(home).Property(color_scrollbarbg)]">backgrounds/scrollbarbg.png</texturesliderbackground>
+            <texturesliderbar colordiffuse="$INFO[Window(home).Property(color_scrollbarnf)]">backgrounds/scrollbar.png</texturesliderbar>
+            <texturesliderbarfocus colordiffuse="$INFO[Window(home).Property(color_progress)]">backgrounds/scrollbar-focus.png</texturesliderbarfocus>
+            <visible>Integer.IsGreater(Container(1000).NumItems,10)</visible>
         </control>
         <!-- descriptions-->
         <control type="group">
@@ -356,6 +384,7 @@
             <top>100</top>
             <width>420</width>
             <height>600</height>
+            <visible>!String.IsEmpty(Container(1000).ListItem.Label)</visible>
             <control type="image">
                 <left>0</left>
                 <top>0</top>
@@ -370,7 +399,7 @@
                 <width>400</width>
                 <height>300</height>
                 <control type="image">
-                    <texture>$INFO[Window(1100).Property(image_panel)]</texture>
+                    <texture>backgrounds/panel.png</texture>
                     <align>center</align>
                     <aspectratio>stretch</aspectratio>
                     <visible>!Player.HasMedia</visible>
@@ -390,10 +419,10 @@
                     <top>-10</top>
                     <width>416</width>
                     <height>288</height>
-                    <texture>$INFO[Window(1100).Property(image_panel)]</texture>
+                    <texture>backgrounds/panel.png</texture>
                     <align>center</align>
                     <aspectratio>stretch</aspectratio>
-                    <visible>Player.HasMedia</visible>
+                    <visible>!String.IsEmpty(Container(1000).ListItem.Label)</visible>
                 </control>
                 <control type="label">
                     <description>Start Time for TVShow</description>
@@ -424,10 +453,10 @@
                     <height>4</height>
                     <lefttexture />
                     <righttexture />
-                    <texturebg colordiffuse="$INFO[Window(1100).Property(progressbg_color)]">progress/texturebg.png</texturebg>
-                    <midtexture colordiffuse="$INFO[Window(1100).Property(progress_color)]">white.png</midtexture>
-                    <!--<texturebg border="3" colordiffuse="60FFFFFF">progress/texturebg.png</texturebg>
-                    <midtexture colordiffuse="$INFO[Window(1100).Property(progressbg_color)]">progress/midtexture.png</midtexture>-->
+                    <texturebg colordiffuse="$INFO[Window(home).Property(color_scrollbarbg)]">backgrounds/progressbg.png</texturebg>
+                    <midtexture colordiffuse="$INFO[Window(home).Property(color_progress)]">white.png</midtexture>
+                    <!--<texturebg border="3" colordiffuse="60FFFFFF">backgrounds/progressbg.png</texturebg>
+                    <midtexture colordiffuse="$INFO[Window(home).Property(color_scrollbarbg)]">flags/progress/midtexture.png</midtexture>-->
                     <info>Container(1000).ListItem.Property(Completed)</info>
                     <visible>Container(1000).ListItem.Property(Completed)</visible>
                 </control>
@@ -457,6 +486,20 @@
                     <visible>Container(1000).ListItem.Property(When)</visible>
                 </control>
             </control>
+        </control>
+        <!-- exit mouse -->
+        <control type="button">
+            <texturefocus></texturefocus>
+            <texturenofocus></texturenofocus>
+            <label></label>
+            <description>exit</description>
+            <posx>0</posx>
+            <posy>0</posy>
+            <width>1280</width>
+            <height>120</height>
+            <align>center</align>
+            <aligny>center</aligny>
+            <onclick>back</onclick>
         </control>
     </controls>
 </window>

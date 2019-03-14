@@ -1,175 +1,256 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <settings>
 
-    <category label="[COLOR yellow]*[/COLOR] Skin Variables">
-        <!--<setting id="skin.user" label="Skin to set" type="fileenum" values="resources/skins" mask="/" default="Cake"/>-->
-        <setting id="skin.user" label="Skin" type="fileenum" values="resources/skins" mask="/" default="Cake" />
-        <!--<setting id="skin.folder" label="Skin Folder (above resources/skins)" type="select" default="special://profile/addon_data/script.tvguide.fullscreen.skin.cake/" values="special://home/addons/script.tvguide.fullscreen.skin.cake/|special://profile/addon_data/script.tvguide.fullscreen.skin.cake/" />-->
+    <category label="[COLOR yellow]SKIN[/COLOR] Skin Vars">
+    
+        <setting label="Run Skin Installer GUI" type="action" action="RunScript($CWD/installer.py)" />
+        <setting label="Help" type="action" action="RunScript($CWD/installer.py,help)" />
+        
+        <setting type="lsep" label="Tabs with [COLOR yellow]SKIN[/COLOR] are for the skin and the rest are what you can set in TVGFS"/>
+        <setting id="skin.user" label="Skin To Use" type="fileenum" values="resources/skins" mask="/" default="Cake" />
+        <!--<setting id="skin.installer" label="Skin Installer" type="fileenum" values="resources/skins" mask="/" default="Cake" />-->
         <setting id="skin.folder" label="Skin Folder (above resources/skins)" type="select" default="special://home/addons/script.tvguide.fullscreen.skin.cake/" values="special://home/addons/script.tvguide.fullscreen.skin.cake/|special://profile/addon_data/script.tvguide.fullscreen.skin.cake/" />
-        <setting label="Run Skin Installer GUI" type="action" action="RunScript($CWD/skin.py)" />
-        <setting label="Help" type="action" action="RunScript($CWD/skin.py,help)" />
         
-        <!-- These are what the Gui skin installer toggles that doesnt already have a bool setting -->
-        <setting id="run.minimal" type="bool"  label="Install the skin (minimal changes)" default="true" visible="false" />
-        <setting id="run.epg" type="bool"  label="Install xmltv.xml" default="false" visible="false" />
-        <setting id="run.playback" type="bool" label="Settings - Playback" default="false" visible="false" />
-        <setting id="run.appearance" type="bool" label="Settings - Appearance" default="false" visible="false" />
-        <setting id="run.background" type="bool" label="Settings - Background Colors" default="false" visible="false" />
-        <setting id="run.backgroundimage" type="bool" label="Settings - Background Image" default="false" visible="false" />
-        <setting id="run.refresh" type="bool" label="[COLOR yellow]*Post Install[/COLOR] Refresh addons.ini  (folders.list)" default="false" visible="false"/>
         
-        <!--These are variables you can set for user skins.  Its a middleman attack using Window ID 1100 as a hook.-->
-        <setting type="lsep" label="Custom Skin Variables"/>
-        <!--  custom skin vars possible INVISIBLE - done inside py -  main_addon  skin_addon   run_script     -->
-        <setting id="var.flip_vertical"       label="Flip EPG and Description  (Vertical)" type="bool" default="false" visible="true" />
-        <setting id="var.flip_horizontal"     label="Flip Videowindow and Description  (Horizontal)" type="bool"  default="false" visible="true" />
+        <!--These are variables you can set for user skins.  Its a middleman attack using Window ID -home- as a hook.-->
+        <!--  custom skin vars possible INVISIBLE - done inside py -  main_addon  skin_addon  run_script  help_toggle  actionbar  player  tab -->
+        <setting id="skin.flip_vertical"       label="Flip EPG and Description  (Vertical)" type="bool" default="false" visible="true" />
+        <setting id="skin.flip_horizontal"     label="Flip Videowindow and Description  (Horizontal)" type="bool"  default="false" visible="true" />
         <!--  for the 5100 thorn in my side -  240.6 or 30.6 in my case - the .6 is to ensure its a unique number and odd enough it converts properly in 1080p -->
-        <setting id="var.referencenumber"     label="Flip 5100 posy referencenumber"   type="text" default="240.6" visible="false" />
-        <!--<setting id="var.widgets"             label="widgets view"        type="bool" default="false" visible="true" />-->
-        <setting id="var.player_tags"         label="Extra player_tags"   type="bool" default="true" visible="true" />
-        <setting id="var.animatedgifs"        label="Extra animatedgifs"  type="bool" default="false" visible="true" />
-        <setting id="var.widgets"             label="Extra widgets"       type="bool" default="true" visible="true" />
-        <setting id="var.xps_playlists"       label="xps_playlists"       type="text" default="special://profile/addon_data/script.tvguide.fullscreen.skin.cake/resources/playlists/" visible="true" />
-        <!-- images -->
-        <setting id="var.image_fade"          label="image_fade"          type="text" default="50.png" visible="true" />
-        <setting id="var.image_fadebg"        label="image_fadebg"        type="text" default="50.png" visible="true" />
-        <setting id="var.image_fadewhite"     label="image_fadewhite"     type="text" default="50.png" visible="true" />
-        <setting id="var.image_fadewhitebg"   label="image_fadewhitebg"   type="text" default="50.png" visible="true" />
-        <setting id="var.image_helpmarker"    label="image_helpmarker"    type="text" default="buttons/help_marker.png" visible="true" />
-        <setting id="var.image_panel"         label="image_panel"         type="text" default="backgrounds/panel.png" visible="true" />
-        <!--
-        <setting id="var.image_scrollbar"     label="image_scrollbar"     type="text" default="scrollbar/scrollbar.png" visible="true" />
-        <setting id="var.image_roundfo"       label="image_roundfo"       type="text" default="buttons/round-fo.png" visible="true" />
-        <setting id="var.image_panelfo"       label="image_panelfo"        type="text" default="buttons/panel-focus.png" visible="true" />
-        <setting id="var.image_popup_button"  label="image_popup_button"  type="text" default="buttons/popup_button.png" visible="true" />
-        <setting id="var.image_popup_buttonfo" label="image_popup_buttonfo" type="text" default="buttons/popup_buttonfo.png" visible="true" />
-        <setting id="var.image_button"        label="image_button"         type="text" default="buttons/tvg-button-nofocus.png" visible="true" />
-        <setting id="var.image_buttonfo"      label="image_buttonfo"       type="text" default="buttons/tvg-button-focus.png" visible="true" />
-        -->
+        <setting id="skin.referencenumber"     label="Flip 5100 posy referencenumber"   type="text" default="240.6" visible="false" />
+        <!--<setting id="skin.xps_playlists"       label="xps_playlists Dir"   type="select" default="special://home/addons/script.tvguide.fullscreen.skin.cake/resources/playlists/"  values="special://home/addons/script.tvguide.fullscreen.skin.cake/resources/playlists/|special://profile/addon_data/script.tvguide.fullscreen.skin.cake/resources/playlists/" visible="true" />-->
+
+        <!--  Also used but not neded to set -  main_addon  skin_addon  run_script -->
+        <setting type="lsep" label="Themes"/>
+        <setting id="skin.osd_align"           label="Osd alignment"    type="select" default="top"  values="top|bottom" visible="true" />
+        <setting id="skin.theme_epg"           label="EPG Theme"        type="select" default="Default"  values="Default|None" visible="true" />
+        <setting id="skin.image_flags"         label="image_flags  (in dir media/codecflags/)"  type="select" default="Default"  values="Default|Grey|Black|Color|White|None" visible="true" />
+        
+        <setting type="lsep" label="Backgrounds"/>
+        <setting id="skin.eyecandy"            label="Disable eyecandy like Dropshadows?  (False=On)"  type="select" default="false"  values="true|false" visible="true" />
+        <setting id="skin.yoda"                   label="Enable ControlID Debug for modders?  (False=Off)"    type="select" default="false"  values="true|false" visible="true" />
+
         <!--  colors  - var.background_color is non mainscreen backgrounds -->
-        <setting id="var.popup_background_color" label="popup_background_color"    type="text" default="steelblue" visible="true" />
-        <setting id="var.radio_color"         label="radio_color"         type="text" default="deepskyblue" visible="true" />
-        <setting id="var.focus_color"         label="focus_color"         type="text" default="darkgreen" visible="true" />
-        <setting id="var.focus_current_color" label="focus_current_color" type="text" default="forestgreen" visible="true" />
-        <setting id="var.scrollbarnf_color"   label="scrollbarnf_color"   type="text" default="dimgrey" visible="true" />
-        <setting id="var.scrollbarbg_color"   label="scrollbarbg_color"   type="text" default="black" visible="true" />
-        <setting id="var.progress_color"      label="progress_color"      type="text" default="skyblue" visible="true" />
-        <setting id="var.progressbg_color"    label="progressbg_color"    type="text" default="black" visible="true" />
-        <setting id="var.description_bar_color"  label="description_bar_color"   type="text" default="steelblue" visible="true" />
-        <!--<setting id="var.description_bar_color"  label="description_bar_color"   type="text" default="dodgerblue" visible="true" />-->
-        <setting id="var.description_info_color" label="description_info_color"  type="text" default="skyblue" visible="true" />
-        <setting id="var.bar_color"           label="bar_color"           type="text" default="lightgreen" visible="true" />
-        <setting id="var.channelbg_color"     label="channelbg_color"     type="text" default="dimgrey" visible="true" />
-        <setting id="var.epgbg_color"         label="epgbg_color"         type="text" default="dimgrey" visible="true" />
-    </category>
-    
-    
-    <category label="[COLOR yellow]*[/COLOR] VOD Widgets">
-        <setting id="mine1" label="Custom Command for MINE (ActivateWindow)" type="text" default=""/>
-        <setting type="lsep" label="VOD 1 Paths (ie: plugin://plugin.123/123_index/)"/>
-        <!--
-        <setting id="vodtitle1" label="VOD Title 1" type="text" default="Sport Fixtures"/>
-        <setting id="vodpath1"  label="VOD Path 1"  type="text" default="plugin://plugin.program.fixtures/bbc_sports_index/"/>
-        <setting id="vodthumb1" label="VOD Thumb 1" type="text" default="special://home/addons/plugin.program.fixtures/icon.png"/>
-        -->
-        <setting id="vodtitle1" label="VOD Title 1" type="text" default="Custom"/>
-        <setting id="vodpath1"  label="VOD Path  1" type="text" default="smb://"/>
-        <setting id="vodthumb1" label="VOD Thumb 1" type="text" default="library/movies.png"/>
-        <setting id="vodtitle2" label="VOD Title 2" type="text" default=""/>
-        <setting id="vodpath2"  label="VOD Path  2" type="text" default=""/>
-        <setting id="vodthumb2" label="VOD Thumb 2" type="text" default=""/>
-        <setting id="vodtitle3" label="VOD Title 3" type="text" default=""/>
-        <setting id="vodpath3"  label="VOD Path  3" type="text" default=""/>
-        <setting id="vodthumb3" label="VOD Thumb 3" type="text" default=""/>
-        <setting id="vodtitle4" label="VOD Title 4" type="text" default=""/>
-        <setting id="vodpath4"  label="VOD Path  4" type="text" default=""/>
-        <setting id="vodthumb4" label="VOD Thumb 4" type="text" default=""/>
-        <setting id="vodtitle5" label="VOD Title 5" type="text" default=""/>
-        <setting id="vodpath5"  label="VOD Path  5" type="text" default=""/>
-        <setting id="vodthumb5" label="VOD Thumb 5" type="text" default=""/>
-        <setting id="vodtitle6" label="VOD Title 6" type="text" default=""/>
-        <setting id="vodpath6"  label="VOD Path  6" type="text" default=""/>
-        <setting id="vodthumb6" label="VOD Thumb 6" type="text" default=""/>
-        <setting id="vodtitle7" label="VOD Title 7" type="text" default=""/>
-        <setting id="vodpath7"  label="VOD Path  7" type="text" default=""/>
-        <setting id="vodthumb7" label="VOD Thumb 7" type="text" default=""/>
-        <setting id="vodtitle8" label="VOD Title 8" type="text" default=""/>
-        <setting id="vodpath8"  label="VOD Path  8" type="text" default=""/>
-        <setting id="vodthumb8" label="VOD Thumb 8" type="text" default=""/>
-        <setting id="vodtitle9" label="VOD Title 9" type="text" default=""/>
-        <setting id="vodpath9"  label="VOD Path  9" type="text" default=""/>
-        <setting id="vodthumb9" label="VOD Thumb 9" type="text" default=""/>
-        <setting id="vodtitle10" label="VOD Title 10" type="text" default=""/>
-        <setting id="vodpath10"  label="VOD Path  10" type="text" default=""/>
-        <setting id="vodthumb10" label="VOD Thumb 10" type="text" default=""/>
-        <setting id="vodtitle11" label="VOD Title 11" type="text" default=""/>
-        <setting id="vodpath11"  label="VOD Path  11" type="text" default=""/>
-        <setting id="vodthumb11" label="VOD Thumb 11" type="text" default=""/>
-        <setting id="vodtitle12" label="VOD Title 12" type="text" default=""/>
-        <setting id="vodpath12"  label="VOD Path  12" type="text" default=""/>
-        <setting id="vodthumb12" label="VOD Thumb 12" type="text" default=""/>
-        <setting id="vodtitle13" label="VOD Title 13" type="text" default=""/>
-        <setting id="vodpath13"  label="VOD Path  13" type="text" default=""/>
-        <setting id="vodthumb13" label="VOD Thumb 13" type="text" default=""/>
-        <setting id="vodtitle14" label="VOD Title 14" type="text" default=""/>
-        <setting id="vodpath14"  label="VOD Path  14" type="text" default=""/>
-        <setting id="vodthumb14" label="VOD Thumb 14" type="text" default=""/>
-        <setting id="vodtitle15" label="VOD Title 15" type="text" default=""/>
-        <setting id="vodpath15"  label="VOD Path  15" type="text" default=""/>
-        <setting id="vodthumb15" label="VOD Thumb 15" type="text" default=""/>
+        <setting id="var.color_popup_background" label="popup_background (Non Mainscreen BG)" type="select" default="[COLOR ff4682b4]steelblue[/COLOR]" values="[COLOR 00000000]none[/COLOR]|[COLOR 00000000]transparent[/COLOR]|[COLOR ff606060]black[/COLOR]|[COLOR ffffffff]white[/COLOR]|[COLOR ff808080]grey[/COLOR]|[COLOR ff696969]dimgrey[/COLOR]|[COLOR ffd3d3d3]lightgrey[/COLOR]|[COLOR ffa9a9a9]darkgrey[/COLOR]|[COLOR ff2f4f4f]darkslategrey[/COLOR]|[COLOR ff7b68ee]mediumslateblue[/COLOR]|[COLOR ff708090]slategrey[/COLOR]|[COLOR ff778899]lightslategray[/COLOR]|[COLOR ff0000ff]blue[/COLOR]|[COLOR ff1e90ff]dodgerblue[/COLOR]|[COLOR ff5f9ea0]cadetblue[/COLOR]|[COLOR ff00bfff]deepskyblue[/COLOR]|[COLOR ff87cefa]lightskyblue[/COLOR]|[COLOR ffb0c4de]lightsteelblue[/COLOR]|[COLOR ff4682b4]steelblue[/COLOR]|[COLOR ffe0ffff]lightcyan[/COLOR]|[COLOR ffc0c0c0]silver[/COLOR]|[COLOR ff87ceeb]skyblue[/COLOR]|[COLOR ff191970]midnightblue[/COLOR]|[COLOR ffadd8e6]lightblue[/COLOR]|[COLOR ff0000cd]mediumblue[/COLOR]|[COLOR ff6495ed]cornflowerblue[/COLOR]|[COLOR ff8a2be2]blueviolet[/COLOR]|[COLOR ff00ffff]cyan[/COLOR]|[COLOR ff00008b]darkblue[/COLOR]|[COLOR ff008b8b]darkcyan[/COLOR]|[COLOR ff6a5acd]slateblue[/COLOR]|[COLOR ff483d8b]darkslateblue[/COLOR]|[COLOR ff40e0d0]turquoise[/COLOR]|[COLOR ff4169e1]royalblue[/COLOR]|[COLOR ffb0e0e6]powderblue[/COLOR]|[COLOR ff008080]teal[/COLOR]|[COLOR ffafeeee]paleturquoise[/COLOR]|[COLOR ff000080]navy[/COLOR]|[COLOR ff66cdaa]mediumaquamarine[/COLOR]|[COLOR ff90ee90]lightgreen[/COLOR]|[COLOR ff3cb371]mediumseagreen[/COLOR]|[COLOR ff7cfc00]lawngreen[/COLOR]|[COLOR ff006400]darkgreen[/COLOR]|[COLOR ff556b2f]darkolivegreen[/COLOR]|[COLOR ffbdb76b]darkkhaki[/COLOR]|[COLOR fff0e68c]khaki[/COLOR]|[COLOR ff7fff00]chartreuse[/COLOR]|[COLOR ff228b22]forestgreen[/COLOR]|[COLOR ff2e8b57]seagreen[/COLOR]|[COLOR ff9acd32]yellowgreen[/COLOR]|[COLOR ffadff2f]greenyellow[/COLOR]|[COLOR ff008000]green[/COLOR]|[COLOR ff8fbc8f]darkseagreen[/COLOR]|[COLOR ff20b2aa]lightseagreen[/COLOR]|[COLOR ff00ff7f]springgreen[/COLOR]|[COLOR ff00fa9a]mediumspringgreen[/COLOR]|[COLOR ff00ff00]lime[/COLOR]|[COLOR ffdb7093]palevioletred[/COLOR]|[COLOR ffb22222]firebrick[/COLOR]| [COLOR ffdc143c]crimson[/COLOR]|[COLOR ff8b0000]darkred[/COLOR]|[COLOR ffff0000]red[/COLOR]|[COLOR ffff6347]tomato[/COLOR]|[COLOR ffffa500]orange[/COLOR]|[COLOR ffff4500]orangered[/COLOR]|[COLOR ffffff00]yellow[/COLOR]|[COLOR ffffd700]gold[/COLOR]|[COLOR ffeee8aa]palegoldenrod[/COLOR]|[COLOR ff6b8e23]olivedrab[/COLOR]|[COLOR ff98fb98]palegreen[/COLOR]|[COLOR ff808000]olive[/COLOR]|[COLOR ff32cd32]limegreen[/COLOR]|[COLOR ffb8860b]darkgoldenrod[/COLOR]|[COLOR fffafad2]lightgoldenrodyellow[/COLOR]|[COLOR ffdaa520]goldenrod[/COLOR]|[COLOR ffff8c00]darkorange[/COLOR]|[COLOR ff9932cc]darkorchid[/COLOR]|[COLOR ffe9967a]darksalmon[/COLOR]|[COLOR ff00ced1]darkturquoise[/COLOR]|[COLOR ff9400d3]darkviolet[/COLOR]|[COLOR fff0f8ff]aliceblue[/COLOR]|[COLOR fffaebd7]antiquewhite[/COLOR]|[COLOR ff00ffff]aqua[/COLOR]|[COLOR ff7fffd4]aquamarine[/COLOR]|[COLOR fff0ffff]azure[/COLOR]|[COLOR fff5f5dc]beige[/COLOR]|[COLOR ffffe4c4]bisque[/COLOR]|[COLOR ffffebcd]blanchedalmond[/COLOR]|[COLOR ffd2691e]chocolate[/COLOR]|[COLOR ffff7f50]coral[/COLOR]|[COLOR fffff8dc]cornsilk[/COLOR]|[COLOR ffff1493]deeppink[/COLOR]|[COLOR fffffaf0]floralwhite[/COLOR]|[COLOR ffff00ff]fuchsia[/COLOR]|[COLOR ffdcdcdc]gainsboro[/COLOR]|[COLOR fff8f8ff]ghostwhite[/COLOR]|[COLOR fff0fff0]honeydew[/COLOR]|[COLOR ffff69b4]hotpink[/COLOR]|[COLOR ffcd5c5c]indianred[/COLOR]|[COLOR ff4b0082]indigo[/COLOR]|[COLOR fffffff0]ivory[/COLOR]|[COLOR ffe6e6fa]lavender[/COLOR]|[COLOR fffff0f5]lavenderblush[/COLOR]|[COLOR fffffacd]lemonchiffon[/COLOR]|[COLOR fff08080]lightcoral[/COLOR]|[COLOR fff5fffa]mintcream[/COLOR]|[COLOR ffffe4e1]mistyrose[/COLOR]|[COLOR ffffe4b5]moccasin[/COLOR]|[COLOR ffffdead]navajowhite[/COLOR]|[COLOR fffdf5e6]oldlace[/COLOR]|[COLOR ffffefd5]papayawhip[/COLOR]|[COLOR ffffdab9]peachpuff[/COLOR]|[COLOR ffffc0cb]pink[/COLOR]|[COLOR ffdda0dd]plum[/COLOR]|[COLOR ff800080]purple[/COLOR]|[COLOR ff8b008b]darkmagenta[/COLOR]|[COLOR ffee82ee]violet[/COLOR]|[COLOR ffba55d3]mediumorchid[/COLOR]|[COLOR ff9370db]mediumpurple[/COLOR]|[COLOR ffffb6c1]lightpink[/COLOR]|[COLOR ffffa07a]lightsalmon[/COLOR]|[COLOR fffaf0e6]linen[/COLOR]|[COLOR ffff00ff]magenta[/COLOR]|[COLOR ffda70d6]orchid[/COLOR]|[COLOR ff800000]maroon[/COLOR]|[COLOR ff48d1cc]mediumturquoise[/COLOR]|[COLOR ffc71585]mediumvioletred[/COLOR]|[COLOR ffa52a2a]brown[/COLOR]|[COLOR ffdeb887]burlywood[/COLOR]|[COLOR ffd2b48c]tan[/COLOR]|[COLOR ffffffe0]lightyellow[/COLOR]|[COLOR ff8b4513]saddlebrown[/COLOR]|[COLOR fffa8072]salmon[/COLOR]|[COLOR ffbc8f8f]rosybrown[/COLOR]|[COLOR fff4a460]sandybrown[/COLOR]|[COLOR ffa0522d]sienna[/COLOR]|[COLOR ffcd853f]peru[/COLOR]|[COLOR ffd8bfd8]thistle[/COLOR]|[COLOR fff5deb3]wheat[/COLOR]|[COLOR fffff5ee]seashell[/COLOR]|[COLOR fffffafa]snow[/COLOR]|[COLOR fff5f5f5]whitesmoke[/COLOR]|" />
+        <setting id="var.color_bar" label="bar (Timebar)" type="select" default="[COLOR ff90ee90]lightgreen[/COLOR]" values="[COLOR 00000000]none[/COLOR]|[COLOR 00000000]transparent[/COLOR]|[COLOR ff606060]black[/COLOR]|[COLOR ffffffff]white[/COLOR]|[COLOR ff808080]grey[/COLOR]|[COLOR ff696969]dimgrey[/COLOR]|[COLOR ffd3d3d3]lightgrey[/COLOR]|[COLOR ffa9a9a9]darkgrey[/COLOR]|[COLOR ff2f4f4f]darkslategrey[/COLOR]|[COLOR ff7b68ee]mediumslateblue[/COLOR]|[COLOR ff708090]slategrey[/COLOR]|[COLOR ff778899]lightslategray[/COLOR]|[COLOR ff0000ff]blue[/COLOR]|[COLOR ff1e90ff]dodgerblue[/COLOR]|[COLOR ff5f9ea0]cadetblue[/COLOR]|[COLOR ff00bfff]deepskyblue[/COLOR]|[COLOR ff87cefa]lightskyblue[/COLOR]|[COLOR ffb0c4de]lightsteelblue[/COLOR]|[COLOR ff4682b4]steelblue[/COLOR]|[COLOR ffe0ffff]lightcyan[/COLOR]|[COLOR ffc0c0c0]silver[/COLOR]|[COLOR ff87ceeb]skyblue[/COLOR]|[COLOR ff191970]midnightblue[/COLOR]|[COLOR ffadd8e6]lightblue[/COLOR]|[COLOR ff0000cd]mediumblue[/COLOR]|[COLOR ff6495ed]cornflowerblue[/COLOR]|[COLOR ff8a2be2]blueviolet[/COLOR]|[COLOR ff00ffff]cyan[/COLOR]|[COLOR ff00008b]darkblue[/COLOR]|[COLOR ff008b8b]darkcyan[/COLOR]|[COLOR ff6a5acd]slateblue[/COLOR]|[COLOR ff483d8b]darkslateblue[/COLOR]|[COLOR ff40e0d0]turquoise[/COLOR]|[COLOR ff4169e1]royalblue[/COLOR]|[COLOR ffb0e0e6]powderblue[/COLOR]|[COLOR ff008080]teal[/COLOR]|[COLOR ffafeeee]paleturquoise[/COLOR]|[COLOR ff000080]navy[/COLOR]|[COLOR ff66cdaa]mediumaquamarine[/COLOR]|[COLOR ff90ee90]lightgreen[/COLOR]|[COLOR ff3cb371]mediumseagreen[/COLOR]|[COLOR ff7cfc00]lawngreen[/COLOR]|[COLOR ff006400]darkgreen[/COLOR]|[COLOR ff556b2f]darkolivegreen[/COLOR]|[COLOR ffbdb76b]darkkhaki[/COLOR]|[COLOR fff0e68c]khaki[/COLOR]|[COLOR ff7fff00]chartreuse[/COLOR]|[COLOR ff228b22]forestgreen[/COLOR]|[COLOR ff2e8b57]seagreen[/COLOR]|[COLOR ff9acd32]yellowgreen[/COLOR]|[COLOR ffadff2f]greenyellow[/COLOR]|[COLOR ff008000]green[/COLOR]|[COLOR ff8fbc8f]darkseagreen[/COLOR]|[COLOR ff20b2aa]lightseagreen[/COLOR]|[COLOR ff00ff7f]springgreen[/COLOR]|[COLOR ff00fa9a]mediumspringgreen[/COLOR]|[COLOR ff00ff00]lime[/COLOR]|[COLOR ffdb7093]palevioletred[/COLOR]|[COLOR ffb22222]firebrick[/COLOR]| [COLOR ffdc143c]crimson[/COLOR]|[COLOR ff8b0000]darkred[/COLOR]|[COLOR ffff0000]red[/COLOR]|[COLOR ffff6347]tomato[/COLOR]|[COLOR ffffa500]orange[/COLOR]|[COLOR ffff4500]orangered[/COLOR]|[COLOR ffffff00]yellow[/COLOR]|[COLOR ffffd700]gold[/COLOR]|[COLOR ffeee8aa]palegoldenrod[/COLOR]|[COLOR ff6b8e23]olivedrab[/COLOR]|[COLOR ff98fb98]palegreen[/COLOR]|[COLOR ff808000]olive[/COLOR]|[COLOR ff32cd32]limegreen[/COLOR]|[COLOR ffb8860b]darkgoldenrod[/COLOR]|[COLOR fffafad2]lightgoldenrodyellow[/COLOR]|[COLOR ffdaa520]goldenrod[/COLOR]|[COLOR ffff8c00]darkorange[/COLOR]|[COLOR ff9932cc]darkorchid[/COLOR]|[COLOR ffe9967a]darksalmon[/COLOR]|[COLOR ff00ced1]darkturquoise[/COLOR]|[COLOR ff9400d3]darkviolet[/COLOR]|[COLOR fff0f8ff]aliceblue[/COLOR]|[COLOR fffaebd7]antiquewhite[/COLOR]|[COLOR ff00ffff]aqua[/COLOR]|[COLOR ff7fffd4]aquamarine[/COLOR]|[COLOR fff0ffff]azure[/COLOR]|[COLOR fff5f5dc]beige[/COLOR]|[COLOR ffffe4c4]bisque[/COLOR]|[COLOR ffffebcd]blanchedalmond[/COLOR]|[COLOR ffd2691e]chocolate[/COLOR]|[COLOR ffff7f50]coral[/COLOR]|[COLOR fffff8dc]cornsilk[/COLOR]|[COLOR ffff1493]deeppink[/COLOR]|[COLOR fffffaf0]floralwhite[/COLOR]|[COLOR ffff00ff]fuchsia[/COLOR]|[COLOR ffdcdcdc]gainsboro[/COLOR]|[COLOR fff8f8ff]ghostwhite[/COLOR]|[COLOR fff0fff0]honeydew[/COLOR]|[COLOR ffff69b4]hotpink[/COLOR]|[COLOR ffcd5c5c]indianred[/COLOR]|[COLOR ff4b0082]indigo[/COLOR]|[COLOR fffffff0]ivory[/COLOR]|[COLOR ffe6e6fa]lavender[/COLOR]|[COLOR fffff0f5]lavenderblush[/COLOR]|[COLOR fffffacd]lemonchiffon[/COLOR]|[COLOR fff08080]lightcoral[/COLOR]|[COLOR fff5fffa]mintcream[/COLOR]|[COLOR ffffe4e1]mistyrose[/COLOR]|[COLOR ffffe4b5]moccasin[/COLOR]|[COLOR ffffdead]navajowhite[/COLOR]|[COLOR fffdf5e6]oldlace[/COLOR]|[COLOR ffffefd5]papayawhip[/COLOR]|[COLOR ffffdab9]peachpuff[/COLOR]|[COLOR ffffc0cb]pink[/COLOR]|[COLOR ffdda0dd]plum[/COLOR]|[COLOR ff800080]purple[/COLOR]|[COLOR ff8b008b]darkmagenta[/COLOR]|[COLOR ffee82ee]violet[/COLOR]|[COLOR ffba55d3]mediumorchid[/COLOR]|[COLOR ff9370db]mediumpurple[/COLOR]|[COLOR ffffb6c1]lightpink[/COLOR]|[COLOR ffffa07a]lightsalmon[/COLOR]|[COLOR fffaf0e6]linen[/COLOR]|[COLOR ffff00ff]magenta[/COLOR]|[COLOR ffda70d6]orchid[/COLOR]|[COLOR ff800000]maroon[/COLOR]|[COLOR ff48d1cc]mediumturquoise[/COLOR]|[COLOR ffc71585]mediumvioletred[/COLOR]|[COLOR ffa52a2a]brown[/COLOR]|[COLOR ffdeb887]burlywood[/COLOR]|[COLOR ffd2b48c]tan[/COLOR]|[COLOR ffffffe0]lightyellow[/COLOR]|[COLOR ff8b4513]saddlebrown[/COLOR]|[COLOR fffa8072]salmon[/COLOR]|[COLOR ffbc8f8f]rosybrown[/COLOR]|[COLOR fff4a460]sandybrown[/COLOR]|[COLOR ffa0522d]sienna[/COLOR]|[COLOR ffcd853f]peru[/COLOR]|[COLOR ffd8bfd8]thistle[/COLOR]|[COLOR fff5deb3]wheat[/COLOR]|[COLOR fffff5ee]seashell[/COLOR]|[COLOR fffffafa]snow[/COLOR]|[COLOR fff5f5f5]whitesmoke[/COLOR]|" />
+        <setting id="var.color_description_barr" label="description_bar (EPG Desc)" type="select" default="[COLOR ff4682b4]steelblue[/COLOR]" values="[COLOR 00000000]none[/COLOR]|[COLOR 00000000]transparent[/COLOR]|[COLOR ff606060]black[/COLOR]|[COLOR ffffffff]white[/COLOR]|[COLOR ff808080]grey[/COLOR]|[COLOR ff696969]dimgrey[/COLOR]|[COLOR ffd3d3d3]lightgrey[/COLOR]|[COLOR ffa9a9a9]darkgrey[/COLOR]|[COLOR ff2f4f4f]darkslategrey[/COLOR]|[COLOR ff7b68ee]mediumslateblue[/COLOR]|[COLOR ff708090]slategrey[/COLOR]|[COLOR ff778899]lightslategray[/COLOR]|[COLOR ff0000ff]blue[/COLOR]|[COLOR ff1e90ff]dodgerblue[/COLOR]|[COLOR ff5f9ea0]cadetblue[/COLOR]|[COLOR ff00bfff]deepskyblue[/COLOR]|[COLOR ff87cefa]lightskyblue[/COLOR]|[COLOR ffb0c4de]lightsteelblue[/COLOR]|[COLOR ff4682b4]steelblue[/COLOR]|[COLOR ffe0ffff]lightcyan[/COLOR]|[COLOR ffc0c0c0]silver[/COLOR]|[COLOR ff87ceeb]skyblue[/COLOR]|[COLOR ff191970]midnightblue[/COLOR]|[COLOR ffadd8e6]lightblue[/COLOR]|[COLOR ff0000cd]mediumblue[/COLOR]|[COLOR ff6495ed]cornflowerblue[/COLOR]|[COLOR ff8a2be2]blueviolet[/COLOR]|[COLOR ff00ffff]cyan[/COLOR]|[COLOR ff00008b]darkblue[/COLOR]|[COLOR ff008b8b]darkcyan[/COLOR]|[COLOR ff6a5acd]slateblue[/COLOR]|[COLOR ff483d8b]darkslateblue[/COLOR]|[COLOR ff40e0d0]turquoise[/COLOR]|[COLOR ff4169e1]royalblue[/COLOR]|[COLOR ffb0e0e6]powderblue[/COLOR]|[COLOR ff008080]teal[/COLOR]|[COLOR ffafeeee]paleturquoise[/COLOR]|[COLOR ff000080]navy[/COLOR]|[COLOR ff66cdaa]mediumaquamarine[/COLOR]|[COLOR ff90ee90]lightgreen[/COLOR]|[COLOR ff3cb371]mediumseagreen[/COLOR]|[COLOR ff7cfc00]lawngreen[/COLOR]|[COLOR ff006400]darkgreen[/COLOR]|[COLOR ff556b2f]darkolivegreen[/COLOR]|[COLOR ffbdb76b]darkkhaki[/COLOR]|[COLOR fff0e68c]khaki[/COLOR]|[COLOR ff7fff00]chartreuse[/COLOR]|[COLOR ff228b22]forestgreen[/COLOR]|[COLOR ff2e8b57]seagreen[/COLOR]|[COLOR ff9acd32]yellowgreen[/COLOR]|[COLOR ffadff2f]greenyellow[/COLOR]|[COLOR ff008000]green[/COLOR]|[COLOR ff8fbc8f]darkseagreen[/COLOR]|[COLOR ff20b2aa]lightseagreen[/COLOR]|[COLOR ff00ff7f]springgreen[/COLOR]|[COLOR ff00fa9a]mediumspringgreen[/COLOR]|[COLOR ff00ff00]lime[/COLOR]|[COLOR ffdb7093]palevioletred[/COLOR]|[COLOR ffb22222]firebrick[/COLOR]| [COLOR ffdc143c]crimson[/COLOR]|[COLOR ff8b0000]darkred[/COLOR]|[COLOR ffff0000]red[/COLOR]|[COLOR ffff6347]tomato[/COLOR]|[COLOR ffffa500]orange[/COLOR]|[COLOR ffff4500]orangered[/COLOR]|[COLOR ffffff00]yellow[/COLOR]|[COLOR ffffd700]gold[/COLOR]|[COLOR ffeee8aa]palegoldenrod[/COLOR]|[COLOR ff6b8e23]olivedrab[/COLOR]|[COLOR ff98fb98]palegreen[/COLOR]|[COLOR ff808000]olive[/COLOR]|[COLOR ff32cd32]limegreen[/COLOR]|[COLOR ffb8860b]darkgoldenrod[/COLOR]|[COLOR fffafad2]lightgoldenrodyellow[/COLOR]|[COLOR ffdaa520]goldenrod[/COLOR]|[COLOR ffff8c00]darkorange[/COLOR]|[COLOR ff9932cc]darkorchid[/COLOR]|[COLOR ffe9967a]darksalmon[/COLOR]|[COLOR ff00ced1]darkturquoise[/COLOR]|[COLOR ff9400d3]darkviolet[/COLOR]|[COLOR fff0f8ff]aliceblue[/COLOR]|[COLOR fffaebd7]antiquewhite[/COLOR]|[COLOR ff00ffff]aqua[/COLOR]|[COLOR ff7fffd4]aquamarine[/COLOR]|[COLOR fff0ffff]azure[/COLOR]|[COLOR fff5f5dc]beige[/COLOR]|[COLOR ffffe4c4]bisque[/COLOR]|[COLOR ffffebcd]blanchedalmond[/COLOR]|[COLOR ffd2691e]chocolate[/COLOR]|[COLOR ffff7f50]coral[/COLOR]|[COLOR fffff8dc]cornsilk[/COLOR]|[COLOR ffff1493]deeppink[/COLOR]|[COLOR fffffaf0]floralwhite[/COLOR]|[COLOR ffff00ff]fuchsia[/COLOR]|[COLOR ffdcdcdc]gainsboro[/COLOR]|[COLOR fff8f8ff]ghostwhite[/COLOR]|[COLOR fff0fff0]honeydew[/COLOR]|[COLOR ffff69b4]hotpink[/COLOR]|[COLOR ffcd5c5c]indianred[/COLOR]|[COLOR ff4b0082]indigo[/COLOR]|[COLOR fffffff0]ivory[/COLOR]|[COLOR ffe6e6fa]lavender[/COLOR]|[COLOR fffff0f5]lavenderblush[/COLOR]|[COLOR fffffacd]lemonchiffon[/COLOR]|[COLOR fff08080]lightcoral[/COLOR]|[COLOR fff5fffa]mintcream[/COLOR]|[COLOR ffffe4e1]mistyrose[/COLOR]|[COLOR ffffe4b5]moccasin[/COLOR]|[COLOR ffffdead]navajowhite[/COLOR]|[COLOR fffdf5e6]oldlace[/COLOR]|[COLOR ffffefd5]papayawhip[/COLOR]|[COLOR ffffdab9]peachpuff[/COLOR]|[COLOR ffffc0cb]pink[/COLOR]|[COLOR ffdda0dd]plum[/COLOR]|[COLOR ff800080]purple[/COLOR]|[COLOR ff8b008b]darkmagenta[/COLOR]|[COLOR ffee82ee]violet[/COLOR]|[COLOR ffba55d3]mediumorchid[/COLOR]|[COLOR ff9370db]mediumpurple[/COLOR]|[COLOR ffffb6c1]lightpink[/COLOR]|[COLOR ffffa07a]lightsalmon[/COLOR]|[COLOR fffaf0e6]linen[/COLOR]|[COLOR ffff00ff]magenta[/COLOR]|[COLOR ffda70d6]orchid[/COLOR]|[COLOR ff800000]maroon[/COLOR]|[COLOR ff48d1cc]mediumturquoise[/COLOR]|[COLOR ffc71585]mediumvioletred[/COLOR]|[COLOR ffa52a2a]brown[/COLOR]|[COLOR ffdeb887]burlywood[/COLOR]|[COLOR ffd2b48c]tan[/COLOR]|[COLOR ffffffe0]lightyellow[/COLOR]|[COLOR ff8b4513]saddlebrown[/COLOR]|[COLOR fffa8072]salmon[/COLOR]|[COLOR ffbc8f8f]rosybrown[/COLOR]|[COLOR fff4a460]sandybrown[/COLOR]|[COLOR ffa0522d]sienna[/COLOR]|[COLOR ffcd853f]peru[/COLOR]|[COLOR ffd8bfd8]thistle[/COLOR]|[COLOR fff5deb3]wheat[/COLOR]|[COLOR fffff5ee]seashell[/COLOR]|[COLOR fffffafa]snow[/COLOR]|[COLOR fff5f5f5]whitesmoke[/COLOR]|" />
+        <setting id="var.color_description_info" label="description_info" type="select" default="[COLOR ff87ceeb]skyblue[/COLOR]" values="[COLOR 00000000]none[/COLOR]|[COLOR 00000000]transparent[/COLOR]|[COLOR ff606060]black[/COLOR]|[COLOR ffffffff]white[/COLOR]|[COLOR ff808080]grey[/COLOR]|[COLOR ff696969]dimgrey[/COLOR]|[COLOR ffd3d3d3]lightgrey[/COLOR]|[COLOR ffa9a9a9]darkgrey[/COLOR]|[COLOR ff2f4f4f]darkslategrey[/COLOR]|[COLOR ff7b68ee]mediumslateblue[/COLOR]|[COLOR ff708090]slategrey[/COLOR]|[COLOR ff778899]lightslategray[/COLOR]|[COLOR ff0000ff]blue[/COLOR]|[COLOR ff1e90ff]dodgerblue[/COLOR]|[COLOR ff5f9ea0]cadetblue[/COLOR]|[COLOR ff00bfff]deepskyblue[/COLOR]|[COLOR ff87cefa]lightskyblue[/COLOR]|[COLOR ffb0c4de]lightsteelblue[/COLOR]|[COLOR ff4682b4]steelblue[/COLOR]|[COLOR ffe0ffff]lightcyan[/COLOR]|[COLOR ffc0c0c0]silver[/COLOR]|[COLOR ff87ceeb]skyblue[/COLOR]|[COLOR ff191970]midnightblue[/COLOR]|[COLOR ffadd8e6]lightblue[/COLOR]|[COLOR ff0000cd]mediumblue[/COLOR]|[COLOR ff6495ed]cornflowerblue[/COLOR]|[COLOR ff8a2be2]blueviolet[/COLOR]|[COLOR ff00ffff]cyan[/COLOR]|[COLOR ff00008b]darkblue[/COLOR]|[COLOR ff008b8b]darkcyan[/COLOR]|[COLOR ff6a5acd]slateblue[/COLOR]|[COLOR ff483d8b]darkslateblue[/COLOR]|[COLOR ff40e0d0]turquoise[/COLOR]|[COLOR ff4169e1]royalblue[/COLOR]|[COLOR ffb0e0e6]powderblue[/COLOR]|[COLOR ff008080]teal[/COLOR]|[COLOR ffafeeee]paleturquoise[/COLOR]|[COLOR ff000080]navy[/COLOR]|[COLOR ff66cdaa]mediumaquamarine[/COLOR]|[COLOR ff90ee90]lightgreen[/COLOR]|[COLOR ff3cb371]mediumseagreen[/COLOR]|[COLOR ff7cfc00]lawngreen[/COLOR]|[COLOR ff006400]darkgreen[/COLOR]|[COLOR ff556b2f]darkolivegreen[/COLOR]|[COLOR ffbdb76b]darkkhaki[/COLOR]|[COLOR fff0e68c]khaki[/COLOR]|[COLOR ff7fff00]chartreuse[/COLOR]|[COLOR ff228b22]forestgreen[/COLOR]|[COLOR ff2e8b57]seagreen[/COLOR]|[COLOR ff9acd32]yellowgreen[/COLOR]|[COLOR ffadff2f]greenyellow[/COLOR]|[COLOR ff008000]green[/COLOR]|[COLOR ff8fbc8f]darkseagreen[/COLOR]|[COLOR ff20b2aa]lightseagreen[/COLOR]|[COLOR ff00ff7f]springgreen[/COLOR]|[COLOR ff00fa9a]mediumspringgreen[/COLOR]|[COLOR ff00ff00]lime[/COLOR]|[COLOR ffdb7093]palevioletred[/COLOR]|[COLOR ffb22222]firebrick[/COLOR]| [COLOR ffdc143c]crimson[/COLOR]|[COLOR ff8b0000]darkred[/COLOR]|[COLOR ffff0000]red[/COLOR]|[COLOR ffff6347]tomato[/COLOR]|[COLOR ffffa500]orange[/COLOR]|[COLOR ffff4500]orangered[/COLOR]|[COLOR ffffff00]yellow[/COLOR]|[COLOR ffffd700]gold[/COLOR]|[COLOR ffeee8aa]palegoldenrod[/COLOR]|[COLOR ff6b8e23]olivedrab[/COLOR]|[COLOR ff98fb98]palegreen[/COLOR]|[COLOR ff808000]olive[/COLOR]|[COLOR ff32cd32]limegreen[/COLOR]|[COLOR ffb8860b]darkgoldenrod[/COLOR]|[COLOR fffafad2]lightgoldenrodyellow[/COLOR]|[COLOR ffdaa520]goldenrod[/COLOR]|[COLOR ffff8c00]darkorange[/COLOR]|[COLOR ff9932cc]darkorchid[/COLOR]|[COLOR ffe9967a]darksalmon[/COLOR]|[COLOR ff00ced1]darkturquoise[/COLOR]|[COLOR ff9400d3]darkviolet[/COLOR]|[COLOR fff0f8ff]aliceblue[/COLOR]|[COLOR fffaebd7]antiquewhite[/COLOR]|[COLOR ff00ffff]aqua[/COLOR]|[COLOR ff7fffd4]aquamarine[/COLOR]|[COLOR fff0ffff]azure[/COLOR]|[COLOR fff5f5dc]beige[/COLOR]|[COLOR ffffe4c4]bisque[/COLOR]|[COLOR ffffebcd]blanchedalmond[/COLOR]|[COLOR ffd2691e]chocolate[/COLOR]|[COLOR ffff7f50]coral[/COLOR]|[COLOR fffff8dc]cornsilk[/COLOR]|[COLOR ffff1493]deeppink[/COLOR]|[COLOR fffffaf0]floralwhite[/COLOR]|[COLOR ffff00ff]fuchsia[/COLOR]|[COLOR ffdcdcdc]gainsboro[/COLOR]|[COLOR fff8f8ff]ghostwhite[/COLOR]|[COLOR fff0fff0]honeydew[/COLOR]|[COLOR ffff69b4]hotpink[/COLOR]|[COLOR ffcd5c5c]indianred[/COLOR]|[COLOR ff4b0082]indigo[/COLOR]|[COLOR fffffff0]ivory[/COLOR]|[COLOR ffe6e6fa]lavender[/COLOR]|[COLOR fffff0f5]lavenderblush[/COLOR]|[COLOR fffffacd]lemonchiffon[/COLOR]|[COLOR fff08080]lightcoral[/COLOR]|[COLOR fff5fffa]mintcream[/COLOR]|[COLOR ffffe4e1]mistyrose[/COLOR]|[COLOR ffffe4b5]moccasin[/COLOR]|[COLOR ffffdead]navajowhite[/COLOR]|[COLOR fffdf5e6]oldlace[/COLOR]|[COLOR ffffefd5]papayawhip[/COLOR]|[COLOR ffffdab9]peachpuff[/COLOR]|[COLOR ffffc0cb]pink[/COLOR]|[COLOR ffdda0dd]plum[/COLOR]|[COLOR ff800080]purple[/COLOR]|[COLOR ff8b008b]darkmagenta[/COLOR]|[COLOR ffee82ee]violet[/COLOR]|[COLOR ffba55d3]mediumorchid[/COLOR]|[COLOR ff9370db]mediumpurple[/COLOR]|[COLOR ffffb6c1]lightpink[/COLOR]|[COLOR ffffa07a]lightsalmon[/COLOR]|[COLOR fffaf0e6]linen[/COLOR]|[COLOR ffff00ff]magenta[/COLOR]|[COLOR ffda70d6]orchid[/COLOR]|[COLOR ff800000]maroon[/COLOR]|[COLOR ff48d1cc]mediumturquoise[/COLOR]|[COLOR ffc71585]mediumvioletred[/COLOR]|[COLOR ffa52a2a]brown[/COLOR]|[COLOR ffdeb887]burlywood[/COLOR]|[COLOR ffd2b48c]tan[/COLOR]|[COLOR ffffffe0]lightyellow[/COLOR]|[COLOR ff8b4513]saddlebrown[/COLOR]|[COLOR fffa8072]salmon[/COLOR]|[COLOR ffbc8f8f]rosybrown[/COLOR]|[COLOR fff4a460]sandybrown[/COLOR]|[COLOR ffa0522d]sienna[/COLOR]|[COLOR ffcd853f]peru[/COLOR]|[COLOR ffd8bfd8]thistle[/COLOR]|[COLOR fff5deb3]wheat[/COLOR]|[COLOR fffff5ee]seashell[/COLOR]|[COLOR fffffafa]snow[/COLOR]|[COLOR fff5f5f5]whitesmoke[/COLOR]|" />
+        <setting id="var.color_channelbg" label="channelbg (Behind Channel Logos)" type="select" default="[COLOR ffa9a9a9]darkgrey[/COLOR]" values="[COLOR 00000000]none[/COLOR]|[COLOR 00000000]transparent[/COLOR]|[COLOR ff606060]black[/COLOR]|[COLOR ffffffff]white[/COLOR]|[COLOR ff808080]grey[/COLOR]|[COLOR ff696969]dimgrey[/COLOR]|[COLOR ffd3d3d3]lightgrey[/COLOR]|[COLOR ffa9a9a9]darkgrey[/COLOR]|[COLOR ff2f4f4f]darkslategrey[/COLOR]|[COLOR ff7b68ee]mediumslateblue[/COLOR]|[COLOR ff708090]slategrey[/COLOR]|[COLOR ff778899]lightslategray[/COLOR]|[COLOR ff0000ff]blue[/COLOR]|[COLOR ff1e90ff]dodgerblue[/COLOR]|[COLOR ff5f9ea0]cadetblue[/COLOR]|[COLOR ff00bfff]deepskyblue[/COLOR]|[COLOR ff87cefa]lightskyblue[/COLOR]|[COLOR ffb0c4de]lightsteelblue[/COLOR]|[COLOR ff4682b4]steelblue[/COLOR]|[COLOR ffe0ffff]lightcyan[/COLOR]|[COLOR ffc0c0c0]silver[/COLOR]|[COLOR ff87ceeb]skyblue[/COLOR]|[COLOR ff191970]midnightblue[/COLOR]|[COLOR ffadd8e6]lightblue[/COLOR]|[COLOR ff0000cd]mediumblue[/COLOR]|[COLOR ff6495ed]cornflowerblue[/COLOR]|[COLOR ff8a2be2]blueviolet[/COLOR]|[COLOR ff00ffff]cyan[/COLOR]|[COLOR ff00008b]darkblue[/COLOR]|[COLOR ff008b8b]darkcyan[/COLOR]|[COLOR ff6a5acd]slateblue[/COLOR]|[COLOR ff483d8b]darkslateblue[/COLOR]|[COLOR ff40e0d0]turquoise[/COLOR]|[COLOR ff4169e1]royalblue[/COLOR]|[COLOR ffb0e0e6]powderblue[/COLOR]|[COLOR ff008080]teal[/COLOR]|[COLOR ffafeeee]paleturquoise[/COLOR]|[COLOR ff000080]navy[/COLOR]|[COLOR ff66cdaa]mediumaquamarine[/COLOR]|[COLOR ff90ee90]lightgreen[/COLOR]|[COLOR ff3cb371]mediumseagreen[/COLOR]|[COLOR ff7cfc00]lawngreen[/COLOR]|[COLOR ff006400]darkgreen[/COLOR]|[COLOR ff556b2f]darkolivegreen[/COLOR]|[COLOR ffbdb76b]darkkhaki[/COLOR]|[COLOR fff0e68c]khaki[/COLOR]|[COLOR ff7fff00]chartreuse[/COLOR]|[COLOR ff228b22]forestgreen[/COLOR]|[COLOR ff2e8b57]seagreen[/COLOR]|[COLOR ff9acd32]yellowgreen[/COLOR]|[COLOR ffadff2f]greenyellow[/COLOR]|[COLOR ff008000]green[/COLOR]|[COLOR ff8fbc8f]darkseagreen[/COLOR]|[COLOR ff20b2aa]lightseagreen[/COLOR]|[COLOR ff00ff7f]springgreen[/COLOR]|[COLOR ff00fa9a]mediumspringgreen[/COLOR]|[COLOR ff00ff00]lime[/COLOR]|[COLOR ffdb7093]palevioletred[/COLOR]|[COLOR ffb22222]firebrick[/COLOR]| [COLOR ffdc143c]crimson[/COLOR]|[COLOR ff8b0000]darkred[/COLOR]|[COLOR ffff0000]red[/COLOR]|[COLOR ffff6347]tomato[/COLOR]|[COLOR ffffa500]orange[/COLOR]|[COLOR ffff4500]orangered[/COLOR]|[COLOR ffffff00]yellow[/COLOR]|[COLOR ffffd700]gold[/COLOR]|[COLOR ffeee8aa]palegoldenrod[/COLOR]|[COLOR ff6b8e23]olivedrab[/COLOR]|[COLOR ff98fb98]palegreen[/COLOR]|[COLOR ff808000]olive[/COLOR]|[COLOR ff32cd32]limegreen[/COLOR]|[COLOR ffb8860b]darkgoldenrod[/COLOR]|[COLOR fffafad2]lightgoldenrodyellow[/COLOR]|[COLOR ffdaa520]goldenrod[/COLOR]|[COLOR ffff8c00]darkorange[/COLOR]|[COLOR ff9932cc]darkorchid[/COLOR]|[COLOR ffe9967a]darksalmon[/COLOR]|[COLOR ff00ced1]darkturquoise[/COLOR]|[COLOR ff9400d3]darkviolet[/COLOR]|[COLOR fff0f8ff]aliceblue[/COLOR]|[COLOR fffaebd7]antiquewhite[/COLOR]|[COLOR ff00ffff]aqua[/COLOR]|[COLOR ff7fffd4]aquamarine[/COLOR]|[COLOR fff0ffff]azure[/COLOR]|[COLOR fff5f5dc]beige[/COLOR]|[COLOR ffffe4c4]bisque[/COLOR]|[COLOR ffffebcd]blanchedalmond[/COLOR]|[COLOR ffd2691e]chocolate[/COLOR]|[COLOR ffff7f50]coral[/COLOR]|[COLOR fffff8dc]cornsilk[/COLOR]|[COLOR ffff1493]deeppink[/COLOR]|[COLOR fffffaf0]floralwhite[/COLOR]|[COLOR ffff00ff]fuchsia[/COLOR]|[COLOR ffdcdcdc]gainsboro[/COLOR]|[COLOR fff8f8ff]ghostwhite[/COLOR]|[COLOR fff0fff0]honeydew[/COLOR]|[COLOR ffff69b4]hotpink[/COLOR]|[COLOR ffcd5c5c]indianred[/COLOR]|[COLOR ff4b0082]indigo[/COLOR]|[COLOR fffffff0]ivory[/COLOR]|[COLOR ffe6e6fa]lavender[/COLOR]|[COLOR fffff0f5]lavenderblush[/COLOR]|[COLOR fffffacd]lemonchiffon[/COLOR]|[COLOR fff08080]lightcoral[/COLOR]|[COLOR fff5fffa]mintcream[/COLOR]|[COLOR ffffe4e1]mistyrose[/COLOR]|[COLOR ffffe4b5]moccasin[/COLOR]|[COLOR ffffdead]navajowhite[/COLOR]|[COLOR fffdf5e6]oldlace[/COLOR]|[COLOR ffffefd5]papayawhip[/COLOR]|[COLOR ffffdab9]peachpuff[/COLOR]|[COLOR ffffc0cb]pink[/COLOR]|[COLOR ffdda0dd]plum[/COLOR]|[COLOR ff800080]purple[/COLOR]|[COLOR ff8b008b]darkmagenta[/COLOR]|[COLOR ffee82ee]violet[/COLOR]|[COLOR ffba55d3]mediumorchid[/COLOR]|[COLOR ff9370db]mediumpurple[/COLOR]|[COLOR ffffb6c1]lightpink[/COLOR]|[COLOR ffffa07a]lightsalmon[/COLOR]|[COLOR fffaf0e6]linen[/COLOR]|[COLOR ffff00ff]magenta[/COLOR]|[COLOR ffda70d6]orchid[/COLOR]|[COLOR ff800000]maroon[/COLOR]|[COLOR ff48d1cc]mediumturquoise[/COLOR]|[COLOR ffc71585]mediumvioletred[/COLOR]|[COLOR ffa52a2a]brown[/COLOR]|[COLOR ffdeb887]burlywood[/COLOR]|[COLOR ffd2b48c]tan[/COLOR]|[COLOR ffffffe0]lightyellow[/COLOR]|[COLOR ff8b4513]saddlebrown[/COLOR]|[COLOR fffa8072]salmon[/COLOR]|[COLOR ffbc8f8f]rosybrown[/COLOR]|[COLOR fff4a460]sandybrown[/COLOR]|[COLOR ffa0522d]sienna[/COLOR]|[COLOR ffcd853f]peru[/COLOR]|[COLOR ffd8bfd8]thistle[/COLOR]|[COLOR fff5deb3]wheat[/COLOR]|[COLOR fffff5ee]seashell[/COLOR]|[COLOR fffffafa]snow[/COLOR]|[COLOR fff5f5f5]whitesmoke[/COLOR]|" />
+        <setting id="var.color_epgbg" label="epgbg (Behind EPG Program colums)" type="select" default="[COLOR ffa9a9a9]darkgrey[/COLOR]" values="[COLOR 00000000]none[/COLOR]|[COLOR 00000000]transparent[/COLOR]|[COLOR ff606060]black[/COLOR]|[COLOR ffffffff]white[/COLOR]|[COLOR ff808080]grey[/COLOR]|[COLOR ff696969]dimgrey[/COLOR]|[COLOR ffd3d3d3]lightgrey[/COLOR]|[COLOR ffa9a9a9]darkgrey[/COLOR]|[COLOR ff2f4f4f]darkslategrey[/COLOR]|[COLOR ff7b68ee]mediumslateblue[/COLOR]|[COLOR ff708090]slategrey[/COLOR]|[COLOR ff778899]lightslategray[/COLOR]|[COLOR ff0000ff]blue[/COLOR]|[COLOR ff1e90ff]dodgerblue[/COLOR]|[COLOR ff5f9ea0]cadetblue[/COLOR]|[COLOR ff00bfff]deepskyblue[/COLOR]|[COLOR ff87cefa]lightskyblue[/COLOR]|[COLOR ffb0c4de]lightsteelblue[/COLOR]|[COLOR ff4682b4]steelblue[/COLOR]|[COLOR ffe0ffff]lightcyan[/COLOR]|[COLOR ffc0c0c0]silver[/COLOR]|[COLOR ff87ceeb]skyblue[/COLOR]|[COLOR ff191970]midnightblue[/COLOR]|[COLOR ffadd8e6]lightblue[/COLOR]|[COLOR ff0000cd]mediumblue[/COLOR]|[COLOR ff6495ed]cornflowerblue[/COLOR]|[COLOR ff8a2be2]blueviolet[/COLOR]|[COLOR ff00ffff]cyan[/COLOR]|[COLOR ff00008b]darkblue[/COLOR]|[COLOR ff008b8b]darkcyan[/COLOR]|[COLOR ff6a5acd]slateblue[/COLOR]|[COLOR ff483d8b]darkslateblue[/COLOR]|[COLOR ff40e0d0]turquoise[/COLOR]|[COLOR ff4169e1]royalblue[/COLOR]|[COLOR ffb0e0e6]powderblue[/COLOR]|[COLOR ff008080]teal[/COLOR]|[COLOR ffafeeee]paleturquoise[/COLOR]|[COLOR ff000080]navy[/COLOR]|[COLOR ff66cdaa]mediumaquamarine[/COLOR]|[COLOR ff90ee90]lightgreen[/COLOR]|[COLOR ff3cb371]mediumseagreen[/COLOR]|[COLOR ff7cfc00]lawngreen[/COLOR]|[COLOR ff006400]darkgreen[/COLOR]|[COLOR ff556b2f]darkolivegreen[/COLOR]|[COLOR ffbdb76b]darkkhaki[/COLOR]|[COLOR fff0e68c]khaki[/COLOR]|[COLOR ff7fff00]chartreuse[/COLOR]|[COLOR ff228b22]forestgreen[/COLOR]|[COLOR ff2e8b57]seagreen[/COLOR]|[COLOR ff9acd32]yellowgreen[/COLOR]|[COLOR ffadff2f]greenyellow[/COLOR]|[COLOR ff008000]green[/COLOR]|[COLOR ff8fbc8f]darkseagreen[/COLOR]|[COLOR ff20b2aa]lightseagreen[/COLOR]|[COLOR ff00ff7f]springgreen[/COLOR]|[COLOR ff00fa9a]mediumspringgreen[/COLOR]|[COLOR ff00ff00]lime[/COLOR]|[COLOR ffdb7093]palevioletred[/COLOR]|[COLOR ffb22222]firebrick[/COLOR]| [COLOR ffdc143c]crimson[/COLOR]|[COLOR ff8b0000]darkred[/COLOR]|[COLOR ffff0000]red[/COLOR]|[COLOR ffff6347]tomato[/COLOR]|[COLOR ffffa500]orange[/COLOR]|[COLOR ffff4500]orangered[/COLOR]|[COLOR ffffff00]yellow[/COLOR]|[COLOR ffffd700]gold[/COLOR]|[COLOR ffeee8aa]palegoldenrod[/COLOR]|[COLOR ff6b8e23]olivedrab[/COLOR]|[COLOR ff98fb98]palegreen[/COLOR]|[COLOR ff808000]olive[/COLOR]|[COLOR ff32cd32]limegreen[/COLOR]|[COLOR ffb8860b]darkgoldenrod[/COLOR]|[COLOR fffafad2]lightgoldenrodyellow[/COLOR]|[COLOR ffdaa520]goldenrod[/COLOR]|[COLOR ffff8c00]darkorange[/COLOR]|[COLOR ff9932cc]darkorchid[/COLOR]|[COLOR ffe9967a]darksalmon[/COLOR]|[COLOR ff00ced1]darkturquoise[/COLOR]|[COLOR ff9400d3]darkviolet[/COLOR]|[COLOR fff0f8ff]aliceblue[/COLOR]|[COLOR fffaebd7]antiquewhite[/COLOR]|[COLOR ff00ffff]aqua[/COLOR]|[COLOR ff7fffd4]aquamarine[/COLOR]|[COLOR fff0ffff]azure[/COLOR]|[COLOR fff5f5dc]beige[/COLOR]|[COLOR ffffe4c4]bisque[/COLOR]|[COLOR ffffebcd]blanchedalmond[/COLOR]|[COLOR ffd2691e]chocolate[/COLOR]|[COLOR ffff7f50]coral[/COLOR]|[COLOR fffff8dc]cornsilk[/COLOR]|[COLOR ffff1493]deeppink[/COLOR]|[COLOR fffffaf0]floralwhite[/COLOR]|[COLOR ffff00ff]fuchsia[/COLOR]|[COLOR ffdcdcdc]gainsboro[/COLOR]|[COLOR fff8f8ff]ghostwhite[/COLOR]|[COLOR fff0fff0]honeydew[/COLOR]|[COLOR ffff69b4]hotpink[/COLOR]|[COLOR ffcd5c5c]indianred[/COLOR]|[COLOR ff4b0082]indigo[/COLOR]|[COLOR fffffff0]ivory[/COLOR]|[COLOR ffe6e6fa]lavender[/COLOR]|[COLOR fffff0f5]lavenderblush[/COLOR]|[COLOR fffffacd]lemonchiffon[/COLOR]|[COLOR fff08080]lightcoral[/COLOR]|[COLOR fff5fffa]mintcream[/COLOR]|[COLOR ffffe4e1]mistyrose[/COLOR]|[COLOR ffffe4b5]moccasin[/COLOR]|[COLOR ffffdead]navajowhite[/COLOR]|[COLOR fffdf5e6]oldlace[/COLOR]|[COLOR ffffefd5]papayawhip[/COLOR]|[COLOR ffffdab9]peachpuff[/COLOR]|[COLOR ffffc0cb]pink[/COLOR]|[COLOR ffdda0dd]plum[/COLOR]|[COLOR ff800080]purple[/COLOR]|[COLOR ff8b008b]darkmagenta[/COLOR]|[COLOR ffee82ee]violet[/COLOR]|[COLOR ffba55d3]mediumorchid[/COLOR]|[COLOR ff9370db]mediumpurple[/COLOR]|[COLOR ffffb6c1]lightpink[/COLOR]|[COLOR ffffa07a]lightsalmon[/COLOR]|[COLOR fffaf0e6]linen[/COLOR]|[COLOR ffff00ff]magenta[/COLOR]|[COLOR ffda70d6]orchid[/COLOR]|[COLOR ff800000]maroon[/COLOR]|[COLOR ff48d1cc]mediumturquoise[/COLOR]|[COLOR ffc71585]mediumvioletred[/COLOR]|[COLOR ffa52a2a]brown[/COLOR]|[COLOR ffdeb887]burlywood[/COLOR]|[COLOR ffd2b48c]tan[/COLOR]|[COLOR ffffffe0]lightyellow[/COLOR]|[COLOR ff8b4513]saddlebrown[/COLOR]|[COLOR fffa8072]salmon[/COLOR]|[COLOR ffbc8f8f]rosybrown[/COLOR]|[COLOR fff4a460]sandybrown[/COLOR]|[COLOR ffa0522d]sienna[/COLOR]|[COLOR ffcd853f]peru[/COLOR]|[COLOR ffd8bfd8]thistle[/COLOR]|[COLOR fff5deb3]wheat[/COLOR]|[COLOR fffff5ee]seashell[/COLOR]|[COLOR fffffafa]snow[/COLOR]|[COLOR fff5f5f5]whitesmoke[/COLOR]|" />
+        <setting id="var.color_focus" label="focus (Popup Menu)" type="select" default="[COLOR ff006400]darkgreen[/COLOR]" values="[COLOR 00000000]none[/COLOR]|[COLOR 00000000]transparent[/COLOR]|[COLOR ff606060]black[/COLOR]|[COLOR ffffffff]white[/COLOR]|[COLOR ff808080]grey[/COLOR]|[COLOR ff696969]dimgrey[/COLOR]|[COLOR ffd3d3d3]lightgrey[/COLOR]|[COLOR ffa9a9a9]darkgrey[/COLOR]|[COLOR ff2f4f4f]darkslategrey[/COLOR]|[COLOR ff7b68ee]mediumslateblue[/COLOR]|[COLOR ff708090]slategrey[/COLOR]|[COLOR ff778899]lightslategray[/COLOR]|[COLOR ff0000ff]blue[/COLOR]|[COLOR ff1e90ff]dodgerblue[/COLOR]|[COLOR ff5f9ea0]cadetblue[/COLOR]|[COLOR ff00bfff]deepskyblue[/COLOR]|[COLOR ff87cefa]lightskyblue[/COLOR]|[COLOR ffb0c4de]lightsteelblue[/COLOR]|[COLOR ff4682b4]steelblue[/COLOR]|[COLOR ffe0ffff]lightcyan[/COLOR]|[COLOR ffc0c0c0]silver[/COLOR]|[COLOR ff87ceeb]skyblue[/COLOR]|[COLOR ff191970]midnightblue[/COLOR]|[COLOR ffadd8e6]lightblue[/COLOR]|[COLOR ff0000cd]mediumblue[/COLOR]|[COLOR ff6495ed]cornflowerblue[/COLOR]|[COLOR ff8a2be2]blueviolet[/COLOR]|[COLOR ff00ffff]cyan[/COLOR]|[COLOR ff00008b]darkblue[/COLOR]|[COLOR ff008b8b]darkcyan[/COLOR]|[COLOR ff6a5acd]slateblue[/COLOR]|[COLOR ff483d8b]darkslateblue[/COLOR]|[COLOR ff40e0d0]turquoise[/COLOR]|[COLOR ff4169e1]royalblue[/COLOR]|[COLOR ffb0e0e6]powderblue[/COLOR]|[COLOR ff008080]teal[/COLOR]|[COLOR ffafeeee]paleturquoise[/COLOR]|[COLOR ff000080]navy[/COLOR]|[COLOR ff66cdaa]mediumaquamarine[/COLOR]|[COLOR ff90ee90]lightgreen[/COLOR]|[COLOR ff3cb371]mediumseagreen[/COLOR]|[COLOR ff7cfc00]lawngreen[/COLOR]|[COLOR ff006400]darkgreen[/COLOR]|[COLOR ff556b2f]darkolivegreen[/COLOR]|[COLOR ffbdb76b]darkkhaki[/COLOR]|[COLOR fff0e68c]khaki[/COLOR]|[COLOR ff7fff00]chartreuse[/COLOR]|[COLOR ff228b22]forestgreen[/COLOR]|[COLOR ff2e8b57]seagreen[/COLOR]|[COLOR ff9acd32]yellowgreen[/COLOR]|[COLOR ffadff2f]greenyellow[/COLOR]|[COLOR ff008000]green[/COLOR]|[COLOR ff8fbc8f]darkseagreen[/COLOR]|[COLOR ff20b2aa]lightseagreen[/COLOR]|[COLOR ff00ff7f]springgreen[/COLOR]|[COLOR ff00fa9a]mediumspringgreen[/COLOR]|[COLOR ff00ff00]lime[/COLOR]|[COLOR ffdb7093]palevioletred[/COLOR]|[COLOR ffb22222]firebrick[/COLOR]| [COLOR ffdc143c]crimson[/COLOR]|[COLOR ff8b0000]darkred[/COLOR]|[COLOR ffff0000]red[/COLOR]|[COLOR ffff6347]tomato[/COLOR]|[COLOR ffffa500]orange[/COLOR]|[COLOR ffff4500]orangered[/COLOR]|[COLOR ffffff00]yellow[/COLOR]|[COLOR ffffd700]gold[/COLOR]|[COLOR ffeee8aa]palegoldenrod[/COLOR]|[COLOR ff6b8e23]olivedrab[/COLOR]|[COLOR ff98fb98]palegreen[/COLOR]|[COLOR ff808000]olive[/COLOR]|[COLOR ff32cd32]limegreen[/COLOR]|[COLOR ffb8860b]darkgoldenrod[/COLOR]|[COLOR fffafad2]lightgoldenrodyellow[/COLOR]|[COLOR ffdaa520]goldenrod[/COLOR]|[COLOR ffff8c00]darkorange[/COLOR]|[COLOR ff9932cc]darkorchid[/COLOR]|[COLOR ffe9967a]darksalmon[/COLOR]|[COLOR ff00ced1]darkturquoise[/COLOR]|[COLOR ff9400d3]darkviolet[/COLOR]|[COLOR fff0f8ff]aliceblue[/COLOR]|[COLOR fffaebd7]antiquewhite[/COLOR]|[COLOR ff00ffff]aqua[/COLOR]|[COLOR ff7fffd4]aquamarine[/COLOR]|[COLOR fff0ffff]azure[/COLOR]|[COLOR fff5f5dc]beige[/COLOR]|[COLOR ffffe4c4]bisque[/COLOR]|[COLOR ffffebcd]blanchedalmond[/COLOR]|[COLOR ffd2691e]chocolate[/COLOR]|[COLOR ffff7f50]coral[/COLOR]|[COLOR fffff8dc]cornsilk[/COLOR]|[COLOR ffff1493]deeppink[/COLOR]|[COLOR fffffaf0]floralwhite[/COLOR]|[COLOR ffff00ff]fuchsia[/COLOR]|[COLOR ffdcdcdc]gainsboro[/COLOR]|[COLOR fff8f8ff]ghostwhite[/COLOR]|[COLOR fff0fff0]honeydew[/COLOR]|[COLOR ffff69b4]hotpink[/COLOR]|[COLOR ffcd5c5c]indianred[/COLOR]|[COLOR ff4b0082]indigo[/COLOR]|[COLOR fffffff0]ivory[/COLOR]|[COLOR ffe6e6fa]lavender[/COLOR]|[COLOR fffff0f5]lavenderblush[/COLOR]|[COLOR fffffacd]lemonchiffon[/COLOR]|[COLOR fff08080]lightcoral[/COLOR]|[COLOR fff5fffa]mintcream[/COLOR]|[COLOR ffffe4e1]mistyrose[/COLOR]|[COLOR ffffe4b5]moccasin[/COLOR]|[COLOR ffffdead]navajowhite[/COLOR]|[COLOR fffdf5e6]oldlace[/COLOR]|[COLOR ffffefd5]papayawhip[/COLOR]|[COLOR ffffdab9]peachpuff[/COLOR]|[COLOR ffffc0cb]pink[/COLOR]|[COLOR ffdda0dd]plum[/COLOR]|[COLOR ff800080]purple[/COLOR]|[COLOR ff8b008b]darkmagenta[/COLOR]|[COLOR ffee82ee]violet[/COLOR]|[COLOR ffba55d3]mediumorchid[/COLOR]|[COLOR ff9370db]mediumpurple[/COLOR]|[COLOR ffffb6c1]lightpink[/COLOR]|[COLOR ffffa07a]lightsalmon[/COLOR]|[COLOR fffaf0e6]linen[/COLOR]|[COLOR ffff00ff]magenta[/COLOR]|[COLOR ffda70d6]orchid[/COLOR]|[COLOR ff800000]maroon[/COLOR]|[COLOR ff48d1cc]mediumturquoise[/COLOR]|[COLOR ffc71585]mediumvioletred[/COLOR]|[COLOR ffa52a2a]brown[/COLOR]|[COLOR ffdeb887]burlywood[/COLOR]|[COLOR ffd2b48c]tan[/COLOR]|[COLOR ffffffe0]lightyellow[/COLOR]|[COLOR ff8b4513]saddlebrown[/COLOR]|[COLOR fffa8072]salmon[/COLOR]|[COLOR ffbc8f8f]rosybrown[/COLOR]|[COLOR fff4a460]sandybrown[/COLOR]|[COLOR ffa0522d]sienna[/COLOR]|[COLOR ffcd853f]peru[/COLOR]|[COLOR ffd8bfd8]thistle[/COLOR]|[COLOR fff5deb3]wheat[/COLOR]|[COLOR fffff5ee]seashell[/COLOR]|[COLOR fffffafa]snow[/COLOR]|[COLOR fff5f5f5]whitesmoke[/COLOR]|" />
+        <setting id="var.color_focus_current" label="focus_current (Popup Menu)" type="select" default="[COLOR ff696969]dimgrey[/COLOR]" values="[COLOR 00000000]none[/COLOR]|[COLOR 00000000]transparent[/COLOR]|[COLOR ff606060]black[/COLOR]|[COLOR ffffffff]white[/COLOR]|[COLOR ff808080]grey[/COLOR]|[COLOR ff696969]dimgrey[/COLOR]|[COLOR ffd3d3d3]lightgrey[/COLOR]|[COLOR ffa9a9a9]darkgrey[/COLOR]|[COLOR ff2f4f4f]darkslategrey[/COLOR]|[COLOR ff7b68ee]mediumslateblue[/COLOR]|[COLOR ff708090]slategrey[/COLOR]|[COLOR ff778899]lightslategray[/COLOR]|[COLOR ff0000ff]blue[/COLOR]|[COLOR ff1e90ff]dodgerblue[/COLOR]|[COLOR ff5f9ea0]cadetblue[/COLOR]|[COLOR ff00bfff]deepskyblue[/COLOR]|[COLOR ff87cefa]lightskyblue[/COLOR]|[COLOR ffb0c4de]lightsteelblue[/COLOR]|[COLOR ff4682b4]steelblue[/COLOR]|[COLOR ffe0ffff]lightcyan[/COLOR]|[COLOR ffc0c0c0]silver[/COLOR]|[COLOR ff87ceeb]skyblue[/COLOR]|[COLOR ff191970]midnightblue[/COLOR]|[COLOR ffadd8e6]lightblue[/COLOR]|[COLOR ff0000cd]mediumblue[/COLOR]|[COLOR ff6495ed]cornflowerblue[/COLOR]|[COLOR ff8a2be2]blueviolet[/COLOR]|[COLOR ff00ffff]cyan[/COLOR]|[COLOR ff00008b]darkblue[/COLOR]|[COLOR ff008b8b]darkcyan[/COLOR]|[COLOR ff6a5acd]slateblue[/COLOR]|[COLOR ff483d8b]darkslateblue[/COLOR]|[COLOR ff40e0d0]turquoise[/COLOR]|[COLOR ff4169e1]royalblue[/COLOR]|[COLOR ffb0e0e6]powderblue[/COLOR]|[COLOR ff008080]teal[/COLOR]|[COLOR ffafeeee]paleturquoise[/COLOR]|[COLOR ff000080]navy[/COLOR]|[COLOR ff66cdaa]mediumaquamarine[/COLOR]|[COLOR ff90ee90]lightgreen[/COLOR]|[COLOR ff3cb371]mediumseagreen[/COLOR]|[COLOR ff7cfc00]lawngreen[/COLOR]|[COLOR ff006400]darkgreen[/COLOR]|[COLOR ff556b2f]darkolivegreen[/COLOR]|[COLOR ffbdb76b]darkkhaki[/COLOR]|[COLOR fff0e68c]khaki[/COLOR]|[COLOR ff7fff00]chartreuse[/COLOR]|[COLOR ff228b22]forestgreen[/COLOR]|[COLOR ff2e8b57]seagreen[/COLOR]|[COLOR ff9acd32]yellowgreen[/COLOR]|[COLOR ffadff2f]greenyellow[/COLOR]|[COLOR ff008000]green[/COLOR]|[COLOR ff8fbc8f]darkseagreen[/COLOR]|[COLOR ff20b2aa]lightseagreen[/COLOR]|[COLOR ff00ff7f]springgreen[/COLOR]|[COLOR ff00fa9a]mediumspringgreen[/COLOR]|[COLOR ff00ff00]lime[/COLOR]|[COLOR ffdb7093]palevioletred[/COLOR]|[COLOR ffb22222]firebrick[/COLOR]| [COLOR ffdc143c]crimson[/COLOR]|[COLOR ff8b0000]darkred[/COLOR]|[COLOR ffff0000]red[/COLOR]|[COLOR ffff6347]tomato[/COLOR]|[COLOR ffffa500]orange[/COLOR]|[COLOR ffff4500]orangered[/COLOR]|[COLOR ffffff00]yellow[/COLOR]|[COLOR ffffd700]gold[/COLOR]|[COLOR ffeee8aa]palegoldenrod[/COLOR]|[COLOR ff6b8e23]olivedrab[/COLOR]|[COLOR ff98fb98]palegreen[/COLOR]|[COLOR ff808000]olive[/COLOR]|[COLOR ff32cd32]limegreen[/COLOR]|[COLOR ffb8860b]darkgoldenrod[/COLOR]|[COLOR fffafad2]lightgoldenrodyellow[/COLOR]|[COLOR ffdaa520]goldenrod[/COLOR]|[COLOR ffff8c00]darkorange[/COLOR]|[COLOR ff9932cc]darkorchid[/COLOR]|[COLOR ffe9967a]darksalmon[/COLOR]|[COLOR ff00ced1]darkturquoise[/COLOR]|[COLOR ff9400d3]darkviolet[/COLOR]|[COLOR fff0f8ff]aliceblue[/COLOR]|[COLOR fffaebd7]antiquewhite[/COLOR]|[COLOR ff00ffff]aqua[/COLOR]|[COLOR ff7fffd4]aquamarine[/COLOR]|[COLOR fff0ffff]azure[/COLOR]|[COLOR fff5f5dc]beige[/COLOR]|[COLOR ffffe4c4]bisque[/COLOR]|[COLOR ffffebcd]blanchedalmond[/COLOR]|[COLOR ffd2691e]chocolate[/COLOR]|[COLOR ffff7f50]coral[/COLOR]|[COLOR fffff8dc]cornsilk[/COLOR]|[COLOR ffff1493]deeppink[/COLOR]|[COLOR fffffaf0]floralwhite[/COLOR]|[COLOR ffff00ff]fuchsia[/COLOR]|[COLOR ffdcdcdc]gainsboro[/COLOR]|[COLOR fff8f8ff]ghostwhite[/COLOR]|[COLOR fff0fff0]honeydew[/COLOR]|[COLOR ffff69b4]hotpink[/COLOR]|[COLOR ffcd5c5c]indianred[/COLOR]|[COLOR ff4b0082]indigo[/COLOR]|[COLOR fffffff0]ivory[/COLOR]|[COLOR ffe6e6fa]lavender[/COLOR]|[COLOR fffff0f5]lavenderblush[/COLOR]|[COLOR fffffacd]lemonchiffon[/COLOR]|[COLOR fff08080]lightcoral[/COLOR]|[COLOR fff5fffa]mintcream[/COLOR]|[COLOR ffffe4e1]mistyrose[/COLOR]|[COLOR ffffe4b5]moccasin[/COLOR]|[COLOR ffffdead]navajowhite[/COLOR]|[COLOR fffdf5e6]oldlace[/COLOR]|[COLOR ffffefd5]papayawhip[/COLOR]|[COLOR ffffdab9]peachpuff[/COLOR]|[COLOR ffffc0cb]pink[/COLOR]|[COLOR ffdda0dd]plum[/COLOR]|[COLOR ff800080]purple[/COLOR]|[COLOR ff8b008b]darkmagenta[/COLOR]|[COLOR ffee82ee]violet[/COLOR]|[COLOR ffba55d3]mediumorchid[/COLOR]|[COLOR ff9370db]mediumpurple[/COLOR]|[COLOR ffffb6c1]lightpink[/COLOR]|[COLOR ffffa07a]lightsalmon[/COLOR]|[COLOR fffaf0e6]linen[/COLOR]|[COLOR ffff00ff]magenta[/COLOR]|[COLOR ffda70d6]orchid[/COLOR]|[COLOR ff800000]maroon[/COLOR]|[COLOR ff48d1cc]mediumturquoise[/COLOR]|[COLOR ffc71585]mediumvioletred[/COLOR]|[COLOR ffa52a2a]brown[/COLOR]|[COLOR ffdeb887]burlywood[/COLOR]|[COLOR ffd2b48c]tan[/COLOR]|[COLOR ffffffe0]lightyellow[/COLOR]|[COLOR ff8b4513]saddlebrown[/COLOR]|[COLOR fffa8072]salmon[/COLOR]|[COLOR ffbc8f8f]rosybrown[/COLOR]|[COLOR fff4a460]sandybrown[/COLOR]|[COLOR ffa0522d]sienna[/COLOR]|[COLOR ffcd853f]peru[/COLOR]|[COLOR ffd8bfd8]thistle[/COLOR]|[COLOR fff5deb3]wheat[/COLOR]|[COLOR fffff5ee]seashell[/COLOR]|[COLOR fffffafa]snow[/COLOR]|[COLOR fff5f5f5]whitesmoke[/COLOR]|" />
+        <setting id="var.color_scrollbarnf" label="scrollbarnf" type="select" default="[COLOR ff696969]dimgrey[/COLOR]" values="[COLOR 00000000]none[/COLOR]|[COLOR 00000000]transparent[/COLOR]|[COLOR ff606060]black[/COLOR]|[COLOR ffffffff]white[/COLOR]|[COLOR ff808080]grey[/COLOR]|[COLOR ff696969]dimgrey[/COLOR]|[COLOR ffd3d3d3]lightgrey[/COLOR]|[COLOR ffa9a9a9]darkgrey[/COLOR]|[COLOR ff2f4f4f]darkslategrey[/COLOR]|[COLOR ff7b68ee]mediumslateblue[/COLOR]|[COLOR ff708090]slategrey[/COLOR]|[COLOR ff778899]lightslategray[/COLOR]|[COLOR ff0000ff]blue[/COLOR]|[COLOR ff1e90ff]dodgerblue[/COLOR]|[COLOR ff5f9ea0]cadetblue[/COLOR]|[COLOR ff00bfff]deepskyblue[/COLOR]|[COLOR ff87cefa]lightskyblue[/COLOR]|[COLOR ffb0c4de]lightsteelblue[/COLOR]|[COLOR ff4682b4]steelblue[/COLOR]|[COLOR ffe0ffff]lightcyan[/COLOR]|[COLOR ffc0c0c0]silver[/COLOR]|[COLOR ff87ceeb]skyblue[/COLOR]|[COLOR ff191970]midnightblue[/COLOR]|[COLOR ffadd8e6]lightblue[/COLOR]|[COLOR ff0000cd]mediumblue[/COLOR]|[COLOR ff6495ed]cornflowerblue[/COLOR]|[COLOR ff8a2be2]blueviolet[/COLOR]|[COLOR ff00ffff]cyan[/COLOR]|[COLOR ff00008b]darkblue[/COLOR]|[COLOR ff008b8b]darkcyan[/COLOR]|[COLOR ff6a5acd]slateblue[/COLOR]|[COLOR ff483d8b]darkslateblue[/COLOR]|[COLOR ff40e0d0]turquoise[/COLOR]|[COLOR ff4169e1]royalblue[/COLOR]|[COLOR ffb0e0e6]powderblue[/COLOR]|[COLOR ff008080]teal[/COLOR]|[COLOR ffafeeee]paleturquoise[/COLOR]|[COLOR ff000080]navy[/COLOR]|[COLOR ff66cdaa]mediumaquamarine[/COLOR]|[COLOR ff90ee90]lightgreen[/COLOR]|[COLOR ff3cb371]mediumseagreen[/COLOR]|[COLOR ff7cfc00]lawngreen[/COLOR]|[COLOR ff006400]darkgreen[/COLOR]|[COLOR ff556b2f]darkolivegreen[/COLOR]|[COLOR ffbdb76b]darkkhaki[/COLOR]|[COLOR fff0e68c]khaki[/COLOR]|[COLOR ff7fff00]chartreuse[/COLOR]|[COLOR ff228b22]forestgreen[/COLOR]|[COLOR ff2e8b57]seagreen[/COLOR]|[COLOR ff9acd32]yellowgreen[/COLOR]|[COLOR ffadff2f]greenyellow[/COLOR]|[COLOR ff008000]green[/COLOR]|[COLOR ff8fbc8f]darkseagreen[/COLOR]|[COLOR ff20b2aa]lightseagreen[/COLOR]|[COLOR ff00ff7f]springgreen[/COLOR]|[COLOR ff00fa9a]mediumspringgreen[/COLOR]|[COLOR ff00ff00]lime[/COLOR]|[COLOR ffdb7093]palevioletred[/COLOR]|[COLOR ffb22222]firebrick[/COLOR]| [COLOR ffdc143c]crimson[/COLOR]|[COLOR ff8b0000]darkred[/COLOR]|[COLOR ffff0000]red[/COLOR]|[COLOR ffff6347]tomato[/COLOR]|[COLOR ffffa500]orange[/COLOR]|[COLOR ffff4500]orangered[/COLOR]|[COLOR ffffff00]yellow[/COLOR]|[COLOR ffffd700]gold[/COLOR]|[COLOR ffeee8aa]palegoldenrod[/COLOR]|[COLOR ff6b8e23]olivedrab[/COLOR]|[COLOR ff98fb98]palegreen[/COLOR]|[COLOR ff808000]olive[/COLOR]|[COLOR ff32cd32]limegreen[/COLOR]|[COLOR ffb8860b]darkgoldenrod[/COLOR]|[COLOR fffafad2]lightgoldenrodyellow[/COLOR]|[COLOR ffdaa520]goldenrod[/COLOR]|[COLOR ffff8c00]darkorange[/COLOR]|[COLOR ff9932cc]darkorchid[/COLOR]|[COLOR ffe9967a]darksalmon[/COLOR]|[COLOR ff00ced1]darkturquoise[/COLOR]|[COLOR ff9400d3]darkviolet[/COLOR]|[COLOR fff0f8ff]aliceblue[/COLOR]|[COLOR fffaebd7]antiquewhite[/COLOR]|[COLOR ff00ffff]aqua[/COLOR]|[COLOR ff7fffd4]aquamarine[/COLOR]|[COLOR fff0ffff]azure[/COLOR]|[COLOR fff5f5dc]beige[/COLOR]|[COLOR ffffe4c4]bisque[/COLOR]|[COLOR ffffebcd]blanchedalmond[/COLOR]|[COLOR ffd2691e]chocolate[/COLOR]|[COLOR ffff7f50]coral[/COLOR]|[COLOR fffff8dc]cornsilk[/COLOR]|[COLOR ffff1493]deeppink[/COLOR]|[COLOR fffffaf0]floralwhite[/COLOR]|[COLOR ffff00ff]fuchsia[/COLOR]|[COLOR ffdcdcdc]gainsboro[/COLOR]|[COLOR fff8f8ff]ghostwhite[/COLOR]|[COLOR fff0fff0]honeydew[/COLOR]|[COLOR ffff69b4]hotpink[/COLOR]|[COLOR ffcd5c5c]indianred[/COLOR]|[COLOR ff4b0082]indigo[/COLOR]|[COLOR fffffff0]ivory[/COLOR]|[COLOR ffe6e6fa]lavender[/COLOR]|[COLOR fffff0f5]lavenderblush[/COLOR]|[COLOR fffffacd]lemonchiffon[/COLOR]|[COLOR fff08080]lightcoral[/COLOR]|[COLOR fff5fffa]mintcream[/COLOR]|[COLOR ffffe4e1]mistyrose[/COLOR]|[COLOR ffffe4b5]moccasin[/COLOR]|[COLOR ffffdead]navajowhite[/COLOR]|[COLOR fffdf5e6]oldlace[/COLOR]|[COLOR ffffefd5]papayawhip[/COLOR]|[COLOR ffffdab9]peachpuff[/COLOR]|[COLOR ffffc0cb]pink[/COLOR]|[COLOR ffdda0dd]plum[/COLOR]|[COLOR ff800080]purple[/COLOR]|[COLOR ff8b008b]darkmagenta[/COLOR]|[COLOR ffee82ee]violet[/COLOR]|[COLOR ffba55d3]mediumorchid[/COLOR]|[COLOR ff9370db]mediumpurple[/COLOR]|[COLOR ffffb6c1]lightpink[/COLOR]|[COLOR ffffa07a]lightsalmon[/COLOR]|[COLOR fffaf0e6]linen[/COLOR]|[COLOR ffff00ff]magenta[/COLOR]|[COLOR ffda70d6]orchid[/COLOR]|[COLOR ff800000]maroon[/COLOR]|[COLOR ff48d1cc]mediumturquoise[/COLOR]|[COLOR ffc71585]mediumvioletred[/COLOR]|[COLOR ffa52a2a]brown[/COLOR]|[COLOR ffdeb887]burlywood[/COLOR]|[COLOR ffd2b48c]tan[/COLOR]|[COLOR ffffffe0]lightyellow[/COLOR]|[COLOR ff8b4513]saddlebrown[/COLOR]|[COLOR fffa8072]salmon[/COLOR]|[COLOR ffbc8f8f]rosybrown[/COLOR]|[COLOR fff4a460]sandybrown[/COLOR]|[COLOR ffa0522d]sienna[/COLOR]|[COLOR ffcd853f]peru[/COLOR]|[COLOR ffd8bfd8]thistle[/COLOR]|[COLOR fff5deb3]wheat[/COLOR]|[COLOR fffff5ee]seashell[/COLOR]|[COLOR fffffafa]snow[/COLOR]|[COLOR fff5f5f5]whitesmoke[/COLOR]|" />
+        <setting id="var.color_scrollbarbg" label="scrollbarbg" type="select" default="[COLOR ff606060]black[/COLOR]" values="[COLOR 00000000]none[/COLOR]|[COLOR 00000000]transparent[/COLOR]|[COLOR ff606060]black[/COLOR]|[COLOR ffffffff]white[/COLOR]|[COLOR ff808080]grey[/COLOR]|[COLOR ff696969]dimgrey[/COLOR]|[COLOR ffd3d3d3]lightgrey[/COLOR]|[COLOR ffa9a9a9]darkgrey[/COLOR]|[COLOR ff2f4f4f]darkslategrey[/COLOR]|[COLOR ff7b68ee]mediumslateblue[/COLOR]|[COLOR ff708090]slategrey[/COLOR]|[COLOR ff778899]lightslategray[/COLOR]|[COLOR ff0000ff]blue[/COLOR]|[COLOR ff1e90ff]dodgerblue[/COLOR]|[COLOR ff5f9ea0]cadetblue[/COLOR]|[COLOR ff00bfff]deepskyblue[/COLOR]|[COLOR ff87cefa]lightskyblue[/COLOR]|[COLOR ffb0c4de]lightsteelblue[/COLOR]|[COLOR ff4682b4]steelblue[/COLOR]|[COLOR ffe0ffff]lightcyan[/COLOR]|[COLOR ffc0c0c0]silver[/COLOR]|[COLOR ff87ceeb]skyblue[/COLOR]|[COLOR ff191970]midnightblue[/COLOR]|[COLOR ffadd8e6]lightblue[/COLOR]|[COLOR ff0000cd]mediumblue[/COLOR]|[COLOR ff6495ed]cornflowerblue[/COLOR]|[COLOR ff8a2be2]blueviolet[/COLOR]|[COLOR ff00ffff]cyan[/COLOR]|[COLOR ff00008b]darkblue[/COLOR]|[COLOR ff008b8b]darkcyan[/COLOR]|[COLOR ff6a5acd]slateblue[/COLOR]|[COLOR ff483d8b]darkslateblue[/COLOR]|[COLOR ff40e0d0]turquoise[/COLOR]|[COLOR ff4169e1]royalblue[/COLOR]|[COLOR ffb0e0e6]powderblue[/COLOR]|[COLOR ff008080]teal[/COLOR]|[COLOR ffafeeee]paleturquoise[/COLOR]|[COLOR ff000080]navy[/COLOR]|[COLOR ff66cdaa]mediumaquamarine[/COLOR]|[COLOR ff90ee90]lightgreen[/COLOR]|[COLOR ff3cb371]mediumseagreen[/COLOR]|[COLOR ff7cfc00]lawngreen[/COLOR]|[COLOR ff006400]darkgreen[/COLOR]|[COLOR ff556b2f]darkolivegreen[/COLOR]|[COLOR ffbdb76b]darkkhaki[/COLOR]|[COLOR fff0e68c]khaki[/COLOR]|[COLOR ff7fff00]chartreuse[/COLOR]|[COLOR ff228b22]forestgreen[/COLOR]|[COLOR ff2e8b57]seagreen[/COLOR]|[COLOR ff9acd32]yellowgreen[/COLOR]|[COLOR ffadff2f]greenyellow[/COLOR]|[COLOR ff008000]green[/COLOR]|[COLOR ff8fbc8f]darkseagreen[/COLOR]|[COLOR ff20b2aa]lightseagreen[/COLOR]|[COLOR ff00ff7f]springgreen[/COLOR]|[COLOR ff00fa9a]mediumspringgreen[/COLOR]|[COLOR ff00ff00]lime[/COLOR]|[COLOR ffdb7093]palevioletred[/COLOR]|[COLOR ffb22222]firebrick[/COLOR]| [COLOR ffdc143c]crimson[/COLOR]|[COLOR ff8b0000]darkred[/COLOR]|[COLOR ffff0000]red[/COLOR]|[COLOR ffff6347]tomato[/COLOR]|[COLOR ffffa500]orange[/COLOR]|[COLOR ffff4500]orangered[/COLOR]|[COLOR ffffff00]yellow[/COLOR]|[COLOR ffffd700]gold[/COLOR]|[COLOR ffeee8aa]palegoldenrod[/COLOR]|[COLOR ff6b8e23]olivedrab[/COLOR]|[COLOR ff98fb98]palegreen[/COLOR]|[COLOR ff808000]olive[/COLOR]|[COLOR ff32cd32]limegreen[/COLOR]|[COLOR ffb8860b]darkgoldenrod[/COLOR]|[COLOR fffafad2]lightgoldenrodyellow[/COLOR]|[COLOR ffdaa520]goldenrod[/COLOR]|[COLOR ffff8c00]darkorange[/COLOR]|[COLOR ff9932cc]darkorchid[/COLOR]|[COLOR ffe9967a]darksalmon[/COLOR]|[COLOR ff00ced1]darkturquoise[/COLOR]|[COLOR ff9400d3]darkviolet[/COLOR]|[COLOR fff0f8ff]aliceblue[/COLOR]|[COLOR fffaebd7]antiquewhite[/COLOR]|[COLOR ff00ffff]aqua[/COLOR]|[COLOR ff7fffd4]aquamarine[/COLOR]|[COLOR fff0ffff]azure[/COLOR]|[COLOR fff5f5dc]beige[/COLOR]|[COLOR ffffe4c4]bisque[/COLOR]|[COLOR ffffebcd]blanchedalmond[/COLOR]|[COLOR ffd2691e]chocolate[/COLOR]|[COLOR ffff7f50]coral[/COLOR]|[COLOR fffff8dc]cornsilk[/COLOR]|[COLOR ffff1493]deeppink[/COLOR]|[COLOR fffffaf0]floralwhite[/COLOR]|[COLOR ffff00ff]fuchsia[/COLOR]|[COLOR ffdcdcdc]gainsboro[/COLOR]|[COLOR fff8f8ff]ghostwhite[/COLOR]|[COLOR fff0fff0]honeydew[/COLOR]|[COLOR ffff69b4]hotpink[/COLOR]|[COLOR ffcd5c5c]indianred[/COLOR]|[COLOR ff4b0082]indigo[/COLOR]|[COLOR fffffff0]ivory[/COLOR]|[COLOR ffe6e6fa]lavender[/COLOR]|[COLOR fffff0f5]lavenderblush[/COLOR]|[COLOR fffffacd]lemonchiffon[/COLOR]|[COLOR fff08080]lightcoral[/COLOR]|[COLOR fff5fffa]mintcream[/COLOR]|[COLOR ffffe4e1]mistyrose[/COLOR]|[COLOR ffffe4b5]moccasin[/COLOR]|[COLOR ffffdead]navajowhite[/COLOR]|[COLOR fffdf5e6]oldlace[/COLOR]|[COLOR ffffefd5]papayawhip[/COLOR]|[COLOR ffffdab9]peachpuff[/COLOR]|[COLOR ffffc0cb]pink[/COLOR]|[COLOR ffdda0dd]plum[/COLOR]|[COLOR ff800080]purple[/COLOR]|[COLOR ff8b008b]darkmagenta[/COLOR]|[COLOR ffee82ee]violet[/COLOR]|[COLOR ffba55d3]mediumorchid[/COLOR]|[COLOR ff9370db]mediumpurple[/COLOR]|[COLOR ffffb6c1]lightpink[/COLOR]|[COLOR ffffa07a]lightsalmon[/COLOR]|[COLOR fffaf0e6]linen[/COLOR]|[COLOR ffff00ff]magenta[/COLOR]|[COLOR ffda70d6]orchid[/COLOR]|[COLOR ff800000]maroon[/COLOR]|[COLOR ff48d1cc]mediumturquoise[/COLOR]|[COLOR ffc71585]mediumvioletred[/COLOR]|[COLOR ffa52a2a]brown[/COLOR]|[COLOR ffdeb887]burlywood[/COLOR]|[COLOR ffd2b48c]tan[/COLOR]|[COLOR ffffffe0]lightyellow[/COLOR]|[COLOR ff8b4513]saddlebrown[/COLOR]|[COLOR fffa8072]salmon[/COLOR]|[COLOR ffbc8f8f]rosybrown[/COLOR]|[COLOR fff4a460]sandybrown[/COLOR]|[COLOR ffa0522d]sienna[/COLOR]|[COLOR ffcd853f]peru[/COLOR]|[COLOR ffd8bfd8]thistle[/COLOR]|[COLOR fff5deb3]wheat[/COLOR]|[COLOR fffff5ee]seashell[/COLOR]|[COLOR fffffafa]snow[/COLOR]|[COLOR fff5f5f5]whitesmoke[/COLOR]|" />
+        <setting id="var.color_progress" label="progress" type="select" default="[COLOR ff0000ff]blue[/COLOR]" values="[COLOR 00000000]none[/COLOR]|[COLOR 00000000]transparent[/COLOR]|[COLOR ff606060]black[/COLOR]|[COLOR ffffffff]white[/COLOR]|[COLOR ff808080]grey[/COLOR]|[COLOR ff696969]dimgrey[/COLOR]|[COLOR ffd3d3d3]lightgrey[/COLOR]|[COLOR ffa9a9a9]darkgrey[/COLOR]|[COLOR ff2f4f4f]darkslategrey[/COLOR]|[COLOR ff7b68ee]mediumslateblue[/COLOR]|[COLOR ff708090]slategrey[/COLOR]|[COLOR ff778899]lightslategray[/COLOR]|[COLOR ff0000ff]blue[/COLOR]|[COLOR ff1e90ff]dodgerblue[/COLOR]|[COLOR ff5f9ea0]cadetblue[/COLOR]|[COLOR ff00bfff]deepskyblue[/COLOR]|[COLOR ff87cefa]lightskyblue[/COLOR]|[COLOR ffb0c4de]lightsteelblue[/COLOR]|[COLOR ff4682b4]steelblue[/COLOR]|[COLOR ffe0ffff]lightcyan[/COLOR]|[COLOR ffc0c0c0]silver[/COLOR]|[COLOR ff87ceeb]skyblue[/COLOR]|[COLOR ff191970]midnightblue[/COLOR]|[COLOR ffadd8e6]lightblue[/COLOR]|[COLOR ff0000cd]mediumblue[/COLOR]|[COLOR ff6495ed]cornflowerblue[/COLOR]|[COLOR ff8a2be2]blueviolet[/COLOR]|[COLOR ff00ffff]cyan[/COLOR]|[COLOR ff00008b]darkblue[/COLOR]|[COLOR ff008b8b]darkcyan[/COLOR]|[COLOR ff6a5acd]slateblue[/COLOR]|[COLOR ff483d8b]darkslateblue[/COLOR]|[COLOR ff40e0d0]turquoise[/COLOR]|[COLOR ff4169e1]royalblue[/COLOR]|[COLOR ffb0e0e6]powderblue[/COLOR]|[COLOR ff008080]teal[/COLOR]|[COLOR ffafeeee]paleturquoise[/COLOR]|[COLOR ff000080]navy[/COLOR]|[COLOR ff66cdaa]mediumaquamarine[/COLOR]|[COLOR ff90ee90]lightgreen[/COLOR]|[COLOR ff3cb371]mediumseagreen[/COLOR]|[COLOR ff7cfc00]lawngreen[/COLOR]|[COLOR ff006400]darkgreen[/COLOR]|[COLOR ff556b2f]darkolivegreen[/COLOR]|[COLOR ffbdb76b]darkkhaki[/COLOR]|[COLOR fff0e68c]khaki[/COLOR]|[COLOR ff7fff00]chartreuse[/COLOR]|[COLOR ff228b22]forestgreen[/COLOR]|[COLOR ff2e8b57]seagreen[/COLOR]|[COLOR ff9acd32]yellowgreen[/COLOR]|[COLOR ffadff2f]greenyellow[/COLOR]|[COLOR ff008000]green[/COLOR]|[COLOR ff8fbc8f]darkseagreen[/COLOR]|[COLOR ff20b2aa]lightseagreen[/COLOR]|[COLOR ff00ff7f]springgreen[/COLOR]|[COLOR ff00fa9a]mediumspringgreen[/COLOR]|[COLOR ff00ff00]lime[/COLOR]|[COLOR ffdb7093]palevioletred[/COLOR]|[COLOR ffb22222]firebrick[/COLOR]| [COLOR ffdc143c]crimson[/COLOR]|[COLOR ff8b0000]darkred[/COLOR]|[COLOR ffff0000]red[/COLOR]|[COLOR ffff6347]tomato[/COLOR]|[COLOR ffffa500]orange[/COLOR]|[COLOR ffff4500]orangered[/COLOR]|[COLOR ffffff00]yellow[/COLOR]|[COLOR ffffd700]gold[/COLOR]|[COLOR ffeee8aa]palegoldenrod[/COLOR]|[COLOR ff6b8e23]olivedrab[/COLOR]|[COLOR ff98fb98]palegreen[/COLOR]|[COLOR ff808000]olive[/COLOR]|[COLOR ff32cd32]limegreen[/COLOR]|[COLOR ffb8860b]darkgoldenrod[/COLOR]|[COLOR fffafad2]lightgoldenrodyellow[/COLOR]|[COLOR ffdaa520]goldenrod[/COLOR]|[COLOR ffff8c00]darkorange[/COLOR]|[COLOR ff9932cc]darkorchid[/COLOR]|[COLOR ffe9967a]darksalmon[/COLOR]|[COLOR ff00ced1]darkturquoise[/COLOR]|[COLOR ff9400d3]darkviolet[/COLOR]|[COLOR fff0f8ff]aliceblue[/COLOR]|[COLOR fffaebd7]antiquewhite[/COLOR]|[COLOR ff00ffff]aqua[/COLOR]|[COLOR ff7fffd4]aquamarine[/COLOR]|[COLOR fff0ffff]azure[/COLOR]|[COLOR fff5f5dc]beige[/COLOR]|[COLOR ffffe4c4]bisque[/COLOR]|[COLOR ffffebcd]blanchedalmond[/COLOR]|[COLOR ffd2691e]chocolate[/COLOR]|[COLOR ffff7f50]coral[/COLOR]|[COLOR fffff8dc]cornsilk[/COLOR]|[COLOR ffff1493]deeppink[/COLOR]|[COLOR fffffaf0]floralwhite[/COLOR]|[COLOR ffff00ff]fuchsia[/COLOR]|[COLOR ffdcdcdc]gainsboro[/COLOR]|[COLOR fff8f8ff]ghostwhite[/COLOR]|[COLOR fff0fff0]honeydew[/COLOR]|[COLOR ffff69b4]hotpink[/COLOR]|[COLOR ffcd5c5c]indianred[/COLOR]|[COLOR ff4b0082]indigo[/COLOR]|[COLOR fffffff0]ivory[/COLOR]|[COLOR ffe6e6fa]lavender[/COLOR]|[COLOR fffff0f5]lavenderblush[/COLOR]|[COLOR fffffacd]lemonchiffon[/COLOR]|[COLOR fff08080]lightcoral[/COLOR]|[COLOR fff5fffa]mintcream[/COLOR]|[COLOR ffffe4e1]mistyrose[/COLOR]|[COLOR ffffe4b5]moccasin[/COLOR]|[COLOR ffffdead]navajowhite[/COLOR]|[COLOR fffdf5e6]oldlace[/COLOR]|[COLOR ffffefd5]papayawhip[/COLOR]|[COLOR ffffdab9]peachpuff[/COLOR]|[COLOR ffffc0cb]pink[/COLOR]|[COLOR ffdda0dd]plum[/COLOR]|[COLOR ff800080]purple[/COLOR]|[COLOR ff8b008b]darkmagenta[/COLOR]|[COLOR ffee82ee]violet[/COLOR]|[COLOR ffba55d3]mediumorchid[/COLOR]|[COLOR ff9370db]mediumpurple[/COLOR]|[COLOR ffffb6c1]lightpink[/COLOR]|[COLOR ffffa07a]lightsalmon[/COLOR]|[COLOR fffaf0e6]linen[/COLOR]|[COLOR ffff00ff]magenta[/COLOR]|[COLOR ffda70d6]orchid[/COLOR]|[COLOR ff800000]maroon[/COLOR]|[COLOR ff48d1cc]mediumturquoise[/COLOR]|[COLOR ffc71585]mediumvioletred[/COLOR]|[COLOR ffa52a2a]brown[/COLOR]|[COLOR ffdeb887]burlywood[/COLOR]|[COLOR ffd2b48c]tan[/COLOR]|[COLOR ffffffe0]lightyellow[/COLOR]|[COLOR ff8b4513]saddlebrown[/COLOR]|[COLOR fffa8072]salmon[/COLOR]|[COLOR ffbc8f8f]rosybrown[/COLOR]|[COLOR fff4a460]sandybrown[/COLOR]|[COLOR ffa0522d]sienna[/COLOR]|[COLOR ffcd853f]peru[/COLOR]|[COLOR ffd8bfd8]thistle[/COLOR]|[COLOR fff5deb3]wheat[/COLOR]|[COLOR fffff5ee]seashell[/COLOR]|[COLOR fffffafa]snow[/COLOR]|[COLOR fff5f5f5]whitesmoke[/COLOR]|" />
         
+        <!-- images -->
+        <setting type="lsep" label="Black and White Fade Levels (White is colordiffuse)"/>
+        <setting id="var.image_fade"             label="image_fade"          type="text" default="50.png" visible="true" />
+        <setting id="var.image_fadebg"           label="image_fadebg"        type="text" default="70.png" visible="true" />
+        <setting id="var.image_fadewhite"        label="image_fadewhite"     type="text" default="50.png" visible="true" />
+        <setting id="var.image_fadewhitebg"      label="image_fadewhitebg"   type="text" default="50.png" visible="true" />
+        <setting id="var.image_helpmarker"       label="image_helpmarker"    type="text" default="backgrounds/help_marker.png" visible="true" />
         
-        <setting type="lsep" label="VOD 2 Paths (ie: plugin://plugin.123/123_index/)"/>
-        <setting id="vod2title1" label="VOD2 Title 1" type="text" default="Custom 2"/>
-        <setting id="vod2path1"  label="VOD2 Path  1" type="text" default="smb://"/>
-        <setting id="vod2thumb1" label="VOD2 Thumb 1" type="text" default="library/movies.png"/>
-        <setting id="vod2title2" label="VOD2 Title 2" type="text" default=""/>
-        <setting id="vod2path2"  label="VOD2 Path  2" type="text" default=""/>
-        <setting id="vod2thumb2" label="VOD2 Thumb 2" type="text" default=""/>
-        <setting id="vod2title3" label="VOD2 Title 3" type="text" default=""/>
-        <setting id="vod2path3"  label="VOD2 Path  3" type="text" default=""/>
-        <setting id="vod2thumb3" label="VOD2 Thumb 3" type="text" default=""/>
-        <setting id="vod2title4" label="VOD2 Title 4" type="text" default=""/>
-        <setting id="vod2path4"  label="VOD2 Path  4" type="text" default=""/>
-        <setting id="vod2thumb4" label="VOD2 Thumb 4" type="text" default=""/>
-        <setting id="vod2title5" label="VOD2 Title 5" type="text" default=""/>
-        <setting id="vod2path5"  label="VOD2 Path  5" type="text" default=""/>
-        <setting id="vod2thumb5" label="VOD2 Thumb 5" type="text" default=""/>
-        <setting id="vod2title6" label="VOD2 Title 6" type="text" default=""/>
-        <setting id="vod2path6"  label="VOD2 Path  6" type="text" default=""/>
-        <setting id="vod2thumb6" label="VOD2 Thumb 6" type="text" default=""/>
-        <setting id="vod2title7" label="VOD2 Title 7" type="text" default=""/>
-        <setting id="vod2path7"  label="VOD2 Path  7" type="text" default=""/>
-        <setting id="vod2thumb7" label="VOD2 Thumb 7" type="text" default=""/>
-        <setting id="vod2title8" label="VOD2 Title 8" type="text" default=""/>
-        <setting id="vod2path8"  label="VOD2 Path  8" type="text" default=""/>
-        <setting id="vod2thumb8" label="VOD2 Thumb 8" type="text" default=""/>
-        <setting id="vod2title9" label="VOD2 Title 9" type="text" default=""/>
-        <setting id="vod2path9"  label="VOD2 Path  9" type="text" default=""/>
-        <setting id="vod2thumb9" label="VOD2 Thumb 9" type="text" default=""/>
-        <setting id="vod2title10" label="VOD2 Title 10" type="text" default=""/>
-        <setting id="vod2path10"  label="VOD2 Path  10" type="text" default=""/>
-        <setting id="vod2thumb10" label="VOD2 Thumb 10" type="text" default=""/>
-        <setting id="vod2title11" label="VOD2 Title 11" type="text" default=""/>
-        <setting id="vod2path11"  label="VOD2 Path  11" type="text" default=""/>
-        <setting id="vod2thumb11" label="VOD2 Thumb 11" type="text" default=""/>
-        <setting id="vod2title12" label="VOD2 Title 12" type="text" default=""/>
-        <setting id="vod2path12"  label="VOD2 Path  12" type="text" default=""/>
-        <setting id="vod2thumb12" label="VOD2 Thumb 12" type="text" default=""/>
-        <setting id="vod2title13" label="VOD2 Title 13" type="text" default=""/>
-        <setting id="vod2path13"  label="VOD2 Path  13" type="text" default=""/>
-        <setting id="vod2thumb13" label="VOD2 Thumb 13" type="text" default=""/>
-        <setting id="vod2title14" label="VOD2 Title 14" type="text" default=""/>
-        <setting id="vod2path14"  label="VOD2 Path  14" type="text" default=""/>
-        <setting id="vod2thumb14" label="VOD2 Thumb 14" type="text" default=""/>
-        <setting id="vod2title15" label="VOD2 Title 15" type="text" default=""/>
-        <setting id="vod2path15"  label="VOD2 Path  15" type="text" default=""/>
-        <setting id="vod2thumb15" label="VOD2 Thumb 15" type="text" default=""/>
+        <!-- Invisible These are what the Gui skin installer toggles to install below that doesnt already have a bool setting -->
+        <setting id="installer.minimal" type="bool"  label="Install the skin (minimal changes)" default="true" visible="false" />
+        <setting id="installer.epg" type="bool"  label="Install xmltv.xml" default="false" visible="false" />
+        <setting id="installer.playback" type="bool" label="Settings - Playback" default="false" visible="false" />
+        <setting id="installer.appearance" type="bool" label="Settings - Appearance" default="false" visible="false" />
+        <setting id="installer.background" type="bool" label="Settings - Background Colors" default="false" visible="false" />
+        <setting id="installer.backgroundimage" type="bool" label="Settings - Background Image" default="false" visible="false" />
+        <setting id="installer.refresh" type="bool" label="[COLOR yellow]*Post Install[/COLOR] Refresh addons.ini  (folders.list)" default="false" visible="false"/>
 
     </category>
     
     
-<!--NO CUSTOM SETTINGS BELOW HERE-->
+    
+    
+    <category label="[COLOR yellow]SKIN[/COLOR] VOD Widgets">
+        <setting id="mine1" label="Custom Command for MINE (ActivateWindow)" type="text" default=""/>
+
+        <setting type="lsep" label="VOD 1 Root Path"/>
+        <setting id="vodrootvisible" label="VOD Root ENABLE" type="bool" default="false" />
+        <setting id="vodroottitle"   label="VOD Root Title1" type="text" default="Custom"  visible="eq(-1,true)"/>
+        <setting id="vodrootpath"    label="VOD Root Path"   type="text" default="home://" visible="eq(-2,true)"/>
+        <setting id="vodrootthumb"   label="VOD Root Thumb"  type="text" default="library/movies.png" visible="eq(-3,true)"/>
+        <setting id="vodrootwidget"  label="VOD Root Widget" type="bool" default="false"  visible="eq(-4,true)"/>
+        
+        <setting type="lsep" label="VOD 2 Root Path"/>
+        <setting id="vod2rootvisible" label="VOD2 Root ENABLE" type="bool" default="false" />
+        <setting id="vod2roottitle"   label="VOD2 Root Title"  type="text" default="Custom2"  visible="eq(-1,true)"/>
+        <setting id="vod2rootpath"    label="VOD2 Root Path"   type="text" default="home://" visible="eq(-2,true)"/>
+        <setting id="vod2rootthumb"   label="VOD2 Root Thumb"  type="text" default="library/movies.png" visible="eq(-3,true)"/>
+        <setting id="vod2rootwidget"  label="VOD2 Root Widget" type="bool" default="false"  visible="eq(-4,true)"/>
+        
+        <setting id="vodenable" label="##VOD 1 List ENABLE" type="bool" default="false" />
+        <setting type="lsep"    label="VOD 1 Custom Paths (ie: plugin://plugin.123/123_index/)"/>
+        
+        <setting id="vodvisible1" label="VOD ENABLE 1" type="bool" default="false" />
+        <setting id="vodtitle1"   label="VOD Title  1" type="text" default="Custom"  visible="eq(-1,true)"/>
+        <setting id="vodpath1"    label="VOD Path   1" type="text" default="home://" visible="eq(-2,true)"/>
+        <setting id="vodthumb1"   label="VOD Thumb  1" type="text" default="library/movies.png" visible="eq(-3,true)"/>
+        <setting id="vodwidget1"  label="VOD Widget 1" type="bool" default="false"  visible="eq(-4,true)"/>
+        <!--
+        <setting id="vodvisible1" label="VOD ENABLE 1" type="bool" default="true" />
+        <setting id="vodtitle1"   label="VOD Title  1" type="text" default="Sport Fixtures"  visible="eq(-1,true)"/>
+        <setting id="vodpath1"    label="VOD Path   1" type="text" default="plugin://plugin.program.fixtures/bbc_sports_index/" visible="eq(-2,true)"/>
+        <setting id="vodthumb1"   label="VOD Thumb  1" type="text" default="special://home/addons/plugin.program.fixtures/icon.png" visible="eq(-3,true)"/>
+        <setting id="vodwidget1"  label="VOD Widget 1" type="bool" default="false"  visible="eq(-4,true)"/>
+        -->
+        
+        <setting id="vodvisible2" label="VOD ENABLE 2" type="bool" default="false" />
+        <setting id="vodtitle2"   label="VOD Title  2" type="text" default="Custom"  visible="eq(-1,true)"/>
+        <setting id="vodpath2"    label="VOD Path   2" type="text" default="home://" visible="eq(-2,true)"/>
+        <setting id="vodthumb2"   label="VOD Thumb  2" type="text" default="library/movies.png" visible="eq(-3,true)"/>
+        <setting id="vodwidget2"  label="VOD Widget 2" type="bool" default="false"  visible="eq(-4,true)"/>
+        
+        <setting id="vodvisible3" label="VOD ENABLE 3" type="bool" default="false" />
+        <setting id="vodtitle3"   label="VOD Title  3" type="text" default="Custom"  visible="eq(-1,true)"/>
+        <setting id="vodpath3"    label="VOD Path   3" type="text" default="home://" visible="eq(-2,true)"/>
+        <setting id="vodthumb3"   label="VOD Thumb  3" type="text" default="library/movies.png" visible="eq(-3,true)"/>
+        <setting id="vodwidget3"  label="VOD Widget 3" type="bool" default="false"  visible="eq(-4,true)"/>
+        
+        <setting id="vodvisible4" label="VOD ENABLE 4" type="bool" default="false" />
+        <setting id="vodtitle4"   label="VOD Title  4" type="text" default="Custom"  visible="eq(-1,true)"/>
+        <setting id="vodpath4"    label="VOD Path   4" type="text" default="home://" visible="eq(-2,true)"/>
+        <setting id="vodthumb4"   label="VOD Thumb  4" type="text" default="library/movies.png" visible="eq(-3,true)"/>
+        <setting id="vodwidget4"  label="VOD Widget 4" type="bool" default="false"  visible="eq(-4,true)"/>
+        
+        <setting id="vodvisible5" label="VOD ENABLE 5" type="bool" default="false" />
+        <setting id="vodtitle5"   label="VOD Title  5" type="text" default="Custom"  visible="eq(-1,true)"/>
+        <setting id="vodpath5"    label="VOD Path   5" type="text" default="home://" visible="eq(-2,true)"/>
+        <setting id="vodthumb5"   label="VOD Thumb  5" type="text" default="library/movies.png" visible="eq(-3,true)"/>
+        <setting id="vodwidget5"  label="VOD Widget 5" type="bool" default="false"  visible="eq(-4,true)"/>
+        
+        <setting id="vodvisible6" label="VOD ENABLE 6" type="bool" default="false" />
+        <setting id="vodtitle6"   label="VOD Title  6" type="text" default="Custom"  visible="eq(-1,true)"/>
+        <setting id="vodpath6"    label="VOD Path   6" type="text" default="home://" visible="eq(-2,true)"/>
+        <setting id="vodthumb6"   label="VOD Thumb  6" type="text" default="library/movies.png" visible="eq(-3,true)"/>
+        <setting id="vodwidget6"  label="VOD Widget 6" type="bool" default="false"  visible="eq(-4,true)"/>
+        
+        <setting id="vodvisible7" label="VOD ENABLE 7" type="bool" default="false" />
+        <setting id="vodtitle7"   label="VOD Title  7" type="text" default="Custom"  visible="eq(-1,true)"/>
+        <setting id="vodpath7"    label="VOD Path   7" type="text" default="home://" visible="eq(-2,true)"/>
+        <setting id="vodthumb7"   label="VOD Thumb  7" type="text" default="library/movies.png" visible="eq(-3,true)"/>
+        <setting id="vodwidget7"  label="VOD Widget 7" type="bool" default="false"  visible="eq(-4,true)"/>
+        
+        <setting id="vodvisible8" label="VOD ENABLE 8" type="bool" default="false" />
+        <setting id="vodtitle8"   label="VOD Title  8" type="text" default="Custom"  visible="eq(-1,true)"/>
+        <setting id="vodpath8"    label="VOD Path   8" type="text" default="home://" visible="eq(-2,true)"/>
+        <setting id="vodthumb8"   label="VOD Thumb  8" type="text" default="library/movies.png" visible="eq(-3,true)"/>
+        <setting id="vodwidget8"  label="VOD Widget 8" type="bool" default="false"  visible="eq(-4,true)"/>
+        
+        <setting id="vodvisible9" label="VOD ENABLE 9" type="bool" default="false" />
+        <setting id="vodtitle9"   label="VOD Title  9" type="text" default="Custom"  visible="eq(-1,true)"/>
+        <setting id="vodpath9"    label="VOD Path   9" type="text" default="home://" visible="eq(-2,true)"/>
+        <setting id="vodthumb9"   label="VOD Thumb  9" type="text" default="library/movies.png" visible="eq(-3,true)"/>
+        <setting id="vodwidget9"  label="VOD Widget 9" type="bool" default="false"  visible="eq(-4,true)"/>
+        
+        <setting id="vodvisible10" label="VOD ENABLE 10" type="bool" default="false" />
+        <setting id="vodtitle10"   label="VOD Title  10" type="text" default="Custom"  visible="eq(-1,true)"/>
+        <setting id="vodpath10"    label="VOD Path   10" type="text" default="home://" visible="eq(-2,true)"/>
+        <setting id="vodthumb10"   label="VOD Thumb  10" type="text" default="library/movies.png" visible="eq(-3,true)"/>
+        <setting id="vodwidget10"  label="VOD Widget 10" type="bool" default="false"  visible="eq(-4,true)"/>
+        
+        <setting id="vodvisible11" label="VOD ENABLE 11" type="bool" default="false" />
+        <setting id="vodtitle11"   label="VOD Title  11" type="text" default="Custom"  visible="eq(-1,true)"/>
+        <setting id="vodpath11"    label="VOD Path   11" type="text" default="home://" visible="eq(-2,true)"/>
+        <setting id="vodthumb11"   label="VOD Thumb  11" type="text" default="library/movies.png" visible="eq(-3,true)"/>
+        <setting id="vodwidget11"  label="VOD Widget 11" type="bool" default="false"  visible="eq(-4,true)"/>
+        
+        <setting id="vodvisible12" label="VOD ENABLE 12" type="bool" default="false" />
+        <setting id="vodtitle12"   label="VOD Title  12" type="text" default="Custom"  visible="eq(-1,true)"/>
+        <setting id="vodpath12"    label="VOD Path   12" type="text" default="home://" visible="eq(-2,true)"/>
+        <setting id="vodthumb12"   label="VOD Thumb  12" type="text" default="library/movies.png" visible="eq(-3,true)"/>
+        <setting id="vodwidget12"  label="VOD Widget 12" type="bool" default="false"  visible="eq(-4,true)"/>
+        
+        
+        <setting type="lsep"/>
+        <setting id="vod2enable" label="##VOD 2 List ENABLE" type="bool" default="false" />
+        <setting type="lsep" label="VOD 2 Paths (ie: plugin://plugin.123/123_index/)"/>
+        
+        <setting id="vod2visible1" label="VOD2 ENABLE 1" type="bool" default="true" />
+        <setting id="vod2title1"   label="VOD2 Title  1" type="text" default="Custom"  visible="eq(-1,true)"/>
+        <setting id="vod2path1"    label="VOD2 Path   1" type="text" default="home://" visible="eq(-2,true)"/>
+        <setting id="vod2thumb1"   label="VOD2 Thumb  1" type="text" default="library/movies.png" visible="eq(-3,true)"/>
+        <setting id="vod2widget1"  label="VOD2 Widget 1" type="bool" default="false"  visible="eq(-4,true)"/>
+        <!--
+        <setting id="vod2visible1" label="VOD2 ENABLE 1" type="bool" default="false" />
+        <setting id="vod2title1"   label="VOD2 Title  1" type="text" default="Custom 2"  visible="eq(-1,true)"/>
+        <setting id="vod2path1"    label="VOD2 Path   1" type="text" default="home://" visible="eq(-2,true)"/>
+        <setting id="vod2thumb1"   label="VOD2 Thumb  1" type="text" default="library/movies.png" visible="eq(-3,true)"/>
+        <setting id="vod2widget1"  label="VOD2 Widget 1" type="bool" default="false"  visible="eq(-4,true)"/>
+                -->
+        <setting id="vod2visible2" label="VOD2 ENABLE 2" type="bool" default="false" />
+        <setting id="vod2title2"   label="VOD2 Title  2" type="text" default="Custom"  visible="eq(-1,true)"/>
+        <setting id="vod2path2"    label="VOD2 Path   2" type="text" default="home://" visible="eq(-2,true)"/>
+        <setting id="vod2thumb2"   label="VOD2 Thumb  2" type="text" default="library/movies.png" visible="eq(-3,true)"/>
+        <setting id="vod2widget2"  label="VOD2 Widget 2" type="bool" default="false"  visible="eq(-4,true)"/>
+        
+        <setting id="vod2visible3" label="VOD2 ENABLE 3" type="bool" default="false" />
+        <setting id="vod2title3"   label="VOD2 Title  3" type="text" default="Custom"  visible="eq(-1,true)"/>
+        <setting id="vod2path3"    label="VOD2 Path   3" type="text" default="home://" visible="eq(-2,true)"/>
+        <setting id="vod2thumb3"   label="VOD2 Thumb  3" type="text" default="library/movies.png" visible="eq(-3,true)"/>
+        <setting id="vod2widget3"  label="VOD2 Widget 3" type="bool" default="false"  visible="eq(-4,true)"/>
+        
+        <setting id="vod2visible4" label="VOD2 ENABLE 4" type="bool" default="false" />
+        <setting id="vod2title4"   label="VOD2 Title  4" type="text" default="Custom"  visible="eq(-1,true)"/>
+        <setting id="vod2path4"    label="VOD2 Path   4" type="text" default="home://" visible="eq(-2,true)"/>
+        <setting id="vod2thumb4"   label="VOD2 Thumb  4" type="text" default="library/movies.png" visible="eq(-3,true)"/>
+        <setting id="vod2widget4"  label="VOD2 Widget 4" type="bool" default="false"  visible="eq(-4,true)"/>
+        
+        <setting id="vod2visible5" label="VOD2 ENABLE 5" type="bool" default="false" />
+        <setting id="vod2title5"   label="VOD2 Title  5" type="text" default="Custom"  visible="eq(-1,true)"/>
+        <setting id="vod2path5"    label="VOD2 Path   5" type="text" default="home://" visible="eq(-2,true)"/>
+        <setting id="vod2thumb5"   label="VOD2 Thumb  5" type="text" default="library/movies.png" visible="eq(-3,true)"/>
+        <setting id="vod2widget5"  label="VOD2 Widget 5" type="bool" default="false"  visible="eq(-4,true)"/>
+        
+        <setting id="vod2visible6" label="VOD2 ENABLE 6" type="bool" default="false" />
+        <setting id="vod2title6"   label="VOD2 Title  6" type="text" default="Custom"  visible="eq(-1,true)"/>
+        <setting id="vod2path6"    label="VOD2 Path   6" type="text" default="home://" visible="eq(-2,true)"/>
+        <setting id="vod2thumb6"   label="VOD2 Thumb  6" type="text" default="library/movies.png" visible="eq(-3,true)"/>
+        <setting id="vod2widget6"  label="VOD2 Widget 6" type="bool" default="false"  visible="eq(-4,true)"/>
+        
+        <setting id="vod2visible7" label="VOD2 ENABLE 7" type="bool" default="false" />
+        <setting id="vod2title7"   label="VOD2 Title  7" type="text" default="Custom"  visible="eq(-1,true)"/>
+        <setting id="vod2path7"    label="VOD2 Path   7" type="text" default="home://" visible="eq(-2,true)"/>
+        <setting id="vod2thumb7"   label="VOD2 Thumb  7" type="text" default="library/movies.png" visible="eq(-3,true)"/>
+        <setting id="vod2widget7"  label="VOD2 Widget 7" type="bool" default="false"  visible="eq(-4,true)"/>
+        
+        <setting id="vod2visible8" label="VOD2 ENABLE 8" type="bool" default="false" />
+        <setting id="vod2title8"   label="VOD2 Title  8" type="text" default="Custom"  visible="eq(-1,true)"/>
+        <setting id="vod2path8"    label="VOD2 Path   8" type="text" default="home://" visible="eq(-2,true)"/>
+        <setting id="vod2thumb8"   label="VOD2 Thumb  8" type="text" default="library/movies.png" visible="eq(-3,true)"/>
+        <setting id="vod2widget8"  label="VOD2 Widget 8" type="bool" default="false"  visible="eq(-4,true)"/>
+        
+        <setting id="vod2visible9" label="VOD2 ENABLE 9" type="bool" default="false" />
+        <setting id="vod2title9"   label="VOD2 Title  9" type="text" default="Custom"  visible="eq(-1,true)"/>
+        <setting id="vod2path9"    label="VOD2 Path   9" type="text" default="home://" visible="eq(-2,true)"/>
+        <setting id="vod2thumb9"   label="VOD2 Thumb  9" type="text" default="library/movies.png" visible="eq(-3,true)"/>
+        <setting id="vod2widget9"  label="VOD2 Widget 9" type="bool" default="false"  visible="eq(-4,true)"/>
+        
+        <setting id="vod2visible10" label="VOD2 ENABLE 10" type="bool" default="false" />
+        <setting id="vod2title10"   label="VOD2 Title  10" type="text" default="Custom"  visible="eq(-1,true)"/>
+        <setting id="vod2path10"    label="VOD2 Path   10" type="text" default="home://" visible="eq(-2,true)"/>
+        <setting id="vod2thumb10"   label="VOD2 Thumb  10" type="text" default="library/movies.png" visible="eq(-3,true)"/>
+        <setting id="vod2widget10"  label="VOD2 Widget 10" type="bool" default="false"  visible="eq(-4,true)"/>
+        
+        <setting id="vod2visible11" label="VOD2 ENABLE 11" type="bool" default="false" />
+        <setting id="vod2title11"   label="VOD2 Title  11" type="text" default="Custom"  visible="eq(-1,true)"/>
+        <setting id="vod2path11"    label="VOD2 Path   11" type="text" default="home://" visible="eq(-2,true)"/>
+        <setting id="vod2thumb11"   label="VOD2 Thumb  11" type="text" default="library/movies.png" visible="eq(-3,true)"/>
+        <setting id="vod2widget11"  label="VOD2 Widget 11" type="bool" default="false"  visible="eq(-4,true)"/>
+        
+        <setting id="vod2visible12" label="VOD2 ENABLE 12" type="bool" default="false" />
+        <setting id="vod2title12"   label="VOD2 Title  12" type="text" default="Custom"  visible="eq(-1,true)"/>
+        <setting id="vod2path12"    label="VOD2 Path   12" type="text" default="home://" visible="eq(-2,true)"/>
+        <setting id="vod2thumb12"   label="VOD2 Thumb  12" type="text" default="library/movies.png" visible="eq(-3,true)"/>
+        <setting id="vod2widget12"  label="VOD2 Widget 12" type="bool" default="false"  visible="eq(-4,true)"/>
+
+    </category>
+    
+    
+<!--NO CUSTOM SETTINGS BELOW HERE -->
     
     <category label="EPG Sources">
         <setting type="lsep" label="EPG Source urls"/>
@@ -179,25 +260,26 @@
         <!--<setting id="md5" label="md5 Check (Urls only)" type="bool" default="false" />-->
         <!--<setting id="xmltv.refresh" label="Reset on Start" type="bool" default="false" />-->
         <setting id="xmltv.interval" label="File download interval" type="enum" default="3" values="every start|12 hours|24 hours|48 hours|7 days|14 days" />
-        <setting id="xmltv.offset" label="XMLTV Timezone Offset (minutes)" type="text" default="-240" />
+        <setting id="xmltv.offset" label="XMLTV Timezone Offset (minutes)" type="text" default="-300" />
+        <!--<setting id="xmltv.offset" label="XMLTV Timezone Offset (minutes)" type="text" default="-240" />-->
         
         <setting type="lsep" label="Secondary XMLTV File"/>
         <setting id="xmltv2.enabled" label="XMLTV Secondary Source" type="bool" default="false" />
         <setting id="xmltv2.type" label="XMLTV Secondary Source Type" type="enum" enable="true" visible="eq(-1,true)" default="1" values="File|Url" />
         <setting id="xmltv2.file" label="XMLTV Secondary File" type="file" visible="eq(-2,true) + eq(-1,0)" />
 		<setting id="xmltv2.url" label="XMLTV Secondary Url" type="text" visible="eq(-3,true) + eq(-2,1)" default="" />
-        <setting id="xmltv2.offset" label="XMLTV Secondary Timezone Offset (minutes)" type="text" visible="eq(-3,true)" default="-240" />
+        <setting id="xmltv2.offset" label="XMLTV Secondary Timezone Offset (minutes)" type="text" visible="eq(-3,true)" default="-300" />
         
         <setting type="lsep" label="Tertiary XMLTV File"/>
         <setting id="xmltv3.enabled" label="XMLTV Tertiary Source" type="bool" default="false" />
         <setting id="xmltv3.type" label="XMLTV Tertiary Source Type" type="enum" enable="true" visible="eq(-1,true)" default="1" values="File|Url" />
         <setting id="xmltv3.file" label="XMLTV Tertiary File" type="file" visible="eq(-2,true) + eq(-1,0)" />
 		<setting id="xmltv3.url" label="XMLTV Tertiary Url" type="text" visible="eq(-3,true) + eq(-2,1)" default="" />
-        <setting id="xmltv3.offset" label="XMLTV Tertiary Timezone Offset (minutes)" type="text" visible="eq(-3,true)" default="-240" />
+        <setting id="xmltv3.offset" label="XMLTV Tertiary Timezone Offset (minutes)" type="text" visible="eq(-3,true)" default="-300" />
     </category>
 
 
-    <category label=".ini">
+    <category label=".ini Imports">
         <setting type="lsep" label="addon.ini (used by default)"/>
         <setting type="lsep" label="Import addons.ini will overwrite added addon folders!"/>
         <setting id="addons.ini.enabled" label="Import addons.ini" type="bool" default="false" />
@@ -237,6 +319,8 @@
         <setting id="play.always.choose" label="Always Choose Channel" type="bool" default="false" />
         <setting id="play.alt.choose" label="Always Choose Channel if Alternative Streams Exist" type="bool" default="false" />
         <setting id="play.alt.continue" label="Try Other Alternative Streams if Play Fails" type="bool" default="false" />
+        <setting id="stop.on.exit" label="Stop Playing on Exit" type="bool" default="false" visible="true" />
+        <setting id="exit.on.back" label="Exit from EPG on Back Button" type="bool" default="false" visible="true"/>
     </category>
     
     
@@ -259,21 +343,19 @@
         <setting id="program.search.plot" label="Program Search in Synopsis/Title" type="bool" default="true" />
         <setting id="epg.video.pip" label="Small EPG Video Preview Window" type="bool" default="true" />
         <setting id="program.image.scale" label="Scale Program Image" type="bool" default="false" />
-        
         <setting id="stream.addon.list" label="List View for Choose Stream" type="bool" default="true" />
         <setting id="up.cat.mode" label="Up to Categories Bar" type="select" default="No" values="No|First Channel|Always" />
         <setting id="action.bar" label="Show Action Bar" type="bool" default="true" />
         <setting id="down.action" label="Down to Action Bar" type="bool" default="true" />
-        
         <setting id="channel.logo" label="Show Channel Logo in EPG above Program Image" type="bool" default="true" />
         <setting id="addon.logo" label="Show Addon Logo in EPG above Program Image" type="bool" default="true" />
         <setting id="channels.per.page" label="Channels per Page" type="labelenum" default="12" values="1|2|3|4|5|6|7|8|9|10|11|12|13|14|15|16"/>
         <setting id="menu.addon" label="Show Addon in Context Menu" type="bool" default="true"/>
         <setting id="mouse.controls" label="Show Touch Control Buttons" type="bool" default="true" />
+        <setting id="date.custom" label="Custom Date" type="bool" default="true" />
+        <setting id="date.custom.format" label="Custom Date Format (dt is datetime variable)" visible="eq(-1,true)" type="text" default="{dt:%a %b} {dt.day}" />
+
+
     </category>
-        
-        
-        
- 
     
 </settings>

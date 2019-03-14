@@ -32,7 +32,7 @@
                 <posy>0</posy>
                 <width>1280</width>
                 <height>720</height>
-                <colordiffuse>$INFO[Window(1100).Property(popup_background_color)]</colordiffuse>
+                <colordiffuse>$INFO[Window(home).Property(color_popup_background)]</colordiffuse>
                 <texture>white.png</texture>
             </control>
             <!-- # Background clear Black Default -->
@@ -42,7 +42,7 @@
                 <posy>0</posy>
                 <width>1280</width>
                 <height>720</height>
-                <texture>$INFO[Window(1100).Property(image_fadebg)]</texture>
+                <texture>$INFO[Window(home).Property(image_fadebg)]</texture>
             </control>
             <control type="image">
                 <description>bottom buttons mount</description>
@@ -50,8 +50,8 @@
                 <posy>655</posy>
                 <width>1260</width>
                 <height>60</height>
-                <colordiffuse>$INFO[Window(1100).Property(bar_color)]</colordiffuse>
-                <texture>$INFO[Window(1100).Property(image_fadewhite)]</texture>
+                <colordiffuse>$INFO[Window(home).Property(color_bar)]</colordiffuse>
+                <texture>$INFO[Window(home).Property(image_fadewhite)]</texture>
                 <!--<texture>backgrounds/grey.png</texture>-->
             </control>
             <control type="image">
@@ -60,7 +60,7 @@
                 <posy>657</posy>
                 <width>1256</width>
                 <height>56</height>
-                <texture>$INFO[Window(1100).Property(image_fadebg)]</texture>
+                <texture>$INFO[Window(home).Property(image_fadebg)]</texture>
             </control>
             <!-- exit -->
             <control type="button">
@@ -111,14 +111,14 @@
                 <posy>20</posy>
                 <width>600</width>
                 <height>40</height>
-                <texture>$INFO[Window(1100).Property(image_fade)]</texture>
+                <texture>$INFO[Window(home).Property(image_fade)]</texture>
             </control>
             <control type="image">
                 <posx>0</posx>
                 <posy>20</posy>
                 <width>600</width>
                 <height>40</height>
-                <texture>$INFO[Window(1100).Property(image_fade)]</texture>
+                <texture>$INFO[Window(home).Property(image_fade)]</texture>
             </control>
             <control type="image">
                 <posx>12</posx>
@@ -282,11 +282,11 @@
             <showonepage>false</showonepage>
             <onleft>6000</onleft>
             <onright>6004</onright>
-            <texturesliderbackground colordiffuse="$INFO[Window(1100).Property(scrollbarbg_color)]">scrollbar/scrollbar.png</texturesliderbackground>
-            <textureslidernib></textureslidernib>
-            <textureslidernibfocus></textureslidernibfocus>
-            <texturesliderbar colordiffuse="$INFO[Window(1100).Property(scrollbarnf_color)]">scrollbar/scrollbar.png</texturesliderbar>
-            <texturesliderbarfocus colordiffuse="$INFO[Window(1100).Property(focus_current_color)]">scrollbar/scrollbar.png</texturesliderbarfocus>
+            <textureslidernib>backgrounds/progress_nub_updown.png</textureslidernib>
+            <textureslidernibfocus>backgrounds/progress_nub_updown.png</textureslidernibfocus>
+            <texturesliderbackground colordiffuse="$INFO[Window(home).Property(color_scrollbarbg)]">backgrounds/scrollbarbg.png</texturesliderbackground>
+            <texturesliderbar colordiffuse="$INFO[Window(home).Property(color_scrollbarnf)]">backgrounds/scrollbar.png</texturesliderbar>
+            <texturesliderbarfocus colordiffuse="$INFO[Window(home).Property(color_progress)]">backgrounds/scrollbar-focus.png</texturesliderbarfocus>
             <animation effect="fade" start="0" end="100" time="200" delay="300">Visible</animation>
             <animation effect="fade" start="100" end="0" time="200">Hidden</animation>
             <!--<visible>Integer.IsGreater(Container(6000).NumItems,12)</visible>-->

@@ -28,7 +28,7 @@
                 <posy>0</posy>
                 <width>1280</width>
                 <height>720</height>
-                <colordiffuse>$INFO[Window(1100).Property(popup_background_color)]</colordiffuse>
+                <colordiffuse>$INFO[Window(home).Property(color_popup_background)]</colordiffuse>
                 <texture>white.png</texture>
             </control>
             <!-- # Background clear Black Default -->
@@ -38,7 +38,7 @@
                 <posy>0</posy>
                 <width>1280</width>
                 <height>720</height>
-                <texture>$INFO[Window(1100).Property(image_fadebg)]</texture>
+                <texture>$INFO[Window(home).Property(image_fadebg)]</texture>
             </control>
             <control type="image">
                 <description>top buttons mount</description>
@@ -46,8 +46,8 @@
                 <posy>30</posy>
                 <width>1260</width>
                 <height>60</height>
-                <colordiffuse>$INFO[Window(1100).Property(bar_color)]</colordiffuse>
-                <texture>$INFO[Window(1100).Property(image_fadewhite)]</texture>
+                <colordiffuse>$INFO[Window(home).Property(color_bar)]</colordiffuse>
+                <texture>$INFO[Window(home).Property(image_fadewhite)]</texture>
                 <!--<texture>backgrounds/grey.png</texture>-->
             </control>
             <control type="image">
@@ -56,7 +56,7 @@
                 <posy>32</posy>
                 <width>1256</width>
                 <height>56</height>
-                <texture>$INFO[Window(1100).Property(image_fade)]</texture>
+                <texture>$INFO[Window(home).Property(image_fade)]</texture>
             </control>
             <control type="image">
                 <description>bottom buttons mount</description>
@@ -64,8 +64,8 @@
                 <posy>640</posy>
                 <width>1260</width>
                 <height>60</height>
-                <colordiffuse>$INFO[Window(1100).Property(bar_color)]</colordiffuse>
-                <texture>$INFO[Window(1100).Property(image_fadewhite)]</texture>
+                <colordiffuse>$INFO[Window(home).Property(color_description_bar)]</colordiffuse>
+                <texture>$INFO[Window(home).Property(image_fadewhite)]</texture>
                 <!--<texture>backgrounds/grey.png</texture>-->
             </control>
             <control type="image">
@@ -74,7 +74,7 @@
                 <posy>642</posy>
                 <width>1256</width>
                 <height>56</height>
-                <texture>$INFO[Window(1100).Property(image_fade)]</texture>
+                <texture>$INFO[Window(home).Property(image_fade)]</texture>
             </control>
             <!--
             <control type="image">
@@ -83,7 +83,7 @@
                 <posy>100</posy>
                 <width>1260</width>
                 <height>530</height>
-                <colordiffuse>$INFO[Window(1100).Property(popup_background_color)]</colordiffuse>
+                <colordiffuse>$INFO[Window(home).Property(color_popup_background)]</colordiffuse>
                 <texture>white.png</texture>
             </control>
             -->
@@ -94,7 +94,7 @@
                 <posy>100</posy>
                 <width>1260</width>
                 <height>530</height>
-                <texture>$INFO[Window(1100).Property(image_panel)]</texture>
+                <texture>backgrounds/panel.png</texture>
             </control>
         </control>
         <control type="image">
@@ -140,40 +140,50 @@
                 <aligny>top</aligny>
                 <visible>!String.IsEmpty(VideoPlayer.VideoResolution)</visible>
             </control>
+            <!-- Video VideoCodec -->
             <control type="image">
-                <description>Video Resolution Image</description>
-                <width>30</width>
-                <height>19</height>
-                <texture>$INFO[VideoPlayer.VideoResolution,codecflags/videoresolution/,.png]</texture>
+                <width min="0" max="30">auto</width>
+                <height>20</height>
+                <aspectratio>keep</aspectratio>
+                <texture>flags/themes/$INFO[Window(home).Property(image_flags)]/videocodec/$INFO[VideoPlayer.VideoCodec].png</texture>
+                <!--<texture>$INFO[VideoPlayer.VideoCodec,flags/videocodec/,.png]</texture>-->
                 <visible>!String.IsEmpty(VideoPlayer.VideoCodec)</visible>
             </control>
+            <!-- AudioCodec -->
             <control type="image">
-                <description>Video AspectRatio Image</description>
-                <width>30</width>
+                <width min="0" max="30">auto</width>
                 <height>20</height>
-                <texture>$INFO[VideoPlayer.VideoAspect,codecflags/aspectratio/,.png]</texture>
-                <visible>!String.IsEmpty(VideoPlayer.VideoAspect)</visible>
-            </control>
-            <control type="image">
-                <description>Video VideoCodec Image</description>
-                <width>30</width>
-                <height>20</height>
-                <texture>$INFO[VideoPlayer.VideoCodec,codecflags/videocodec/,.png]</texture>
-                <visible>!String.IsEmpty(VideoPlayer.VideoCodec)</visible>
-            </control>
-            <control type="image">
-                <description>Audio Codec Image</description>
-                <width>30</width>
-                <height>20</height>
-                <texture>$INFO[VideoPlayer.AudioCodec,codecflags/audiocodec/,.png]</texture>
+                <aspectratio>keep</aspectratio>
+                <texture>flags/themes/$INFO[Window(home).Property(image_flags)]/audiocodec/$INFO[VideoPlayer.AudioCodec].png</texture>
+                <!--<texture>$INFO[VideoPlayer.AudioCodec,flags/audiocodec/,.png]</texture>-->
                 <visible>!String.IsEmpty(VideoPlayer.AudioCodec)</visible>
             </control>
+            <!-- Audio Channels -->
             <control type="image">
-                <description>Audio Channels Image</description>
-                <width>30</width>
+                <width min="0" max="30">auto</width>
                 <height>20</height>
-                <texture>$INFO[VideoPlayer.AudioChannels,codecflags/audiochannel/,.png]</texture>
+                <aspectratio>keep</aspectratio>
+                <texture>flags/themes/$INFO[Window(home).Property(image_flags)]/audiochannel/$INFO[VideoPlayer.AudioChannels].png</texture>
+                <!--<texture>$INFO[VideoPlayer.AudioChannels,flags/audiochannel/,.png]</texture>-->
                 <visible>!String.IsEmpty(VideoPlayer.AudioChannels)</visible>
+            </control>
+            <!-- Video AspectRatio -->
+            <control type="image">
+                <width min="0" max="30">auto</width>
+                <height>20</height>
+                <aspectratio>keep</aspectratio>
+                <!--<texture>$INFO[VideoPlayer.VideoAspect,flags/aspectratio/,.png]</texture>-->
+                <texture>flags/themes/$INFO[Window(home).Property(image_flags)]/aspectratio/$INFO[VideoPlayer.VideoAspect].png</texture>
+                <visible>!String.IsEmpty(VideoPlayer.VideoAspect)</visible>
+            </control>
+            <!-- Video Resolution -->
+            <control type="image">
+                <width min="0" max="30">auto</width>
+                <height>20</height>
+                <aspectratio>keep</aspectratio>
+                <texture>flags/themes/$INFO[Window(home).Property(image_flags)]/resolution/$INFO[VideoPlayer.VideoResolution].png</texture>
+                <!--<texture>$INFO[VideoPlayer.VideoResolution,flags/resolution/,.png]</texture>-->
+                <visible>!String.IsEmpty(VideoPlayer.VideoResolution)</visible>
             </control>
         </control>
         <!-- # Channel Logo -->
@@ -390,7 +400,7 @@
                     <texture>backgrounds/listborder400x360.png</texture>
                 </control>
                 <control type="button" id="1001">
-                    <texturenofocus>buttons/popup_button.png</texturenofocus>
+                    <texturenofocus>buttons/tvg-button-nofocus.png</texturenofocus>
                     <description>Single Stream From Playlist</description>
                     <posx>40</posx>
                     <posy>190</posy>
@@ -402,13 +412,13 @@
                     <font>font13</font>
                     <textcolor>blue</textcolor>
                     <focusedcolor>white</focusedcolor>
-                    <texturefocus>buttons/popup_buttonFO.png</texturefocus>
+                    <texturefocus>buttons/tvg-button-focus.png</texturefocus>
                     <onup>101</onup>
                     <onright>1002</onright>
                     <ondown>1006</ondown>
                 </control>
                 <control type="button" id="1006">
-                    <texturenofocus>buttons/popup_button.png</texturenofocus>
+                    <texturenofocus>buttons/tvg-button-nofocus.png</texturenofocus>
                     <description>Import Playlist</description>
                     <posx>40</posx>
                     <posy>230</posy>
@@ -420,14 +430,14 @@
                     <font>font13</font>
                     <textcolor>blue</textcolor>
                     <focusedcolor>white</focusedcolor>
-                    <texturefocus>buttons/popup_buttonFO.png</texturefocus>
+                    <texturefocus>buttons/tvg-button-focus.png</texturefocus>
                     <onup>1001</onup>
                     <onleft>101</onleft>
                     <onright>1002</onright>
                     <ondown>1007</ondown>
                 </control>
                 <control type="button" id="1007">
-                    <texturenofocus>buttons/popup_button.png</texturenofocus>
+                    <texturenofocus>buttons/tvg-button-nofocus.png</texturenofocus>
                     <description>Import PVR </description>
                     <posx>40</posx>
                     <posy>270</posy>
@@ -439,14 +449,14 @@
                     <font>font13</font>
                     <textcolor>blue</textcolor>
                     <focusedcolor>white</focusedcolor>
-                    <texturefocus>buttons/popup_buttonFO.png</texturefocus>
+                    <texturefocus>buttons/tvg-button-focus.png</texturefocus>
                     <onup>1006</onup>
                     <onleft>101</onleft>
                     <onright>1002</onright>
                     <ondown>1008</ondown>
                 </control>
                 <control type="button" id="1008">
-                    <texturenofocus>buttons/popup_button.png</texturenofocus>
+                    <texturenofocus>buttons/tvg-button-nofocus.png</texturenofocus>
                     <description>catchup</description>
                     <posx>40</posx>
                     <posy>310</posy>
@@ -458,7 +468,7 @@
                     <font>font13</font>
                     <textcolor>blue</textcolor>
                     <focusedcolor>white</focusedcolor>
-                    <texturefocus>buttons/popup_buttonFO.png</texturefocus>
+                    <texturefocus>buttons/tvg-button-focus.png</texturefocus>
                     <onup>1007</onup>
                     <onleft>101</onleft>
                     <onright>1002</onright>
@@ -523,7 +533,7 @@
                     <textureradioonnofocus>player/stop.png</textureradioonnofocus>
                     <textureradioofffocus colordiffuse="white">player/stop.png</textureradioofffocus>
                     <textureradiooffnofocus>player/stop.png</textureradiooffnofocus>
-                    <texturefocus colordiffuse="$INFO[Window(1100).Property(radio_color)]">buttons/round-fo.png</texturefocus>
+                    <texturefocus colordiffuse="$INFO[Window(home).Property(color_focus)]">buttons/round-fo.png</texturefocus>
                     <animation center="50,30" effect="zoom" end="100" reversible="false" start="95" time="0" tween="back">Focus</animation>
                     <posx>380</posx>
                     <posy>530</posy>
@@ -611,11 +621,11 @@
                 <control type="radiobutton" id="10099">
                     <texturenofocus />
                     <description>custom refresh sub ini</description>
-                    <textureradioonfocus colordiffuse="white">icons/refresh.png</textureradioonfocus>
-                    <textureradioonnofocus>icons/refresh.png</textureradioonnofocus>
-                    <textureradioofffocus colordiffuse="white">icons/refresh.png</textureradioofffocus>
-                    <textureradiooffnofocus>icons/refresh.png</textureradiooffnofocus>
-                    <texturefocus colordiffuse="$INFO[Window(1100).Property(radio_color)]">buttons/round-fo.png</texturefocus>
+                    <textureradioonfocus colordiffuse="white">buttons/refresh.png</textureradioonfocus>
+                    <textureradioonnofocus>buttons/refresh.png</textureradioonnofocus>
+                    <textureradioofffocus colordiffuse="white">buttons/refresh.png</textureradioofffocus>
+                    <textureradiooffnofocus>buttons/refresh.png</textureradiooffnofocus>
+                    <texturefocus colordiffuse="$INFO[Window(home).Property(color_focus)]">buttons/round-fo.png</texturefocus>
                     <posx>1220</posx>
                     <posy>530</posy>
                     <width>42</width>
@@ -628,7 +638,7 @@
                     <ondown>101</ondown>
                     <onleft>1002</onleft>
                     <onright>1002</onright>
-                    <onclick>RunScript($INFO[Window(1100).Property(run_script)],refresh_ini)</onclick>
+                    <onclick>RunScript($INFO[Window(home).Property(run_script)],refresh_ini)</onclick>
                 </control>
             </control>
             <!-- # Main Favourites -->
@@ -742,13 +752,13 @@
                     <showonepage>false</showonepage>
                     <onleft>2001</onleft>
                     <onright>2001</onright>
-                    <texturesliderbackground colordiffuse="$INFO[Window(1100).Property(scrollbarbg_color)]">scrollbar/scrollbar.png</texturesliderbackground>
-                    <textureslidernib></textureslidernib>
-                    <textureslidernibfocus></textureslidernibfocus>
-                    <texturesliderbar colordiffuse="$INFO[Window(1100).Property(scrollbarnf_color)]">scrollbar/scrollbar.png</texturesliderbar>
-                    <texturesliderbarfocus colordiffuse="$INFO[Window(1100).Property(focus_current_color)]">scrollbar/scrollbar.png</texturesliderbarfocus>
-                    <animation effect="fade" start="0" end="100" time="200" delay="300">Visible</animation>
-                    <animation effect="fade" start="100" end="0" time="200">Hidden</animation>
+                    <textureslidernib>backgrounds/progress_nub_updown.png</textureslidernib>
+                    <textureslidernibfocus>backgrounds/progress_nub_updown.png</textureslidernibfocus>
+                    <texturesliderbackground colordiffuse="$INFO[Window(home).Property(color_scrollbarbg)]">backgrounds/scrollbarbg.png</texturesliderbackground>
+                    <texturesliderbar colordiffuse="$INFO[Window(home).Property(color_scrollbarnf)]">backgrounds/scrollbar.png</texturesliderbar>
+                    <texturesliderbarfocus colordiffuse="$INFO[Window(home).Property(color_progress)]">backgrounds/scrollbar-focus.png</texturesliderbarfocus>
+                    <animation effect="fade" start="0" end="100" time="50" delay="100">Visible</animation>
+                    <animation effect="fade" start="100" end="0" time="50">Hidden</animation>
                     <visible>Integer.IsGreater(Container(2001).NumItems,12)</visible>
                 </control>
                 <!-- fav buttons -->
@@ -761,7 +771,7 @@
                     <textureradioonnofocus>player/stop.png</textureradioonnofocus>
                     <textureradioofffocus colordiffuse="white">player/stop.png</textureradioofffocus>
                     <textureradiooffnofocus>player/stop.png</textureradiooffnofocus>
-                    <texturefocus colordiffuse="$INFO[Window(1100).Property(radio_color)]">buttons/round-fo.png</texturefocus>
+                    <texturefocus colordiffuse="$INFO[Window(home).Property(color_focus)]">buttons/round-fo.png</texturefocus>
                     <animation center="50,30" effect="zoom" end="100" reversible="false" start="95" time="0" tween="back">Focus</animation>
                     <posx>380</posx>
                     <posy>530</posy>
@@ -849,11 +859,11 @@
                 <control type="radiobutton" id="20099">
                     <texturenofocus />
                     <description>custom refresh sub ini</description>
-                    <textureradioonfocus colordiffuse="white">icons/refresh.png</textureradioonfocus>
-                    <textureradioonnofocus>icons/refresh.png</textureradioonnofocus>
-                    <textureradioofffocus colordiffuse="white">icons/refresh.png</textureradioofffocus>
-                    <textureradiooffnofocus>icons/refresh.png</textureradiooffnofocus>
-                    <texturefocus colordiffuse="$INFO[Window(1100).Property(radio_color)]">buttons/round-fo.png</texturefocus>
+                    <textureradioonfocus colordiffuse="white">buttons/refresh.png</textureradioonfocus>
+                    <textureradioonnofocus>buttons/refresh.png</textureradioonnofocus>
+                    <textureradioofffocus colordiffuse="white">buttons/refresh.png</textureradioofffocus>
+                    <textureradiooffnofocus>buttons/refresh.png</textureradiooffnofocus>
+                    <texturefocus colordiffuse="$INFO[Window(home).Property(color_focus)]">buttons/round-fo.png</texturefocus>
                     <posx>1220</posx>
                     <posy>530</posy>
                     <width>42</width>
@@ -866,7 +876,7 @@
                     <ondown>2002</ondown>
                     <onleft>2002</onleft>
                     <onright>2002</onright>
-                    <onclick>RunScript($INFO[Window(1100).Property(run_script)],refresh_ini)</onclick>
+                    <onclick>RunScript($INFO[Window(home).Property(run_script)],refresh_ini)</onclick>
                 </control>
             </control>
             <!-- # Main Addons ini browse -->
@@ -1068,13 +1078,13 @@
                     <showonepage>false</showonepage>
                     <onleft>3002</onleft>
                     <onright>3002</onright>
-                    <texturesliderbackground colordiffuse="$INFO[Window(1100).Property(scrollbarbg_color)]">scrollbar/scrollbar.png</texturesliderbackground>
-                    <textureslidernib></textureslidernib>
-                    <textureslidernibfocus></textureslidernibfocus>
-                    <texturesliderbar colordiffuse="$INFO[Window(1100).Property(scrollbarnf_color)]">scrollbar/scrollbar.png</texturesliderbar>
-                    <texturesliderbarfocus colordiffuse="$INFO[Window(1100).Property(focus_current_color)]">scrollbar/scrollbar.png</texturesliderbarfocus>
-                    <animation effect="fade" start="0" end="100" time="200" delay="300">Visible</animation>
-                    <animation effect="fade" start="100" end="0" time="200">Hidden</animation>
+                    <textureslidernib>backgrounds/progress_nub_updown.png</textureslidernib>
+                    <textureslidernibfocus>backgrounds/progress_nub_updown.png</textureslidernibfocus>
+                    <texturesliderbackground colordiffuse="$INFO[Window(home).Property(color_scrollbarbg)]">backgrounds/scrollbarbg.png</texturesliderbackground>
+                    <texturesliderbar colordiffuse="$INFO[Window(home).Property(color_scrollbarnf)]">backgrounds/scrollbar.png</texturesliderbar>
+                    <texturesliderbarfocus colordiffuse="$INFO[Window(home).Property(color_progress)]">backgrounds/scrollbar-focus.png</texturesliderbarfocus>
+                    <animation effect="fade" start="0" end="100" time="50" delay="100">Visible</animation>
+                    <animation effect="fade" start="100" end="0" time="50">Hidden</animation>
                     <visible>Integer.IsGreater(Container(3002).NumItems,12)</visible>
                 </control>
                 <!-- Buttons -->
@@ -1087,7 +1097,7 @@
                     <textureradioonnofocus>player/stop.png</textureradioonnofocus>
                     <textureradioofffocus colordiffuse="white">player/stop.png</textureradioofffocus>
                     <textureradiooffnofocus>player/stop.png</textureradiooffnofocus>
-                    <texturefocus colordiffuse="$INFO[Window(1100).Property(radio_color)]">buttons/round-fo.png</texturefocus>
+                    <texturefocus colordiffuse="$INFO[Window(home).Property(color_focus)]">buttons/round-fo.png</texturefocus>
                     <animation center="50,30" effect="zoom" end="100" reversible="false" start="95" time="0" tween="back">Focus</animation>
                     <posx>380</posx>
                     <posy>530</posy>
@@ -1174,11 +1184,11 @@
                 <control type="radiobutton" id="30099">
                     <texturenofocus />
                     <description>custom refresh sub ini</description>
-                    <textureradioonfocus colordiffuse="white">icons/refresh.png</textureradioonfocus>
-                    <textureradioonnofocus>icons/refresh.png</textureradioonnofocus>
-                    <textureradioofffocus colordiffuse="white">icons/refresh.png</textureradioofffocus>
-                    <textureradiooffnofocus>icons/refresh.png</textureradiooffnofocus>
-                    <texturefocus colordiffuse="$INFO[Window(1100).Property(radio_color)]">buttons/round-fo.png</texturefocus>
+                    <textureradioonfocus colordiffuse="white">buttons/refresh.png</textureradioonfocus>
+                    <textureradioonnofocus>buttons/refresh.png</textureradioonnofocus>
+                    <textureradioofffocus colordiffuse="white">buttons/refresh.png</textureradioofffocus>
+                    <textureradiooffnofocus>buttons/refresh.png</textureradiooffnofocus>
+                    <texturefocus colordiffuse="$INFO[Window(home).Property(color_focus)]">buttons/round-fo.png</texturefocus>
                     <posx>1220</posx>
                     <posy>530</posy>
                     <width>42</width>
@@ -1191,7 +1201,7 @@
                     <ondown>3005</ondown>
                     <onleft>3009</onleft>
                     <onright>3005</onright>
-                    <onclick>RunScript($INFO[Window(1100).Property(run_script)],refresh_ini)</onclick>
+                    <onclick>RunScript($INFO[Window(home).Property(run_script)],refresh_ini)</onclick>
                 </control>
             </control>
             <!-- # Main browse and add addon subscriptions -->
@@ -1418,13 +1428,13 @@
                         <showonepage>false</showonepage>
                         <onleft>4008</onleft>
                         <onright>4002</onright>
-                        <texturesliderbackground colordiffuse="$INFO[Window(1100).Property(scrollbarbg_color)]">scrollbar/scrollbar.png</texturesliderbackground>
-                        <textureslidernib></textureslidernib>
-                        <textureslidernibfocus></textureslidernibfocus>
-                        <texturesliderbar colordiffuse="$INFO[Window(1100).Property(scrollbarnf_color)]">scrollbar/scrollbar.png</texturesliderbar>
-                        <texturesliderbarfocus colordiffuse="$INFO[Window(1100).Property(focus_current_color)]">scrollbar/scrollbar.png</texturesliderbarfocus>
-                        <animation effect="fade" start="0" end="100" time="200" delay="300">Visible</animation>
-                        <animation effect="fade" start="100" end="0" time="200">Hidden</animation>
+                        <textureslidernib>backgrounds/progress_nub_updown.png</textureslidernib>
+                        <textureslidernibfocus>backgrounds/progress_nub_updown.png</textureslidernibfocus>
+                        <texturesliderbackground colordiffuse="$INFO[Window(home).Property(color_scrollbarbg)]">backgrounds/scrollbarbg.png</texturesliderbackground>
+                        <texturesliderbar colordiffuse="$INFO[Window(home).Property(color_scrollbarnf)]">backgrounds/scrollbar.png</texturesliderbar>
+                        <texturesliderbarfocus colordiffuse="$INFO[Window(home).Property(color_progress)]">backgrounds/scrollbar-focus.png</texturesliderbarfocus>
+                        <animation effect="fade" start="0" end="100" time="50" delay="100">Visible</animation>
+                        <animation effect="fade" start="100" end="0" time="50">Hidden</animation>
                         <visible>Integer.IsGreater(Container(4008).NumItems,12)</visible>
                     </control>
                 </control>
@@ -1512,13 +1522,13 @@
                         <showonepage>false</showonepage>
                         <onleft>2001</onleft>
                         <onright>2001</onright>
-                        <texturesliderbackground colordiffuse="$INFO[Window(1100).Property(scrollbarbg_color)]">scrollbar/scrollbar.png</texturesliderbackground>
-                        <textureslidernib></textureslidernib>
-                        <textureslidernibfocus></textureslidernibfocus>
-                        <texturesliderbar colordiffuse="$INFO[Window(1100).Property(scrollbarnf_color)]">scrollbar/scrollbar.png</texturesliderbar>
-                        <texturesliderbarfocus colordiffuse="$INFO[Window(1100).Property(focus_current_color)]">scrollbar/scrollbar.png</texturesliderbarfocus>
-                        <animation effect="fade" start="0" end="100" time="200" delay="300">Visible</animation>
-                        <animation effect="fade" start="100" end="0" time="200">Hidden</animation>
+                        <textureslidernib>backgrounds/progress_nub_updown.png</textureslidernib>
+                        <textureslidernibfocus>backgrounds/progress_nub_updown.png</textureslidernibfocus>
+                        <texturesliderbackground colordiffuse="$INFO[Window(home).Property(color_scrollbarbg)]">backgrounds/scrollbarbg.png</texturesliderbackground>
+                        <texturesliderbar colordiffuse="$INFO[Window(home).Property(color_scrollbarnf)]">backgrounds/scrollbar.png</texturesliderbar>
+                        <texturesliderbarfocus colordiffuse="$INFO[Window(home).Property(color_progress)]">backgrounds/scrollbar-focus.png</texturesliderbarfocus>
+                        <animation effect="fade" start="0" end="100" time="50" delay="100">Visible</animation>
+                        <animation effect="fade" start="100" end="0" time="50">Hidden</animation>
                         <visible>Integer.IsGreater(Container(4002).NumItems,12)</visible>
                     </control>
                 </control>
@@ -1532,7 +1542,7 @@
                     <textureradioonnofocus>player/stop.png</textureradioonnofocus>
                     <textureradioofffocus colordiffuse="white">player/stop.png</textureradioofffocus>
                     <textureradiooffnofocus>player/stop.png</textureradiooffnofocus>
-                    <texturefocus colordiffuse="$INFO[Window(1100).Property(radio_color)]">buttons/round-fo.png</texturefocus>
+                    <texturefocus colordiffuse="$INFO[Window(home).Property(color_focus)]">buttons/round-fo.png</texturefocus>
                     <animation center="50,30" effect="zoom" end="100" reversible="false" start="95" time="0" tween="back">Focus</animation>
                     <posx>380</posx>
                     <posy>530</posy>
@@ -1636,11 +1646,11 @@
                 <control type="radiobutton" id="40099">
                     <texturenofocus />
                     <description>custom refresh sub ini</description>
-                    <textureradioonfocus colordiffuse="white">icons/refresh.png</textureradioonfocus>
-                    <textureradioonnofocus>icons/refresh.png</textureradioonnofocus>
-                    <textureradioofffocus colordiffuse="white">icons/refresh.png</textureradioofffocus>
-                    <textureradiooffnofocus>icons/refresh.png</textureradiooffnofocus>
-                    <texturefocus colordiffuse="$INFO[Window(1100).Property(radio_color)]">buttons/round-fo.png</texturefocus>
+                    <textureradioonfocus colordiffuse="white">buttons/refresh.png</textureradioonfocus>
+                    <textureradioonnofocus>buttons/refresh.png</textureradioonnofocus>
+                    <textureradioofffocus colordiffuse="white">buttons/refresh.png</textureradioofffocus>
+                    <textureradiooffnofocus>buttons/refresh.png</textureradiooffnofocus>
+                    <texturefocus colordiffuse="$INFO[Window(home).Property(color_focus)]">buttons/round-fo.png</texturefocus>
                     <posx>1220</posx>
                     <posy>530</posy>
                     <width>42</width>
@@ -1653,7 +1663,7 @@
                     <ondown>4005</ondown>
                     <onleft>4009</onleft>
                     <onright>4005</onright>
-                    <onclick>RunScript($INFO[Window(1100).Property(run_script)],refresh_ini)</onclick>
+                    <onclick>RunScript($INFO[Window(home).Property(run_script)],refresh_ini)</onclick>
                 </control>
             </control>
         </control>

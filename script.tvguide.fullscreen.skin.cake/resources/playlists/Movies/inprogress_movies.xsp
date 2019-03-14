@@ -1,9 +1,0 @@
-<?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
-<smartplaylist type="movies">
-    <name>InProgress</name>
-    <!--<name>$LOCALIZE[31010]</name>-->
-    <match>all</match>
-    <rule field="inprogress" operator="true" />
-    <limit>20</limit>
-    <order direction="descending">lastplayed</order>
-</smartplaylist>

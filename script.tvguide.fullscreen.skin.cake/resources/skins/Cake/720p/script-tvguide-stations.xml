@@ -20,7 +20,7 @@
             <posy>0</posy>
             <width>1280</width>
             <height>720</height>
-            <colordiffuse>$INFO[Window(1100).Property(popup_background_color)]</colordiffuse>
+            <colordiffuse>$INFO[Window(home).Property(color_popup_background)]</colordiffuse>
             <texture>white.png</texture>
         </control>
         <control type="image">
@@ -29,8 +29,8 @@
             <posy>10</posy>
             <width>1260</width>
             <height>700</height>
-            <colordiffuse>$INFO[Window(1100).Property(bar_color)]</colordiffuse>
-            <texture>$INFO[Window(1100).Property(image_fadewhite)]</texture>
+            <colordiffuse>$INFO[Window(home).Property(color_bar)]</colordiffuse>
+            <texture>$INFO[Window(home).Property(image_fadewhite)]</texture>
             <!--<texture>backgrounds/grey.png</texture>-->
         </control>
         <control type="image">
@@ -39,7 +39,7 @@
             <posy>12</posy>
             <width>1256</width>
             <height>696</height>
-            <texture>$INFO[Window(1100).Property(image_fade)]</texture>
+            <texture>$INFO[Window(home).Property(image_fade)]</texture>
         </control>
         <!-- # Remove channels Label -->
         <control type="label">

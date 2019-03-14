@@ -66,7 +66,7 @@ def json_query(query):
 
 
 
-
+'''
 ################################################################################
 # ADD PASSWORD CREDENTIALS TO folders.list
 ################################################################################
@@ -90,7 +90,7 @@ if xbmc.getCondVisibility('System.HasAddon(%s)' % theaddon):
         except: pass
 if os.path.exists(tmp_File): os.remove(tmp_File)
 ######################################################
-
+'''
 
 ################################################################################
 # folders.list
@@ -210,7 +210,7 @@ for addonId in sorted(plugins):
         name = name.replace(' East','')
         name = name.replace(' EAST','')
         name = name.replace('HD (MTL)','MONTREAL')
-        
+        #name = name.replace('HD -','')
         #
         # north america networks
         name = name.replace(' Vancover',' VANCOUVER')
@@ -229,7 +229,7 @@ for addonId in sorted(plugins):
         name = name.replace('ITV2','ITV 2')
         name = name.replace('ITV3','ITV 3')
         name = name.replace('ITV4','ITV 4')
-        
+        #name = name.replace('BT SPORTS','BT SPORT')
         if 'ok2' in stream:
             # Networks
             name = name.replace('HD WEST','WEST')
@@ -262,6 +262,8 @@ f.close()
 
 #M3U WIP
 
+
+
 '''
 ################################################################################
 # PVR
@@ -278,6 +280,7 @@ if PVRACTIVE:
         urls = urls + xbmcvfs.listdir("pvr://channels/%s/All channels/" % group)[1]
     for group in ["radio","tv"]:
         groupid = "all%s" % group
+        import rpc as RPC
         #json_query = RPC.get_channels(channelgroupid=groupid, properties=[ "thumbnail", "channeltype", "hidden", "locked", "channel", "lastplayed", "broadcastnow" ] )
         #json_query = RPC.PVR.get_channels(channelgroupid=groupid, properties=[ "thumbnail", "channeltype", "hidden", "locked", "channel", "lastplayed", "broadcastnow" ] )
         json_query = RPC.PVR.get_channels(channelgroupid=groupid, properties=["thumbnail", "channeltype", "hidden", "locked", "channel", "lastplayed", "broadcastnow"])
@@ -336,6 +339,8 @@ if PVRACTIVE:
                 f.write(write_str)
     f.close()
 '''
+
+
 
 '''
 # wip to read folders list like channels do 

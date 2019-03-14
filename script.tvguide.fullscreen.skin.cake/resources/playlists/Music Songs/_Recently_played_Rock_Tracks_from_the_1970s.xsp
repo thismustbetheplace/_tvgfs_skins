@@ -1,7 +1,0 @@
-<?xml version="1.0"?>
-<smartplaylist type="songs">
-  <name>Recently Played Rock Tracks from the 1970s</name>
-  <match>all</match>
-  <rule field="playlist" operator="is">Rock Music from the 1970s</rule>
-  <rule field="playlist" operator="is">Recently Played Songs</rule>
-</smartplaylist>

@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!-- This is a dummy file for Skinning_Tool.exe validation -->
-<addon id="script.tvguide.fullscreen" version="0.1" name="Default" provider-name="\_(0_0)_/">
+<addon id="script.tvguide.fullscreen" version="0.1" name="Cake" provider-name="\_(0_0)_/">
   <requires>
     <import addon="xbmc.gui" version="5.10.0"/>
   </requires>

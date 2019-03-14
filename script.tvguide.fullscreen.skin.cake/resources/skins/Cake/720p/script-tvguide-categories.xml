@@ -48,7 +48,7 @@
                 <width>1278</width>
                 <height>33</height>
                 <colordiffuse>blue</colordiffuse>
-                <texture>$INFO[Window(1100).Property(image_fadewhite)]</texture>
+                <texture>$INFO[Window(home).Property(image_fadewhite)]</texture>
                 <!--<texture>white.png</texture>-->
             </control>
             <!-- extra dark layer -->
@@ -58,7 +58,7 @@
                 <posy>0</posy>
                 <width>1280</width>
                 <height>35</height>
-                <texture>$INFO[Window(1100).Property(image_fadebg)]</texture>
+                <texture>$INFO[Window(home).Property(image_fadebg)]</texture>
             </control>
             <!-- # quit -->
             <control type="button" id="7003">
@@ -72,8 +72,8 @@
                 <align>center</align>
                 <textcolor>grey</textcolor>
                 <focusedcolor>black</focusedcolor>
-                <texturefocus>icons/left.png</texturefocus>
-                <texturenofocus>icons/left.png</texturenofocus>
+                <texturefocus>buttons/left.png</texturefocus>
+                <texturenofocus>buttons/left.png</texturenofocus>
             </control>
             <!-- Search program category -->
             <!--  
@@ -112,13 +112,13 @@
                         <left>2</left>
                         <right>2</right>
                         <bottom>0</bottom>
-                        <texture colordiffuse="$INFO[Window(1100).Property(focus_color)]">buttons/panel-focus.png</texture>
+                        <texture colordiffuse="$INFO[Window(home).Property(color_focus)]">backgrounds/panel-focus.png</texture>
                     </control>
                     <control type="image">
                         <left>2</left>
                         <right>2</right>
                         <bottom>0</bottom>
-                        <texture colordiffuse="$INFO[Window(1100).Property(focus_current_color)]">buttons/panel-focus.png</texture>
+                        <texture colordiffuse="$INFO[Window(home).Property(color_focus_current)]">backgrounds/panel-focus.png</texture>
                         <animation effect="fade" start="100" end="0" time="0" condition="!Control.HasFocus(7004)">Conditional</animation>
                     </control>
                     <control type="image">
@@ -134,7 +134,7 @@
                         <width>33</width>
                         <bottom>0</bottom>
                         <!--<texture colordiffuse="FFFFFFFF">$INFO[ListItem.Art(thumb)]</texture>-->
-                        <texture fallback="categories/Default.png" colordiffuse="FFFFFFFF">$INFO[ListItem.Label,categories/,.png]</texture>
+                        <texture fallback="flags/categories/Default.png" colordiffuse="FFFFFFFF">$INFO[ListItem.Label,flags/categories/,.png]</texture>
                     </control>
                     <control type="label">
                         <left>39</left>
@@ -153,7 +153,7 @@
                         <width>33</width>
                         <bottom>0</bottom>
                         <!--<texture colordiffuse="FFFFFFFF">$INFO[ListItem.Art(thumb)]</texture>-->
-                        <texture fallback="categories/Default.png" colordiffuse="FFFFFFFF">$INFO[ListItem.Label,categories/,.png]</texture>
+                        <texture fallback="flags/categories/Default.png" colordiffuse="FFFFFFFF">$INFO[ListItem.Label,flags/categories/,.png]</texture>
                     </control>
                     <control type="label">
                         <left>39</left>

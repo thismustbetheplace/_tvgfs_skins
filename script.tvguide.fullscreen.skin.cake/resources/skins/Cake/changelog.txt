@@ -1,7 +1,7 @@
 SKIN:   Cake  v0.0.8
-AUTHOR: Andy
-
 Notes:
 This skin can toggle vertically and horizontally
 by selecting the Toggle skin settings icon (Paintbrush)
 or in settings.xml.
+
+Beta
